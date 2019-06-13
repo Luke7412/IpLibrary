@@ -1,0 +1,7 @@
+# ignore these files and folders
+
+
+Sublime/
+
+# ignore all vivado folders
+*/vivado/
