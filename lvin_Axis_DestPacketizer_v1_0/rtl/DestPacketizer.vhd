@@ -1,4 +1,7 @@
--- File Name      : UartRx.vhd
+--------------------------------------------------------------------------------
+-- Project Name   : IpLibrary
+-- Design Name    : DestPacketizer
+-- File Name      : DestPacketizer.vhd
 --------------------------------------------------------------------------------
 -- Author         : Lukas Vinkx
 -- Description: 

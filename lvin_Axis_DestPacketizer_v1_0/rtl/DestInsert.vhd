@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 -- Project Name   : IpLibrary
--- Design Name    : DestInsert
+-- Design Name    : DestPacketizer
 -- File Name      : DestInsert.vhd
 --------------------------------------------------------------------------------
 -- Author         : Lukas Vinkx
@@ -15,7 +15,6 @@
 --------------------------------------------------------------------------------
 library ieee;
    use ieee.std_logic_1164.all;
-   use ieee.std_logic_unsigned.all;
    use ieee.std_logic_arith.all;
 
 
@@ -85,7 +84,8 @@ begin
          when InsertId =>
             NextState <= Feedthrough;
 
-         when others => null;
+         when others => 
+            null;
 
       end case;
    end process CtrlProc;
