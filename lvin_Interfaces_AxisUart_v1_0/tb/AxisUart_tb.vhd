@@ -39,49 +39,26 @@ architecture Behavioral of AxisUart_tb is
    constant g_TIdWidth     : natural := 1;
    constant g_TDestWidth   : natural := 1;
 
-   signal AClk    : std_logic;
-   signal AResetn : std_logic;
-   signal UART_TX : std_logic;
-   signal UART_RX : std_logic;
-   signal In_TValid, Target_TValid, Initiator_TValid, Out_TValid : std_logic;
-   signal In_TReady, Target_TReady, Initiator_TReady, Out_TReady : std_logic;
-   signal In_TData , Target_TData , Initiator_TData , Out_TData  : std_logic_vector(8*g_NumByteLanes-1 downto 0);
-   signal In_TKeep , Target_TKeep                                : std_logic_vector(g_UseTStrb*g_NumByteLanes-1 downto 0);
+   signal AClk     : std_logic;
+   signal AResetn  : std_logic;
+   signal Uart_Txd : std_logic;
+   signal Uart_Rxd : std_logic;
+   signal In_TValid, TxByte_TValid, RxByte_TValid, Out_TValid : std_logic;
+   signal In_TReady, TxByte_TReady, RxByte_TReady, Out_TReady : std_logic;
+   signal In_TData , TxByte_TData , RxByte_TData , Out_TData  : std_logic_vector(8*g_NumByteLanes-1 downto 0);
+   signal In_TKeep , TxByte_TKeep                                : std_logic_vector(g_UseTStrb*g_NumByteLanes-1 downto 0);
 
    constant c_PeriodAClk : time    := 5 ns;
    signal ClockEnable    : boolean := False;
 
+   constant c_AClkFrequency : natural := 200000000;
+   constant c_BaudRate      : natural := 9600;
+   constant c_BaudRateSim   : natural := 50000000;
+
+   signal Out_Counter : integer;
+   signal In_Counter  : integer;
+
 begin
-
-   Dut : entity work.AxisUart
-      Generic map(
-         g_AClkFrequency => 200000000,
-         g_BaudRate      =>  10000000
-      )
-      Port map( 
-         AClk             => AClk            ,
-         AResetn          => AResetn         ,
-         UART_TX          => UART_TX         ,
-         UART_RX          => UART_RX         ,
-         Target_TValid    => Target_TValid   ,
-         Target_TReady    => Target_TReady   ,
-         Target_TData     => Target_TData    ,
-         Target_TKeep     => Target_TKeep    ,
-         Initiator_TValid => Initiator_TValid,
-         Initiator_TReady => Initiator_TReady,
-         Initiator_TData  => Initiator_TData
-      );
-
-   UART_RX <= UART_TX;
-
-   Target_TValid    <= In_TValid;
-   In_TReady        <= Target_TReady;
-   Target_TData     <= In_TData;
-   Target_TKeep     <= In_TKeep;
-
-   Out_TValid       <= Initiator_TValid;
-   Initiator_TReady <= Out_TReady;
-   Out_TData        <= Initiator_TData;
 
    -----------------------------------------------------------------------------
    p_AClk : process
@@ -89,10 +66,63 @@ begin
       AClk <= '0';
       wait until ClockEnable = True;
       while ClockEnable loop
-         AClk <= not AClk;
          wait for c_PeriodAClk/2;
+         AClk <= not AClk;
       end loop;
       wait;
+   end process;
+
+
+   -----------------------------------------------------------------------------
+   DUT : entity work.AxisUart
+      Generic map(
+         g_AClkFrequency => c_AClkFrequency,
+         g_BaudRate      => c_BaudRate     ,
+         g_BaudRateSim   => c_BaudRateSim  
+      )
+      Port map( 
+         AClk          => AClk            ,
+         AResetn       => AResetn         ,
+         UART_Txd      => Uart_Txd         ,
+         UART_Rxd      => Uart_Rxd         ,
+         TxByte_TValid => TxByte_TValid   ,
+         TxByte_TReady => TxByte_TReady   ,
+         TxByte_TData  => TxByte_TData    ,
+         TxByte_TKeep  => TxByte_TKeep    ,
+         RxByte_TValid => RxByte_TValid,
+         RxByte_TReady => RxByte_TReady,
+         RxByte_TData  => RxByte_TData
+      );
+
+   UART_Rxd <= UART_Txd;
+
+   TxByte_TValid <= In_TValid;
+   In_TReady     <= TxByte_TReady;
+   TxByte_TData  <= In_TData;
+   TxByte_TKeep  <= In_TKeep;
+   
+   Out_TValid    <= RxByte_TValid;
+   RxByte_TReady <= Out_TReady;
+   Out_TData     <= RxByte_TData;
+
+
+   -----------------------------------------------------------------------------
+   process(AClk, AResetn) is
+   begin
+      if AResetn = '0' then
+         In_Counter  <= 0;
+         Out_Counter <= 0;
+         
+      elsif rising_edge(AClk) then
+
+         if In_TValid = '1' and In_TReady = '1' and In_TKeep = "1" then
+            In_Counter <= In_Counter + 1;
+         end if;
+
+         if Out_TValid = '1' and Out_TReady = '1' then
+            Out_Counter <= Out_Counter + 1;
+         end if;
+      end if;
    end process;
 
 
@@ -155,13 +185,19 @@ begin
       SendBeat(x"08", "0");
       SendBeat(x"09", "1");
 
+      wait until In_Counter = Out_Counter;
+
+
       --------------------------------------------------------------------------
-      wait for 20 us;
+      WaitTics(10);
       AResetn <= '0';
+
       WaitTics(10);
       ClockEnable <= False;
+
       wait for 10*c_PeriodAClk;
       report "Simulation Finished";
+
       wait;
    end process;
 
