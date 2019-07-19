@@ -16,68 +16,131 @@
 --------------------------------------------------------------------------------
 library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
+   use IEEE.std_logic_arith.all;
 
+library work;
+   use work.Axi4LiteIntf_pkg.all;
 
 --------------------------------------------------------------------------------
 -- PACKAGE HEADER
 --------------------------------------------------------------------------------
-package Axi4LiteTransactor is
+package Axi4LiteTransactor_pkg is
 
    procedure InitAxi(
-      Ctrl : inout
-      );
+      signal AxiIntf : inout t_Axi4LiteIntf
+   );
+
+   procedure Idle (
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Tics  : in    natural := 1
+   );
 
    procedure WriteAxi(
-      Ctrl : 
-      constant Addr : in std_logic_vector;
-      constant Data : in std_logic_vector
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in std_logic_vector;
+      constant Data  : in std_logic_vector
+   );
+
+   procedure WriteAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in std_logic_vector;
+      constant Data  : in std_logic_vector;
+      variable Resp  : out std_logic_vector
    );
 
    procedure ReadAxi(
-      Ctrl : 
-      constant Addr : in  std_logic_vector;
-      variable Data : out std_logic_vector
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  std_logic_vector;
+      variable Data  : out std_logic_vector
    );
 
-end package Axi4LiteTransactor;
+   procedure ReadAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  std_logic_vector;
+      variable Data  : out std_logic_vector;
+      variable Resp  : out std_logic_vector
+   );
+
+end package Axi4LiteTransactor_pkg;
 
 
 --------------------------------------------------------------------------------
 -- PACKAGE BODY
 --------------------------------------------------------------------------------
-package body Axi4LiteTransactor is
+package body Axi4LiteTransactor_pkg is
 
-   WriteAxi(
-      Ctrl : 
-      Addr : in  std_logic_vector
-      Data : in  std_logic_vector
-      Resp : out std_logic_vector
+   -----------------------------------------------------------------------------
+   procedure InitAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf
    ) is
-      variable AWDone, WDone, BDone : boolean := True
    begin
-      Ctrl.AWValid <= '1';
-      Ctrl.AWAddr  <= ext(Addr, Ctrl.AWAddr'length);
-      Ctrl.WValid  <= '1';
-      Ctrl.WData   <= ext(Data, Ctrl.Wdata'length);
-      Ctrl.WStrb   <= (others => '1');
-      Ctrl_BReady  <= '1';
+      AxiIntf.ARValid <= '0';
+      AxiIntf.ARAddr  <= (others => '0');
+      AxiIntf.ARProt  <= (others => '0');
+      AxiIntf.RReady  <= '0';
+      AxiIntf.AWValid <= '0';
+      AxiIntf.AWAddr  <= (others => '0');
+      AxiIntf.AWProt  <= (others => '0');
+      AxiIntf.WValid  <= '0';
+      AxiIntf.WData   <= (others => '0');
+      AxiIntf.WStrb   <= (others => '0');
+      AxiIntf.BReady  <= '0';
+   end procedure InitAxi;
+
+   -----------------------------------------------------------------------------
+   procedure Idle (
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Tics  : in    integer := 1
+   ) is
+   begin
+      for Tic in 0 to Tics-1 loop
+         wait until rising_edge(AxiIntf.AClk);
+      end loop;
+   end Idle;
+
+   -----------------------------------------------------------------------------
+   procedure WriteAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  std_logic_vector;
+      constant Data  : in  std_logic_vector
+   ) is
+      variable Resp  : std_logic_vector;
+   begin
+      WriteAxi(AxiIntf, Addr, Data, Resp);
+   end procedure;
+
+   -----------------------------------------------------------------------------
+   procedure WriteAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  std_logic_vector;
+      constant Data  : in  std_logic_vector;
+      variable Resp  : out std_logic_vector
+   ) is
+      variable AWDone, WDone, BDone : boolean := True;
+   begin
+      AxiIntf.AWValid <= '1';
+      AxiIntf.AWAddr  <= ext(Addr, AxiIntf.AWAddr'length);
+      AxiIntf.WValid  <= '1';
+      AxiIntf.WData   <= ext(Data, AxiIntf.Wdata'length);
+      AxiIntf.WStrb   <= (others => '1');
+      AxiIntf.BReady  <= '1';
 
       L1 : loop
-         wait until rising_edge(Ctrl.AClk);
-         if Ctrl.AWValid = '1' and Ctrl.AWReady = '1' then
-            Ctrl.AWValid <= '0';
-            AWDone       := False;
+         wait until rising_edge(AxiIntf.AClk);
+         if AxiIntf.AWValid = '1' and AxiIntf.AWReady = '1' then
+            AxiIntf.AWValid <= '0';
+            AWDone          := False;
          end if;
 
-         if Ctrl.WValid = '1' and Ctrl.WReay = '1' then
-            Ctrl.WValid <= '0';
-            WDone       := False;
+         if AxiIntf.WValid = '1' and AxiIntf.WReady = '1' then
+            AxiIntf.WValid <= '0';
+            WDone          := False;
          end if;
 
-         if Ctrl.BValid = '1' and Ctrl.BReady = '1' then
-            Ctrl.BReady <= '0';
-            Resp        <= Ctrl.BResp;
-            BDone       := False;
+         if AxiIntf.BValid = '1' and AxiIntf.BReady = '1' then
+            AxiIntf.BReady <= '0';
+            Resp           := AxiIntf.BResp;
+            BDone          := False;
          end if;
 
          if AWDone and WDone and BDone then
@@ -86,4 +149,47 @@ package body Axi4LiteTransactor is
       end loop;
    end procedure;
 
-end package body Axi4LiteTransactor;
+   -----------------------------------------------------------------------------
+   procedure ReadAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  std_logic_vector;
+      variable Data  : out std_logic_vector
+   ) is
+      variable Resp  : std_logic_vector;
+   begin
+      ReadAxi(AxiIntf, Addr, Data, Resp);
+   end procedure;
+
+   -----------------------------------------------------------------------------
+   procedure ReadAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  std_logic_vector;
+      variable Data  : out std_logic_vector;
+      variable Resp  : out std_logic_vector
+   ) is
+      variable ARDone, RDone : boolean := False;
+   begin
+      AxiIntf.ARValid <= '1';
+      AxiIntf.ARAddr  <= ext(Addr, AxiIntf.ARAddr'length);
+      AxiIntf.RReady  <= '1';
+
+      L1 : loop
+         wait until rising_edge(AxiIntf.AClk);
+         if AxiIntf.ARValid = '1' and AxiIntf.ARReady = '1' then
+            AxiIntf.ARValid <= '0';
+            ARDone          := True;
+         end if;
+
+         if AxiIntf.RValid = '1' and AxiIntf.RReady = '1' then
+            AxiIntf.RReady <= '0';
+            Resp           := AxiIntf.RResp;
+            RDone          := True;
+         end if;
+
+         if ARDone and RDone then
+            exit L1;
+         end if; 
+      end loop;
+   end procedure;
+
+end package body Axi4LiteTransactor_pkg;
