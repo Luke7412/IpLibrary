@@ -55,7 +55,7 @@
     </spirit:views>
     <spirit:ports>
       <spirit:port>
-        <spirit:name>Const</spirit:name>
+        <spirit:name>Dummy</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>

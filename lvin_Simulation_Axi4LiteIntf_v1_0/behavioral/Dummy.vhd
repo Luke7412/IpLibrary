@@ -25,7 +25,7 @@ library work;
 --------------------------------------------------------------------------------
 entity Dummy is
    Port ( 
-      Const : out std_logic
+      Dummy : out std_logic
    );
 end entity Dummy;
 
@@ -37,6 +37,6 @@ architecture behavioral of Dummy is
    
 begin
 
-   Const <= '0';
+   Dummy <= 'Z';
 
 end architecture behavioral;
