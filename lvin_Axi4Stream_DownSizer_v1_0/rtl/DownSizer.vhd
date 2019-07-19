@@ -22,8 +22,8 @@ library IEEE;
 --------------------------------------------------------------------------------
 entity DownSizer is
    Generic(
-      g_S_AXIS_TDataWidth : natural := 96;
-      g_M_AXIS_TDataWidth : natural := 32;
+      g_S_AXIS_TDataWidth : natural := 64;
+      g_M_AXIS_TDataWidth : natural := 8;
       g_S_AXIS_TUserWidth : natural := 3;
       g_M_AXIS_TUserWidth : natural := 1;
       g_AXIS_TIdWidth     : natural := 1;
@@ -56,3 +56,15 @@ entity DownSizer is
          report "g_S_AXIS_TDataWidth Must be a multple of 8."
          severity failure;
 end entity DownSizer;
+
+
+--------------------------------------------------------------------------------
+-- ARCHITECTURE
+--------------------------------------------------------------------------------
+architecture rtl of DownSizer is
+
+   signal 
+
+begin
+
+end architecture; -- rtl
