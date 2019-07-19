@@ -15,8 +15,6 @@
 --------------------------------------------------------------------------------
 library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
-   use IEEE.NUMERIC_STD.ALL;
-   use ieee.math_real.all;
 
 
 --------------------------------------------------------------------------------
@@ -27,15 +25,16 @@ entity Framer is
       g_StartByte : std_logic_vector(7 downto 0) := x"01";
       g_StopByte  : std_logic_vector(7 downto 0) := x"02"
    );
-   Port ( 
+   Port (
+      -- Clock and Reset
       AClk             : in  std_logic;
       AResetn          : in  std_logic;
-      
+      -- Axi4-Stream Target Interface
       Target_TValid    : in  std_logic;
       Target_TReady    : out std_logic;
       Target_TData     : in  std_logic_vector(7 downto 0) := (others => '0');
       Target_TLast     : in  std_logic;
-      
+      -- Axi4-Stream Initiator Interface
       Initiator_TValid : out std_logic;
       Initiator_TReady : in  std_logic;
       Initiator_TData  : out std_logic_vector(7 downto 0)
@@ -72,7 +71,7 @@ begin
 
          case State is
             when s_InsertStart =>
-               if Target_TValid = '1' then
+               if Target_TValid = '1' and (Initiator_TValid_i = '0' or Initiator_TReady = '1') then
                   Initiator_TValid_i <= '1';
                   Initiator_TData    <= g_StartByte;
                   State              <= s_Running;

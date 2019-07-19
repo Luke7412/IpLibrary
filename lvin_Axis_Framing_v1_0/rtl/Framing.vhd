@@ -26,21 +26,24 @@ entity Framing is
       g_StartByte  : std_logic_vector(7 downto 0) := x"01";
       g_StopByte   : std_logic_vector(7 downto 0) := x"02"
    );
-   Port ( 
+   Port (
+      -- Clock and Reset
       AClk           : in  std_logic;
       AResetn        : in  std_logic;
-
+      -- Axi4-Stream RxByte Interface
       RxByte_TValid  : in  std_logic;
       RxByte_TReady  : out std_logic;
       RxByte_TData   : in  std_logic_vector(7 downto 0) := (others => '0');
+      -- Axi4-Stream RxFrame Interface
       RxFrame_TValid : out std_logic;
       RxFrame_TReady : in  std_logic;
       RxFrame_TData  : out std_logic_vector(7 downto 0);
       RxFrame_TLast  : out std_logic;
-
+      -- Axi4-Stream TxByte Interface
       TxByte_TValid  : out std_logic;
       TxByte_TReady  : in  std_logic;
       TxByte_TData   : out std_logic_vector(7 downto 0);
+      -- Axi4-Stream TxFrame Interface
       TxFrame_TValid : in  std_logic;
       TxFrame_TReady : out std_logic;
       TxFrame_TData  : in  std_logic_vector(7 downto 0) := (others => '0');
@@ -54,13 +57,50 @@ end entity Framing;
 --------------------------------------------------------------------------------
 architecture rtl of Framing is
 
-   signal Escaped_TValid : std_logic;
-   signal Escaped_TReady : std_logic;
-   signal Escaped_TData  : std_logic_vector(7 downto 0);
-   signal Escaped_TLast  : std_logic;
+   signal Escaped_TValid, DeFramed_TValid : std_logic;
+   signal Escaped_TReady, DeFramed_TReady : std_logic;
+   signal Escaped_TData , DeFramed_TData  : std_logic_vector(7 downto 0);
+   signal Escaped_TLast , DeFramed_TLast  : std_logic;
 
 begin
-   
+
+   i_DeFramer : entity work.DeFramer
+      Generic map(
+         g_EscapeByte => g_EscapeByte,
+         g_StartByte  => g_StartByte,
+         g_StopByte   => g_StopByte 
+      )
+      Port map( 
+         AClk             => AClk,
+         AResetn          => AResetn,
+         Target_TValid    => RxByte_TValid,
+         Target_TReady    => RxByte_TReady,
+         Target_TData     => RxByte_TData,
+         Initiator_TValid => DeFramed_TValid,
+         Initiator_TReady => DeFramed_TReady,
+         Initiator_TData  => DeFramed_TData,
+         Initiator_TLast  => DeFramed_TLast
+      );
+
+   i_RemoveEscape : entity work.RemoveEscape
+      Generic map(
+         g_EscapeByte => g_EscapeByte
+      )
+      Port map(
+         AClk             => AClk,
+         AResetn          => AResetn,
+         Target_TValid    => DeFramed_TValid,
+         Target_TReady    => DeFramed_TReady,
+         Target_TData     => DeFramed_TData,
+         Target_TLast     => DeFramed_TLast,
+         Initiator_TValid => RxFrame_TValid,
+         Initiator_TReady => RxFrame_TReady,
+         Initiator_TData  => RxFrame_TData,
+         Initiator_TLast  => RxFrame_TLast
+      );
+
+
+   -----------------------------------------------------------------------------
    i_InsertEscape : entity work.InsertEscape
       Generic map(
          g_EscapeByte => g_EscapeByte,

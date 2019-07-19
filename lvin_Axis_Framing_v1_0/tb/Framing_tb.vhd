@@ -16,7 +16,7 @@
 library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
    use IEEE.NUMERIC_STD.ALL;
-   use IEEE.std_logic_arith.all;
+   use IEEE.std_logic_arith.ext;
 
 
 --------------------------------------------------------------------------------
@@ -55,6 +55,25 @@ architecture Behavioral of Framing_tb is
 
    constant c_PeriodAClk : time    := 5 ns;
    signal ClockEnable    : boolean := False;
+
+   type t_TestResult is (PASS, FAIL, BUSY);
+   signal TestResult : t_TestResult := BUSY;
+
+   type t_Beat is record
+      TData : std_logic_vector(7 downto 0);
+      TLast : std_logic;
+   end record t_Beat;
+
+   type t_BeatQueue is array(natural range <>) of t_Beat;
+   constant QueueDepth : natural := 16;
+   signal BeatQueue : t_BeatQueue(0 to QueueDepth-1);
+   signal ReadPtr   : natural := 0;
+   signal WritePtr  : natural := 0;
+
+   function ToUInt(x : std_logic_vector) return integer is
+   begin
+      return to_integer(unsigned(x));
+   end function;
 
 begin
 
@@ -97,6 +116,44 @@ begin
          TxFrame_TLast  => TxFrame_TLast
       );
 
+   RxByte_TValid <= TxByte_TValid;
+   TxByte_TReady <= RxByte_TReady;
+   RxByte_TData  <= TxByte_TData;
+
+
+   -----------------------------------------------------------------------------
+   process(AClk, AResetn) is
+      variable ReceivedBeat, ExpectedBeat : t_Beat;
+
+      procedure CompareBeats(ReceivedBeat, ExpectedBeat : t_Beat) is
+      begin
+         if ReceivedBeat.TData /= ExpectedBeat.TData then
+            TestResult <= FAIL;
+            report "Wrong TData. Got: " & integer'image(ToUInt(ReceivedBeat.TData)) & " Expected: " & integer'image(ToUInt(ExpectedBeat.TData))
+               severity error;
+         end if;
+
+         if ReceivedBeat.TLast /= ExpectedBeat.TLast then
+            TestResult <= FAIL;
+            report "Wrong TLast. Got: " & std_logic'image(ReceivedBeat.TLast) & " Expected: " & std_logic'image(ExpectedBeat.TLast)
+               severity error;
+         end if;
+      end procedure;
+
+   begin
+
+      if AResetn = '0' then
+
+      elsif rising_edge(AClk) then
+         if RxFrame_TValid = '1' and RxFrame_TReady = '1' then
+            ReceivedBeat := (RxFrame_TData, RxFrame_TLast);
+            ExpectedBeat := BeatQueue(ReadPtr);
+            ReadPtr      <= (ReadPtr + 1) mod QueueDepth;
+            CompareBeats(ReceivedBeat, ExpectedBeat);
+         end if;
+      end if;
+   end process;
+
 
    -----------------------------------------------------------------------------
    process
@@ -113,7 +170,11 @@ begin
          TData : std_logic_vector(7 downto 0);
          TLast : std_logic
       ) is
+         variable Beat : t_Beat := (TData, TLast);
       begin
+         BeatQueue(WritePtr) <= Beat;
+         WritePtr <= (WritePtr + 1) mod QueueDepth;
+
          TxFrame_TValid <= '1';
          TxFrame_TData  <= ext(TData, TxFrame_TData'length);
          TxFrame_TLast  <= TLast;
@@ -132,9 +193,7 @@ begin
    begin
 
       AResetn        <= '0';
-      RxByte_TValid  <= '0';
       RxFrame_TReady <= '0';
-      TxByte_TReady  <= '0';
       TxFrame_TValid <= '0';
 
       wait for 10*c_PeriodAClk;
@@ -145,33 +204,41 @@ begin
 
       WaitTics(10);
       RxFrame_TReady <= '1';
-      TxByte_TReady  <= '1';
       --------------------------------------------------------------------------
 
-      --SendBeat(x"00", '0');
-      --SendBeat(x"01", '0');
-      --SendBeat(x"02", '0');
-      --SendBeat(x"03", '1');
+      WaitTics(10);
+      SendBeat(x"00", '0');
+      SendBeat(x"01", '0');
+      SendBeat(x"02", '0');
+      SendBeat(x"03", '1');
 
-      --SendBeat(x"03", '1');
+      WaitTics(10);
+      SendBeat(x"03", '1');
 
-      --SendBeat(x"00", '0');
-      --SendBeat(c_StopByte, '0');
-      --SendBeat(x"02", '0');
-      --SendBeat(x"03", '1');   
+      WaitTics(10);
+      SendBeat(x"00", '0');
+      SendBeat(c_StopByte, '0');
+      SendBeat(x"02", '0');
+      SendBeat(x"03", '1');   
 
-      --SendBeat(x"00", '0');
-      --SendBeat(x"01", '0');
-      --SendBeat(x"02", '0');
-      --SendBeat(c_StopByte, '1'); 
+      WaitTics(10);
+      SendBeat(x"00", '0');
+      SendBeat(x"01", '0');
+      SendBeat(x"02", '0');
+      SendBeat(c_StopByte, '1'); 
 
+      WaitTics(10);
       SendBeat(c_StopByte, '0');
       SendBeat(x"01", '0');
       SendBeat(x"02", '0');
       SendBeat(x"03", '1'); 
 
-   SendBeat(c_StopByte, '1');
-   SendBeat(c_StopByte, '1');
+      WaitTics(10);
+      SendBeat(c_StopByte, '1');
+
+      WaitTics(10);
+      SendBeat(c_StopByte, '1');
+
       --------------------------------------------------------------------------
       WaitTics(10);
       AResetn <= '0';
