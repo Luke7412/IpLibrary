@@ -24,31 +24,33 @@ library IEEE;
 package Axi4LiteIntf is
 
    type t_Axi4LiteIntf is record
-      AClk         : std_logic;
-      AResetn      : std_logic;
-      Ctrl_ARValid : std_logic;
-      Ctrl_ARReady : std_logic;
-      Ctrl_ARAddr  : std_logic_vector(31 downto 0);
-      Ctrl_RValid  : std_logic;
-      Ctrl_RReady  : std_logic;
-      Ctrl_RData   : std_logic_vector(31 downto 0);
-      Ctrl_RResp   : std_logic_vector(1 downto 0);
-      Ctrl_AWValid : std_logic;
-      Ctrl_AWReady : std_logic;
-      Ctrl_AWAddr  : std_logic_vector(31 downto 0);
-      Ctrl_WValid  : std_logic;
-      Ctrl_WReady  : std_logic;
-      Ctrl_WData   : std_logic_vector(31 downto 0);
-      Ctrl_WStrb   : std_logic_vector(3 downto 0);
-      Ctrl_BValid  : std_logic;
-      Ctrl_BReady  : std_logic;
-      Ctrl_BResp   : std_logic_vector(1 downto 0);
+      AClk    : std_logic;
+      AResetn : std_logic;
+      ARValid : std_logic;
+      ARReady : std_logic;
+      ARAddr  : std_logic_vector(31 downto 0);
+      ARProt  : std_logic_vector (2 downto 0);
+      RValid  : std_logic;
+      RReady  : std_logic;
+      RData   : std_logic_vector(31 downto 0);
+      RResp   : std_logic_vector(1 downto 0);
+      AWValid : std_logic;
+      AWReady : std_logic;
+      AWAddr  : std_logic_vector(31 downto 0);
+      AWProt  : std_logic_vector (2 downto 0);
+      WValid  : std_logic;
+      WReady  : std_logic;
+      WData   : std_logic_vector(31 downto 0);
+      WStrb   : std_logic_vector(3 downto 0);
+      BValid  : std_logic;
+      BReady  : std_logic;
+      BResp   : std_logic_vector(1 downto 0);
    end record t_Axi4LiteIntf;
 
-   constant NofAxi4LiteIntf : natural := 16;
+   constant nofIntfs : natural := 16;
    
-   type t_Axi4LiteIntfs is array (integer range <>) of t_Axi4LiteIntf;
-   signal Axi4LiteIntfs : t_Axi4LiteIntfs(0 to NofAxi4LiteIntf-1);
+   type t_Axi4LiteIntfArray is array (0 to nofIntfs-1) of t_Axi4LiteIntf;
+   signal Axi4LiteIntfArray : t_Axi4LiteIntfArray;
 
 end package Axi4LiteIntf;
 
