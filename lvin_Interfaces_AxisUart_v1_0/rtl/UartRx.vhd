@@ -76,9 +76,9 @@ begin
    process(AClk, AResetn) is
    begin
       if AResetn = '0' then
-         Uart_RxD_q         <= '0';
+         Uart_RxD_q      <= '0';
          RxByte_TValid_i <= '0';
-         State              <= s_Idle;
+         State           <= s_Idle;
 
       elsif rising_edge(AClk) then
          Uart_RxD_q <= Uart_RxD;
@@ -117,7 +117,6 @@ begin
 
          end case;            
       end if;
-
    end process;
 
 end architecture rtl;
