@@ -36,11 +36,13 @@ entity UartRx is
       RxByte_TReady : in  std_logic;
       RxByte_TData  : out std_logic_vector(7 downto 0)
    );
-   constant BaudRate_sample : real := real(g_AClkFrequency) / (g_AClkFrequency/g_BaudRate);
+   constant BaudRate_sample : real := real(g_AClkFrequency) / real(g_AClkFrequency/g_BaudRate);
 begin
+   -- synthesis translate_off
    assert 10.0*(1.0-real(g_BaudRate)/BaudRate_sample) < 0.45
       report "Unsafe baudrate ratio."
       severity error;
+   -- synthesis translate_on
 end entity UartRx;
 
 
