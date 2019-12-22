@@ -17,7 +17,7 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
 
 library lvin_Simulation_Axi4LiteIntf_v1_0;
-   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf.all;
+   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
 
 
 --------------------------------------------------------------------------------
@@ -53,11 +53,13 @@ entity Axi4LiteMasterAdaptor is
       Master_BReady  : out std_logic;
       Master_BResp   : in  std_logic_vector(1 downto 0)
    );
-   constant MaxNofIntf : natural := lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf.nofIntfs;
+   constant MaxNofIntf : natural := lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.nofIntfs;
 begin
+   -- synthesis translate_off
    assert IntfIndex < MaxNofIntf
       report "IntfIndex must be smaller than " & integer'image(MaxNofIntf)
       severity failure;
+   -- synthesis translate_on
 end entity Axi4LiteMasterAdaptor;
 
 
@@ -72,7 +74,7 @@ architecture rtl of Axi4LiteMasterAdaptor is
                                  -- synthesis translate_on
    ;
 
-   alias Axi4LiteIntf : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf.Axi4LiteIntfArray(IntfIndex);
+   alias Axi4LiteIntf : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(IntfIndex);
 
 begin
 
