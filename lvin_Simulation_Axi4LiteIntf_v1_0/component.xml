@@ -11,14 +11,14 @@
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>Dummy</spirit:modelName>
+        <spirit:modelName>Axi4LiteIntf_pkg</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7061bd00</spirit:value>
+            <spirit:value>75a95296</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -27,14 +27,14 @@
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>Dummy</spirit:modelName>
+        <spirit:modelName>Axi4LiteIntf_pkg</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7061bd00</spirit:value>
+            <spirit:value>75a95296</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -53,46 +53,21 @@
         </spirit:parameters>
       </spirit:view>
     </spirit:views>
-    <spirit:ports>
-      <spirit:port>
-        <spirit:name>Dummy</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-    </spirit:ports>
   </spirit:model>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>behavioral/Dummy.vhd</spirit:name>
+        <spirit:name>behavioral/Axi4LiteIntf_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>behavioral/Axi4LiteIntf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_1897be45</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_75a95296</spirit:userFileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>behavioral/Dummy.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>behavioral/Axi4LiteIntf.vhd</spirit:name>
+        <spirit:name>behavioral/Axi4LiteIntf_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
       </spirit:file>
@@ -107,44 +82,66 @@
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>Axi4LiteIntf</spirit:description>
+  <spirit:description>Axi4LiteIntf v1_0</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">Dummy_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">Axi4LiteIntf_Dummy_v1_0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
-      <xilinx:supportedFamilies>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aartix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
-      </xilinx:supportedFamilies>
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>Axi4LiteIntf</xilinx:displayName>
+      <xilinx:displayName>Axi4LiteIntf v1_0</xilinx:displayName>
+      <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-07-12T21:21:02Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>10</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2019-12-22T14:31:59Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="lvin:user:Dummy:1.0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_simulation_axi4liteintf_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="lvin:Simulation:Dummy:1.0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_simulation_axi4liteintf_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="lvin:Simulation:Axi4LiteIntf:1.0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_simulation_axi4liteintf_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="lvin:Simulation:Axi4LiteIntf:v1_0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_simulation_axi4liteintf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="lvin:Simulation:Axi4LiteIntf:v1_0_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47fc4ce9_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3c829bcc_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@588cf9de_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c9b8c43_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ae59161_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6af79d1c_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65bb7fdc_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13e9a196_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a00ce4d_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@39a752ee_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e9f9363_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a3c315c_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a64140f_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7099d6e8_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b0d6a12_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40f06cff_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a0ebf55_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f6a5bf4_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10d0f314_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@184a6a89_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13498339_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1793776_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6be39151_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b85a77a_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c0a5d24_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16fa6a0f_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7cd9d33a_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42b4f76a_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31b9a0b0_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5412c8de_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1145755f_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6262d471_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteIntf_v1_0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="83744f86"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="849be1c1"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="b932db4b"/>
+      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="79029337"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="fd904f59"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

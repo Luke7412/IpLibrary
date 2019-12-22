@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- Project Name   : IpLibrary
 -- Design Name    : Axi4LiteIntf
--- File Name      : Axi4LiteIntf.vhd
+-- File Name      : Axi4LiteIntf_pkg.vhd
 --------------------------------------------------------------------------------
 -- Author         : Lukas Vinkx
 -- Description: 
@@ -21,7 +21,7 @@ library IEEE;
 --------------------------------------------------------------------------------
 -- PACKAGE HEADER
 --------------------------------------------------------------------------------
-package Axi4LiteIntf is
+package Axi4LiteIntf_pkg is
 
    type t_Axi4LiteIntf is record
       AClk    : std_logic;
@@ -52,11 +52,11 @@ package Axi4LiteIntf is
    type t_Axi4LiteIntfArray is array (0 to nofIntfs-1) of t_Axi4LiteIntf;
    signal Axi4LiteIntfArray : t_Axi4LiteIntfArray;
 
-end package Axi4LiteIntf;
+end package Axi4LiteIntf_pkg;
 
 
 --------------------------------------------------------------------------------
 -- PACKAGE BODY
 --------------------------------------------------------------------------------
-package body Axi4LiteIntf is
-end package body Axi4LiteIntf;
+package body Axi4LiteIntf_pkg is
+end package body Axi4LiteIntf_pkg;

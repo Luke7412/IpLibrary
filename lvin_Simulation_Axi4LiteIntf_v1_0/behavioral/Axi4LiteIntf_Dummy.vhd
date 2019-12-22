@@ -17,23 +17,23 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
 
 library work;
-   use work.Axi4LiteIntf.all;
+   use work.Axi4LiteIntf_pkg.all;
 
 
 --------------------------------------------------------------------------------
 -- ENTITY
 --------------------------------------------------------------------------------
-entity Dummy is
+entity Axi4LiteIntf_Dummy is
    Port ( 
       Dummy : out std_logic
    );
-end entity Dummy;
+end entity Axi4LiteIntf_Dummy;
 
 
 --------------------------------------------------------------------------------
 -- ARCHITECTURE
 --------------------------------------------------------------------------------
-architecture behavioral of Dummy is
+architecture behavioral of Axi4LiteIntf_Dummy is
    
 begin
 
