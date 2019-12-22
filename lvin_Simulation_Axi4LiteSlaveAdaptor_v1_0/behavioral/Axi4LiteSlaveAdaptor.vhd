@@ -17,7 +17,7 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
 
 library lvin_Simulation_Axi4LiteIntf_v1_0;
-   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf.all;
+   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
 
 
 --------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ entity Axi4LiteSlaveAdaptor is
       Slave_BReady  : in  std_logic;
       Slave_BResp   : out std_logic_vector(1 downto 0)
    );
-   constant MaxNofIntf : natural := lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf.nofIntfs;
+   constant MaxNofIntf : natural := lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.nofIntfs;
 begin
    -- synthesis translate_off
    assert IntfIndex < MaxNofIntf
@@ -74,7 +74,7 @@ architecture rtl of Axi4LiteSlaveAdaptor is
                                  -- synthesis translate_on
    ;
 
-   alias Axi4LiteIntf : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf.Axi4LiteIntfArray(IntfIndex);
+   alias Axi4LiteIntf : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(IntfIndex);
 
 begin
 
@@ -83,24 +83,24 @@ begin
       Axi4LiteIntf.AClk    <= AClk;
       Axi4LiteIntf.AResetn <= AResetn;
       Axi4LiteIntf.ARValid <= Slave_ARValid;
-      Slave_ARReady       <= Axi4LiteIntf.ARReady;
+      Slave_ARReady        <= Axi4LiteIntf.ARReady;
       Axi4LiteIntf.ARAddr  <= Slave_ARAddr;
       Axi4LiteIntf.ARProt  <= Slave_ARProt;
-      Slave_RValid        <= Axi4LiteIntf.RValid;
+      Slave_RValid         <= Axi4LiteIntf.RValid;
       Axi4LiteIntf.RReady  <= Slave_RReady;
-      Slave_RData         <= Axi4LiteIntf.RData(Slave_RData'range);
-      Slave_RResp         <= Axi4LiteIntf.RResp(Slave_RResp'range);
+      Slave_RData          <= Axi4LiteIntf.RData(Slave_RData'range);
+      Slave_RResp          <= Axi4LiteIntf.RResp(Slave_RResp'range);
       Axi4LiteIntf.AWValid <= Slave_AWValid;
-      Slave_AWReady       <= Axi4LiteIntf.AWReady;
+      Slave_AWReady        <= Axi4LiteIntf.AWReady;
       Axi4LiteIntf.AWAddr  <= Slave_AWAddr;
       Axi4LiteIntf.AWProt  <= Slave_AWProt;
       Axi4LiteIntf.WValid  <= Slave_WValid;
-      Slave_WReady        <= Axi4LiteIntf.WReady;
+      Slave_WReady         <= Axi4LiteIntf.WReady;
       Axi4LiteIntf.WData   <= Slave_WData;
       Axi4LiteIntf.WStrb   <= Slave_WStrb;
-      Slave_BValid        <= Axi4LiteIntf.BValid;
+      Slave_BValid         <= Axi4LiteIntf.BValid;
       Axi4LiteIntf.BReady  <= Slave_BReady;
-      Slave_BResp         <= Axi4LiteIntf.BResp;
+      Slave_BResp          <= Axi4LiteIntf.BResp;
 
    end generate gen_Sim;
 
