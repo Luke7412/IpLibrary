@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 -- Project Name   : IpLibrary
--- Design Name    : Axi4LiteIntf
+-- Design Name    : Axi4LiteTransactor
 -- File Name      : Dummy.vhd
 --------------------------------------------------------------------------------
 -- Author         : Lukas Vinkx
@@ -17,23 +17,23 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
 
 library work;
-   use work.Axi4LiteIntf.all;
+   use work.Axi4LiteTransactor_pkg.all;
 
 
 --------------------------------------------------------------------------------
 -- ENTITY
 --------------------------------------------------------------------------------
-entity Dummy is
+entity Axi4LiteTransactor_Dummy is
    Port ( 
       Dummy : out std_logic
    );
-end entity Dummy;
+end entity Axi4LiteTransactor_Dummy;
 
 
 --------------------------------------------------------------------------------
 -- ARCHITECTURE
 --------------------------------------------------------------------------------
-architecture behavioral of Dummy is
+architecture behavioral of Axi4LiteTransactor_Dummy is
    
 begin
 

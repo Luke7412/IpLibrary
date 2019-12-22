@@ -18,8 +18,9 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
    use IEEE.std_logic_arith.all;
 
-library work;
-   use work.Axi4LiteIntf_pkg.all;
+library lvin_Simulation_Axi4LiteIntf_v1_0;
+   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
+
 
 --------------------------------------------------------------------------------
 -- PACKAGE HEADER
@@ -74,25 +75,36 @@ package body Axi4LiteTransactor_pkg is
       signal AxiIntf : inout t_Axi4LiteIntf
    ) is
    begin
+      AxiIntf.AClk    <= 'Z';
+      AxiIntf.AResetn <= 'Z';
       AxiIntf.ARValid <= '0';
+      AxiIntf.ARReady <= 'Z';
       AxiIntf.ARAddr  <= (others => '0');
       AxiIntf.ARProt  <= (others => '0');
+      AxiIntf.RValid  <= 'Z';
       AxiIntf.RReady  <= '0';
+      AxiIntf.RData   <= (others => 'Z');
+      AxiIntf.RResp   <= (others => 'Z');
       AxiIntf.AWValid <= '0';
+      AxiIntf.AWReady <= 'Z';
       AxiIntf.AWAddr  <= (others => '0');
       AxiIntf.AWProt  <= (others => '0');
       AxiIntf.WValid  <= '0';
+      AxiIntf.WReady  <= 'Z';
       AxiIntf.WData   <= (others => '0');
       AxiIntf.WStrb   <= (others => '0');
+      AxiIntf.BValid  <= 'Z';
       AxiIntf.BReady  <= '0';
+      AxiIntf.BResp   <= (others => 'Z');
    end procedure InitAxi;
 
    -----------------------------------------------------------------------------
    procedure Idle (
       signal AxiIntf : inout t_Axi4LiteIntf;
-      constant Tics  : in    integer := 1
+      constant Tics  : in    natural := 1
    ) is
    begin
+      report "Entering wait loop for " & integer'image(Tics) & " tics";
       for Tic in 0 to Tics-1 loop
          wait until rising_edge(AxiIntf.AClk);
       end loop;
@@ -155,7 +167,7 @@ package body Axi4LiteTransactor_pkg is
       constant Addr  : in  std_logic_vector;
       variable Data  : out std_logic_vector
    ) is
-      variable Resp  : std_logic_vector;
+      variable Resp  : std_logic_vector(t_Axi4LiteIntf.RResp'range);
    begin
       ReadAxi(AxiIntf, Addr, Data, Resp);
    end procedure;
@@ -182,7 +194,8 @@ package body Axi4LiteTransactor_pkg is
 
          if AxiIntf.RValid = '1' and AxiIntf.RReady = '1' then
             AxiIntf.RReady <= '0';
-            Resp           := AxiIntf.RResp;
+            Data           := ext(AxiIntf.RData, Data'length);
+            Resp           := ext(AxiIntf.RResp, Resp'length);
             RDone          := True;
          end if;
 
