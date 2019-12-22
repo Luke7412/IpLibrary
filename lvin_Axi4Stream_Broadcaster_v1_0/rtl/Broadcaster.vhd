@@ -24,19 +24,19 @@ library IEEE;
 entity Broadcaster is
    Generic(
       -- Interface parameters
-      g_NumByteLanes  : natural := 1;
-      g_UseTKeep      : natural := 1;
-      g_UseTStrb      : natural := 1;
-      g_TUserWidth    : natural := 0;
-      g_TIdWidth      : natural := 0;
-      g_TDestWidth    : natural := 0;
+      g_NumByteLanes  : natural  := 1;
+      g_UseTKeep      : natural  := 1;
+      g_UseTStrb      : natural  := 1;
+      g_TUserWidth    : natural  := 0;
+      g_TIdWidth      : natural  := 0;
+      g_TDestWidth    : natural  := 0;
       -- Others
-      g_NofInitiators : positive := 1
+      g_NofInitiators : positive := 2
    );
    Port (
       -- Clock and Reset
-      AClk          : in  std_logic;
-      AResetn       : in  std_logic;
+      AClk             : in  std_logic;
+      AResetn          : in  std_logic;
       -- Axi4-Stream Target Interface 
       Target_TValid    : in  std_logic;
       Target_TReady    : out std_logic;
@@ -49,7 +49,7 @@ entity Broadcaster is
       Target_TLast     : in  std_logic                                              := '0';
       -- Axi4-Stream Initiator Interface 
       Initiator_TValid : out std_logic_vector(g_NofInitiators-1 downto 0);
-      Initiator_TReady : in  std_logic_vector(g_NofInitiators-1 downto 0);
+      Initiator_TReady : in  std_logic_vector(g_NofInitiators-1 downto 0)           := (others => '1');
       Initiator_TData  : out std_logic_vector(g_NofInitiators*8*g_NumByteLanes-1 downto 0);
       Initiator_TStrb  : out std_logic_vector(g_NofInitiators*g_UseTKeep*g_NumByteLanes-1 downto 0);
       Initiator_TKeep  : out std_logic_vector(g_NofInitiators*g_UseTStrb*g_NumByteLanes-1 downto 0);
@@ -97,7 +97,7 @@ begin
    process(AClk, AResetn) is
    begin
       if AResetn = '0' then
-         Initiator_TValid <= (others => '0');
+         Initiator_TValid_i <= (others => '0');
 
       elsif rising_edge(AClk) then
          for I in 0 to g_NofInitiators-1 loop
@@ -107,14 +107,14 @@ begin
          end loop;
 
          if Target_TValid = '1' and Target_TReady_i = '1' then
-            Initiator_TValid <= (others => '1');
-            Initiator_TData  <= duplicate(Target_TData, g_NofInitiators);
-            Initiator_TStrb  <= duplicate(Target_TStrb, g_NofInitiators);
-            Initiator_TKeep  <= duplicate(Target_TKeep, g_NofInitiators);
-            Initiator_TUser  <= duplicate(Target_TUser, g_NofInitiators);
-            Initiator_TId    <= duplicate(Target_TId, g_NofInitiators);
-            Initiator_TDest  <= duplicate(Target_TDest, g_NofInitiators);
-            Initiator_TLast  <= duplicate(Target_TLast, g_NofInitiators);
+            Initiator_TValid_i <= (others => '1');
+            Initiator_TData   <= duplicate(Target_TData, g_NofInitiators);
+            Initiator_TStrb   <= duplicate(Target_TStrb, g_NofInitiators);
+            Initiator_TKeep   <= duplicate(Target_TKeep, g_NofInitiators);
+            Initiator_TUser   <= duplicate(Target_TUser, g_NofInitiators);
+            Initiator_TId     <= duplicate(Target_TId, g_NofInitiators);
+            Initiator_TDest   <= duplicate(Target_TDest, g_NofInitiators);
+            Initiator_TLast   <= duplicate(Target_TLast, g_NofInitiators);
          end if;
 
       end if;

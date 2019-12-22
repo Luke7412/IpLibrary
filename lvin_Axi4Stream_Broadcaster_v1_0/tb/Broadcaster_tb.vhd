@@ -67,10 +67,12 @@ architecture tb of Broadcaster_tb is
 begin
 
    -----------------------------------------------------------------------------
+   -- Clock generation
+   -----------------------------------------------------------------------------
    p_AClk : process
    begin
       AClk <= '0';
-      wait until ClockEnable = True;
+      wait until ClockEnable;
       while ClockEnable loop
          wait for c_PeriodAClk/2;
          AClk <= not AClk;
@@ -79,6 +81,8 @@ begin
    end process;
 
 
+   -----------------------------------------------------------------------------
+   -- DUT
    -----------------------------------------------------------------------------
    DUT : entity work.Broadcaster
       Generic map(
@@ -135,6 +139,8 @@ begin
 
 
    -----------------------------------------------------------------------------
+   -- MAIN
+   -----------------------------------------------------------------------------
    process
       procedure WaitTics(
          constant NofTics : natural
@@ -165,6 +171,9 @@ begin
          end loop;
          
          In_TData  <= x"00";
+         In_TStrb  <= (others => '0');
+         In_TKeep  <= (others => '0');
+         In_TLast  <= '0';
       end procedure;
  
    begin

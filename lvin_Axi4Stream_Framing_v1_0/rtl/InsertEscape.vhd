@@ -16,7 +16,6 @@
 library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
    use IEEE.NUMERIC_STD.ALL;
-   use ieee.math_real.all;
 
 
 --------------------------------------------------------------------------------
@@ -49,116 +48,64 @@ end entity InsertEscape;
 --------------------------------------------------------------------------------
 -- ARCHITECTURE
 --------------------------------------------------------------------------------
---architecture rtl of InsertEscape is
-
---   type t_State is (s_InsertEscape, s_FeedThrough);
---   signal State : t_State;
-
---   signal Target_TReady_i    : std_logic;
---   signal Initiator_TValid_i : std_logic;
-
---   signal Match : boolean;
-
---begin
+architecture RTL of InsertEscape is
    
---   Target_TReady    <= Target_TReady_i;
---   Initiator_TValid <= Initiator_TValid_i;
-
---   process (AClk, AResetn) is
---   begin
---      if AResetn = '0' then
---         Initiator_TValid_i <= '0';
---         state              <= s_InsertEscape;
-
---      elsif rising_edge(AClk) then
---         if Initiator_TValid_i = '1' and Initiator_TReady = '1' then
---            Initiator_TValid_i <= '0';
---         end if;
-
-
---         case state is
---            when s_InsertEscape => 
-
---               if Target_TValid = '1' then
---                  if Match then
---                     Initiator_TValid_i <= '1';
---                     Initiator_TData    <= g_EscapeByte;
---                     Initiator_TLast    <= '0';
---                     state              <= s_FeedThrough;
---                  elsif Target_TReady_i = '1' then
---                     Initiator_TValid_i <= '1';
---                     Initiator_TData    <= Target_TData;
---                     Initiator_TLast    <= Target_TLast;
---                  end if;
---               end if;
-
---            when s_FeedThrough =>
---               if Target_TValid = '1' and Target_TReady_i = '1' then
---                  Initiator_TValid_i <= '1';
---                  Initiator_TData    <= Target_TData;
---                  Initiator_TLast    <= Target_TLast;
---                  state              <= s_InsertEscape;
---               end if;
-
---         end case;
-
---      end if;
---   end process; 
-
-
---   Match <= (Target_TData = g_StartByte or Target_TData = g_StopByte or Target_TData = g_EscapeByte);
-
---   Target_TReady_i <= Initiator_TReady or not Initiator_TValid_i;
-    
---end architecture rtl;
-
-
-
-architecture rtl of InsertEscape is
-
-   type t_State is (s_InsertEscape, s_FeedThrough);
-   signal State : t_State;
-
+   signal Match              : boolean;
+   signal IsFromPacket       : boolean;
+   signal IsToPacket         : boolean;
+   
+   signal Insert_TValid      : std_logic;
+   signal Insert_TReady      : std_logic;
+   
    signal Target_TReady_i    : std_logic;
    signal Initiator_TValid_i : std_logic;
 
-   signal Match : boolean;
-
 begin
-   
-   Target_TReady    <= Target_TReady_i;
-   Initiator_TValid <= Initiator_TValid_i;
-
-   process (AClk, AResetn) is
-   begin
-      if AResetn = '0' then
-         state              <= s_InsertEscape;
-
-      elsif rising_edge(AClk) then
-         case state is
-            when s_InsertEscape => 
-               if Initiator_TValid_i = '1' and Initiator_TReady = '1' then
-                  if Match then
-                     State <= s_FeedThrough;
-                  end if;
-               end if;
-
-            when s_FeedThrough =>
-               if Initiator_TValid_i = '1' and Initiator_TReady = '1' then
-                  State <= s_InsertEscape;
-               end if;
-
-         end case;
-
-      end if;
-   end process; 
-
 
    Match <= (Target_TData = g_StartByte or Target_TData = g_StopByte or Target_TData = g_EscapeByte);
-   
-   Target_TReady_i    <= '0'          when Match and State = s_InsertEscape else Initiator_TReady;
-   Initiator_TValid_i <= '1'          when Match and State = s_InsertEscape else Target_TValid;
-   Initiator_TData    <= g_EscapeByte when Match and State = s_InsertEscape else Target_TData;
-   Initiator_TLast    <= '0'          when Match and State = s_InsertEscape else Target_TLast;
 
-end architecture rtl;
+
+   RegProc : process (AClk, AResetn)
+   begin
+      if AResetn = '0' then
+         IsFromPacket  <= True;
+      elsif rising_edge(AClk) then
+         if Target_TValid = '1' and Target_TReady_i = '1' then
+            IsFromPacket <= True;
+         end if;
+         if Insert_TValid = '1' and Insert_TReady = '1' then
+            IsFromPacket <= False;
+         end if;
+      end if;
+   end process RegProc;
+
+
+   -- Identify bytes to escape
+   CombProc : process (Target_TValid, Match)
+   begin
+      IsToPacket <= False;
+      if Target_TValid = '1' then
+         if Match then
+            IsToPacket <= True;
+         end if;
+      end if;
+   end process CombProc;
+
+
+   -- Make Insert packet when the transition of packets is found
+   Insert_TValid <= '1' when IsFromPacket and IsToPacket else '0';
+ 
+   -- Mux packet, priority goes to Insert
+   Initiator_TValid_i <= Target_TValid or Insert_TValid;
+   Initiator_TData    <= g_EscapeByte when Insert_TValid = '1' else Target_TData;
+   Initiator_TLast    <= '0'          when Insert_TValid = '1' else Target_TLast;
+   
+   -- Demux TReady, priority goes to Insert
+   Insert_TReady      <= Initiator_TReady  when Insert_TValid = '1' else '0';
+   Target_TReady_i    <= '0'               when Insert_TValid = '1' else Initiator_TReady;
+   
+   -- Internal version of output signals
+   Target_TReady      <= Target_TReady_i;
+   Initiator_TValid   <= Initiator_TValid_i;
+
+end RTL;

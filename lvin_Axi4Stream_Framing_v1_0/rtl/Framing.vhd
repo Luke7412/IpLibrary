@@ -57,10 +57,15 @@ end entity Framing;
 --------------------------------------------------------------------------------
 architecture rtl of Framing is
 
-   signal Escaped_TValid, DeFramed_TValid : std_logic;
-   signal Escaped_TReady, DeFramed_TReady : std_logic;
-   signal Escaped_TData , DeFramed_TData  : std_logic_vector(7 downto 0);
-   signal Escaped_TLast , DeFramed_TLast  : std_logic;
+   signal Escaped_TValid  : std_logic;
+   signal Escaped_TReady  : std_logic;
+   signal Escaped_TData   : std_logic_vector(7 downto 0);
+   signal Escaped_TLast   : std_logic;
+   
+   signal DeFramed_TValid : std_logic;
+   signal DeFramed_TReady : std_logic;
+   signal DeFramed_TData  : std_logic_vector(7 downto 0);
+   signal DeFramed_TLast  : std_logic;
 
 begin
 

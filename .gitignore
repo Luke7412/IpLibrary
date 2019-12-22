@@ -5,3 +5,13 @@ Sublime/
 
 # ignore all vivado folders
 */vivado/
+
+# ignore all vivado folders
+*/scripts/
+
+# ignore all vivado folders
+*/ip/
+
+# ignore all vivado folders
+*/sim/*
+!*/sim/run_simulation.do

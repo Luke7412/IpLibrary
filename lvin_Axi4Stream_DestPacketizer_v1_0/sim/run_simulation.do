@@ -4,16 +4,17 @@
 
 quietly set RTL_PATH "../rtl"
 quietly set TB_PATH "../tb"
-quietly set LIBRARY "lvin_Axi4Stream_Broadcaster_v1_0"
-quietly set TOP_TB "Broadcaster_tb"
+quietly set LIBRARY "lvin_Axi4Stream_DestPacketizer_v1_0"
+quietly set TOP_TB "DestPacketizer"
 
 file delete -force $LIBRARY
 
 vlib $LIBRARY
 
 vcom -93 -quiet +acc -work $LIBRARY \
-   $RTL_PATH/Broadcaster.vhd \
-   $TB_PATH/Broadcaster_tb.vhd
+   $RTL_PATH/DestExtract.vhd \
+   $RTL_PATH/DestInsert.vhd \
+   $RTL_PATH/DestPacketizer.vhd
 
 
 

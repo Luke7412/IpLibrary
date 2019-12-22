@@ -4,16 +4,18 @@
 
 quietly set RTL_PATH "../rtl"
 quietly set TB_PATH "../tb"
-quietly set LIBRARY "lvin_Axi4Stream_Broadcaster_v1_0"
-quietly set TOP_TB "Broadcaster_tb"
+quietly set LIBRARY "lvin_Interfaces_AxisUart_v1_0"
+quietly set TOP_TB "AxisUart_tb"
 
 file delete -force $LIBRARY
 
 vlib $LIBRARY
 
 vcom -93 -quiet +acc -work $LIBRARY \
-   $RTL_PATH/Broadcaster.vhd \
-   $TB_PATH/Broadcaster_tb.vhd
+   $RTL_PATH/UartRx.vhd \
+   $RTL_PATH/UartTx.vhd \
+   $RTL_PATH/AxisUart.vhd \
+   $TB_PATH/AxisUart_tb.vhd
 
 
 

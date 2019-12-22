@@ -27,6 +27,7 @@ library work;
 entity Identifier is
    Generic(
       g_AddressWidth : Natural := 32
+      g_Name         : String  := 
    );
    Port ( 
       AClk         : in  std_logic;

@@ -27,6 +27,8 @@ package Functions_pkg is
 
    function smallest(a,b : integer) return integer;
 
+   function to_slv(x: string) return std_logic_vector;
+
 end package;
 
 
@@ -62,5 +64,16 @@ package body Functions_pkg is
 
       return y;
    end function;
+
+    function to_slv(x : string)
+        return std_logic_vector is
+        variable slv : std_logic_vector(x'length*8-1 downto 0);
+    begin
+        for Index in x'range loop
+            slv(Index*8-1 downto (Index-1)*8) := 
+               std_logic_vector(to_unsigned(character'pos(x(x'length-Index+1)), 8));
+        end loop;
+        return slv;
+    end function to_slv;
 
 end package body;
