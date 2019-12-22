@@ -11,14 +11,17 @@
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>Dummy</spirit:modelName>
+        <spirit:modelName>Axi4LiteTransactor_Dummy</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>d8a0c058</spirit:value>
+            <spirit:value>894b6dc8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -27,14 +30,17 @@
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>Dummy</spirit:modelName>
+        <spirit:modelName>Axi4LiteTransactor_Dummy</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>d8a0c058</spirit:value>
+            <spirit:value>894b6dc8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -73,19 +79,50 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>behavioral/Dummy.vhd</spirit:name>
+        <spirit:name>behavioral/Axi4LiteTransactor_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_d8a0c058</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_82d2eba3</spirit:userFileType>
+        <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>behavioral/Axi4LiteTransactor_Dummy.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_0bd049a4</spirit:userFileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xsi:type="xilinx:componentRefType" xilinx:vendor="lvin" xilinx:library="Simulation" xilinx:name="Axi4LiteIntf" xilinx:version="v1_0">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>behavioral/Dummy.vhd</spirit:name>
+        <spirit:name>behavioral/Axi4LiteTransactor_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
+      <spirit:file>
+        <spirit:name>behavioral/Axi4LiteTransactor_Dummy.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="lvin" xilinx:library="Simulation" xilinx:name="Axi4LiteIntf" xilinx:version="v1_0">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
@@ -101,40 +138,25 @@
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">Dummy_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">Axi4LiteTransactor_Dummy_v1_0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
-      <xilinx:supportedFamilies>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aartix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
-      </xilinx:supportedFamilies>
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>Axi4LiteTransactor v1_0</xilinx:displayName>
+      <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-07-19T19:25:44Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="lvin:user:Dummy:1.0_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteTransactor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="lvin:user:Axi4LiteTransactor:1.0_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteTransactor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="lvin:user:Axi4LiteTransactor:v1_0_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteTransactor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="lvin:Simulation:Axi4LiteTransactor:v1_0_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteTransactor_v1_0</xilinx:tag>
-      </xilinx:tags>
+      <xilinx:coreRevision>7</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2019-07-20T10:37:25Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="51fee996"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="90a465a2"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="0e9b5e29"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="b932db4b"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="c36e26a9"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
