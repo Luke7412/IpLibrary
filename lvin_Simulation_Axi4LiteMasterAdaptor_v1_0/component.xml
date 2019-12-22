@@ -627,7 +627,7 @@
         <spirit:name>behavioral/Axi4LiteMasterAdaptor.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_ff726bd0</spirit:userFileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteMaster_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -645,7 +645,7 @@
       <spirit:file>
         <spirit:name>behavioral/Axi4LiteMasterAdaptor.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteMaster_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -695,28 +695,6 @@
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:coreRevision>10</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2019-12-22T14:47:52Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e448268_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@37e09ffc_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@715d76d3_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f49c18b_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@20500cb9_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@471de526_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@69bfd5b5_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7aedecc4_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@20264e01_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@78b568c5_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@fed889b_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@24fcfbf7_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@278e46f6_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2fb1ca0b_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c1e7c70_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@795d3a48_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4927c246_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@43f4493a_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7973b922_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5326c727_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Simulation_Axi4LiteMasterAdaptor_v1_0</xilinx:tag>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
