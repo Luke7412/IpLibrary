@@ -16,7 +16,6 @@
 library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
    use IEEE.NUMERIC_STD.ALL;
-   use ieee.math_real.all;
 
 
 --------------------------------------------------------------------------------
@@ -52,14 +51,13 @@ architecture rtl of UartTx is
                                           ;
 
    constant TicsPerBeat  : natural  := g_AClkFrequency/c_UsedBaudRate;                           
-   constant CounterWidth : positive := positive(ceil(log2(real(TicsPerBeat))));
 
    signal TxByte_TReady_i : std_logic;
 
    signal ShiftRegTxD : std_logic_vector(8 downto 0);
 
-   signal Cnt_Beats : unsigned(5 downto 0);
-   signal Cnt_Tics  : unsigned(CounterWidth-1 downto 0);
+   signal Cnt_Beats : natural range 0 to 9;
+   signal Cnt_Tics  : natural range 0 to TicsPerBeat-1;
 
    type t_State is (s_Idle, s_Running);
    signal State : t_State;
@@ -82,14 +80,14 @@ begin
                if TxByte_TValid = '1' and TxByte_TReady_i = '1' and TxByte_TKeep = "1" then
                   TxByte_TReady_i <= '0';
                   ShiftRegTxD     <= TxByte_TData & '0';
-                  Cnt_Tics        <= to_unsigned(TicsPerBeat-1, Cnt_Tics'length);
-                  Cnt_Beats       <= to_unsigned(9, Cnt_Beats'length);
+                  Cnt_Tics        <= TicsPerBeat-1;
+                  Cnt_Beats       <= 9;
                   State           <= s_Running;
                end if;
 
             when s_Running => 
                if Cnt_Tics = 0 then
-                  Cnt_Tics    <= to_unsigned(TicsPerBeat-1, Cnt_Tics'length);
+                  Cnt_Tics    <= TicsPerBeat-1;
                   ShiftRegTxD <= '1' & ShiftRegTxD(ShiftRegTxD'high downto 1);
                   if Cnt_Beats = 0 then
                      TxByte_TReady_i <= '1';

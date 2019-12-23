@@ -23,7 +23,6 @@ library IEEE;
 -- ENTITY
 --------------------------------------------------------------------------------
 entity AxisUart_tb is
---  Port ( );
 end entity AxisUart_tb;
 
 
@@ -39,21 +38,32 @@ architecture Behavioral of AxisUart_tb is
    constant g_TIdWidth     : natural := 1;
    constant g_TDestWidth   : natural := 1;
 
-   signal AClk     : std_logic;
-   signal AResetn  : std_logic;
-   signal Uart_Txd : std_logic;
-   signal Uart_Rxd : std_logic;
-   signal In_TValid, TxByte_TValid, RxByte_TValid, Out_TValid : std_logic;
-   signal In_TReady, TxByte_TReady, RxByte_TReady, Out_TReady : std_logic;
-   signal In_TData , TxByte_TData , RxByte_TData , Out_TData  : std_logic_vector(8*g_NumByteLanes-1 downto 0);
-   signal In_TKeep , TxByte_TKeep                                : std_logic_vector(g_UseTStrb*g_NumByteLanes-1 downto 0);
+   signal AClk          : std_logic;
+   signal AResetn       : std_logic;
+   signal Uart_Txd      : std_logic;
+   signal Uart_Rxd      : std_logic;
+   signal TxByte_TValid : std_logic;
+   signal TxByte_TReady : std_logic;
+   signal TxByte_TData  : std_logic_vector(8*g_NumByteLanes-1 downto 0);
+   signal TxByte_TKeep  : std_logic_vector(g_UseTStrb*g_NumByteLanes-1 downto 0);
+   signal RxByte_TValid : std_logic;
+   signal RxByte_TReady : std_logic;
+   signal RxByte_TData  : std_logic_vector(8*g_NumByteLanes-1 downto 0);
+   
+   signal In_TValid     : std_logic;
+   signal In_TReady     : std_logic;
+   signal In_TData      : std_logic_vector(8*g_NumByteLanes-1 downto 0);
+   signal In_TKeep      : std_logic_vector(g_UseTStrb*g_NumByteLanes-1 downto 0);
+   signal Out_TValid    : std_logic;
+   signal Out_TReady    : std_logic;
+   signal Out_TData     : std_logic_vector(8*g_NumByteLanes-1 downto 0);
 
-   constant c_PeriodAClk : time    := 5 ns;
+   constant c_PeriodAClk : time    := 10 ns;
    signal ClockEnable    : boolean := False;
 
-   constant c_AClkFrequency : natural := 200000000;
+   constant c_AClkFrequency : natural := 100000000;
    constant c_BaudRate      : natural := 9600;
-   constant c_BaudRateSim   : natural := 50000000;
+   constant c_BaudRateSim   : natural := 5000000;
 
    signal Out_Counter : integer;
    signal In_Counter  : integer;
@@ -61,10 +71,12 @@ architecture Behavioral of AxisUart_tb is
 begin
 
    -----------------------------------------------------------------------------
+   -- CLOCKS
+   -----------------------------------------------------------------------------
    p_AClk : process
    begin
       AClk <= '0';
-      wait until ClockEnable = True;
+      wait until ClockEnable;
       while ClockEnable loop
          wait for c_PeriodAClk/2;
          AClk <= not AClk;
@@ -73,6 +85,8 @@ begin
    end process;
 
 
+   -----------------------------------------------------------------------------
+   -- DUT
    -----------------------------------------------------------------------------
    DUT : entity work.AxisUart
       Generic map(
@@ -127,19 +141,22 @@ begin
 
 
    -----------------------------------------------------------------------------
+   -- MAIN
+   -----------------------------------------------------------------------------
    process
       procedure WaitTics(
-         constant NofTics : natural
+         signal   Clk     : in std_logic;
+         constant NofTics : in natural
       ) is
       begin
          for I in 0 to NofTics-1 loop
-            wait until rising_edge(AClk);
+            wait until rising_edge(Clk);
          end loop;
       end procedure;
 
       procedure SendBeat(
-         TData : std_logic_vector;
-         TKeep : std_logic_vector
+         constant TData : in std_logic_vector;
+         constant TKeep : in std_logic_vector
       ) is
       begin
          In_TValid <= '1';
@@ -167,10 +184,10 @@ begin
       wait for 10*c_PeriodAClk;
       ClockEnable <= True;
 
-      WaitTics(10);
+      WaitTics(AClk, 10);
       AResetn <= '1';
 
-      WaitTics(10);
+      WaitTics(AClk, 10);
       In_TValid  <= '1';
       Out_TReady <= '1';
       --------------------------------------------------------------------------
@@ -189,10 +206,10 @@ begin
 
 
       --------------------------------------------------------------------------
-      WaitTics(10);
+      WaitTics(AClk, 10);
       AResetn <= '0';
 
-      WaitTics(10);
+      WaitTics(AClk, 10);
       ClockEnable <= False;
 
       wait for 10*c_PeriodAClk;

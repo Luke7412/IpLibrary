@@ -15,8 +15,7 @@
 --------------------------------------------------------------------------------
 library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
-   use IEEE.NUMERIC_STD.ALL;
-   use ieee.math_real.all;
+   use ieee.std_logic_unsigned.all;
 
 
 --------------------------------------------------------------------------------
@@ -58,18 +57,18 @@ architecture rtl of UartRx is
                                           ;
 
    constant TicsPerBeat  : natural  := g_AClkFrequency/c_UsedBaudRate;                     
-   constant CounterWidth : positive := positive(ceil(log2(real(TicsPerBeat))));
 
    signal RxByte_TValid_i : std_logic;
 
-   Signal Uart_RxD_q  : std_logic;
-   signal ShiftRegRxD : std_logic_vector(9 downto 0);
-
-   signal Cnt_Beats : unsigned(5 downto 0);
-   signal Cnt_Tics  : unsigned(CounterWidth-1 downto 0);
-
-   type t_State is (s_Idle, s_Sampling, s_Outputting);
+   type t_State is (s_WaitForStart, s_Sampling, s_Outputting);
    signal State : t_State;
+
+   signal Cnt_Beats : natural range 0 to 9;
+   signal Cnt_Tics  : natural range 0 to TicsPerBeat-1;
+
+   signal DeglitchReg : std_logic_vector(3 downto 0);
+   signal RxD_deglitch : std_logic;
+   signal ShiftRegRxD : std_logic_vector(9 downto 0);
 
 begin
    
@@ -78,29 +77,37 @@ begin
    process(AClk, AResetn) is
    begin
       if AResetn = '0' then
-         Uart_RxD_q      <= '0';
+         DeglitchReg  <= (others => '1');
+         RxD_deglitch <= '1';
+
          RxByte_TValid_i <= '0';
-         State           <= s_Idle;
+         State           <= s_WaitForStart;
 
       elsif rising_edge(AClk) then
-         Uart_RxD_q <= Uart_RxD;
+
+         DeglitchReg <= Uart_RxD & DeglitchReg(DeglitchReg'high downto 1);
+         if DeglitchReg = 0 then
+           RxD_deglitch <= '0';
+         elsif not(DeglitchReg) = 0 then
+           RxD_deglitch <= '1';
+         end if;
 
          if RxByte_TValid_i = '1' and RxByte_TReady = '1' then
             RxByte_TValid_i <= '0';
          end if;
 
          case State is
-            when s_Idle =>
-               if Uart_RxD = '0' and Uart_RxD_q = '1' then
-                  Cnt_Tics  <= to_unsigned(TicsPerBeat/2-1, Cnt_Tics'length);
-                  Cnt_Beats <= to_unsigned(9, Cnt_Beats'length);
+            when s_WaitForStart =>
+               if RxD_deglitch = '0' then
+                  Cnt_Tics  <= TicsPerBeat/2-2;
+                  Cnt_Beats <= 9;
                   State     <= s_Sampling;
                end if;
 
             when s_Sampling => 
                if Cnt_Tics = 0 then
-                  Cnt_Tics    <= to_unsigned(TicsPerBeat-1, Cnt_Tics'length);
-                  ShiftRegRxD <= Uart_RxD & ShiftRegRxD(ShiftRegRxD'high downto 1);
+                  Cnt_Tics    <= TicsPerBeat-1;
+                  ShiftRegRxD <= RxD_deglitch & ShiftRegRxD(ShiftRegRxD'high downto 1);
                   if Cnt_Beats = 0 then
                      State <= s_Outputting;
                   else
@@ -111,7 +118,7 @@ begin
                end if;
 
             when s_Outputting =>
-               State <= s_Idle;
+               State <= s_WaitForStart;
                if RxByte_TValid_i = '0' and ShiftRegRxD(0) = '0' and ShiftRegRxD(9) = '1' then
                   RxByte_TValid_i <= '1';
                   RxByte_TData    <= ShiftRegRxD(8 downto 1);
