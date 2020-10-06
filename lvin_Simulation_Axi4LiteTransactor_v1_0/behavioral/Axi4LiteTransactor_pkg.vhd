@@ -116,7 +116,7 @@ package body Axi4LiteTransactor_pkg is
       constant Addr  : in  std_logic_vector;
       constant Data  : in  std_logic_vector
    ) is
-      variable Resp  : std_logic_vector;
+      variable Resp  : std_logic_vector(AxiIntf.BResp'range);
    begin
       WriteAxi(AxiIntf, Addr, Data, Resp);
    end procedure;
