@@ -27,7 +27,7 @@ file delete -force $LIBRARY
 vlib $LIBRARY
 
 vcom -93 -quiet +acc -work $LIBRARY \
-   $RTL_PATH/Axi4LiteTransactor_pkg.vhd \
+   $PATH_RTL/Axi4LiteTransactor_pkg.vhd \
    $PATH_TB/Axi4LiteTransactor_tb.vhd
 
 quietly set TOP_TB "Axi4LiteTransactor_tb"

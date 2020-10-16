@@ -3,8 +3,8 @@
 ################################################################################
 
 quietly set PATH_IPLIBRARY "../.."
-quietly set RTL_PATH "../rtl"
-quietly set TB_PATH "../tb"
+quietly set PATH_RTL "../rtl"
+quietly set PATH_TB "../tb"
 
 ################################################################################
 # External IPs
@@ -17,12 +17,11 @@ quietly set LIBRARY "lvin_Simulation_Axi4LiteIntf_v1_0"
 quietly set TOP_TB "Axi4LiteIntf_Dummy"
 
 file delete -force $LIBRARY
-
 vlib $LIBRARY
 
 vcom -93 -quiet +acc -work $LIBRARY \
-   $RTL_PATH/Axi4LiteIntf_pkg.vhd \
-   $RTL_PATH/Axi4LiteIntf_Dummy.vhd
+   $PATH_RTL/Axi4LiteIntf_pkg.vhd \
+   $PATH_RTL/Axi4LiteIntf_Dummy.vhd
 
 
 
