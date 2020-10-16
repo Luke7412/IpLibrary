@@ -128,7 +128,7 @@ package body Axi4LiteTransactor_pkg is
       constant Data  : in  std_logic_vector;
       variable Resp  : out std_logic_vector
    ) is
-      variable AWDone, WDone, BDone : boolean := True;
+      variable AWDone, WDone, BDone : boolean := False;
    begin
       AxiIntf.AWValid <= '1';
       AxiIntf.AWAddr  <= ext(Addr, AxiIntf.AWAddr'length);
@@ -141,18 +141,18 @@ package body Axi4LiteTransactor_pkg is
          wait until rising_edge(AxiIntf.AClk);
          if AxiIntf.AWValid = '1' and AxiIntf.AWReady = '1' then
             AxiIntf.AWValid <= '0';
-            AWDone          := False;
+            AWDone          := True;
          end if;
 
          if AxiIntf.WValid = '1' and AxiIntf.WReady = '1' then
             AxiIntf.WValid <= '0';
-            WDone          := False;
+            WDone          := True;
          end if;
 
          if AxiIntf.BValid = '1' and AxiIntf.BReady = '1' then
             AxiIntf.BReady <= '0';
             Resp           := AxiIntf.BResp;
-            BDone          := False;
+            BDone          := True;
          end if;
 
          if AWDone and WDone and BDone then
