@@ -3,9 +3,9 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "Component_Name"
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
-  ipgui::add_param $IPINST -name "AddrWidth" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "Mode" -parent ${Page_0} -widget comboBox
   ipgui::add_param $IPINST -name "IntfIndex" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "SimInsert" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "AddrWidth" -parent ${Page_0} -widget comboBox
 
 
 }
@@ -28,12 +28,12 @@ proc validate_PARAM_VALUE.IntfIndex { PARAM_VALUE.IntfIndex } {
 	return true
 }
 
-proc update_PARAM_VALUE.SimInsert { PARAM_VALUE.SimInsert } {
-	# Procedure called to update SimInsert when any of the dependent parameters in the arguments change
+proc update_PARAM_VALUE.Mode { PARAM_VALUE.Mode } {
+	# Procedure called to update Mode when any of the dependent parameters in the arguments change
 }
 
-proc validate_PARAM_VALUE.SimInsert { PARAM_VALUE.SimInsert } {
-	# Procedure called to validate SimInsert
+proc validate_PARAM_VALUE.Mode { PARAM_VALUE.Mode } {
+	# Procedure called to validate Mode
 	return true
 }
 
@@ -48,8 +48,8 @@ proc update_MODELPARAM_VALUE.AddrWidth { MODELPARAM_VALUE.AddrWidth PARAM_VALUE.
 	set_property value [get_property value ${PARAM_VALUE.AddrWidth}] ${MODELPARAM_VALUE.AddrWidth}
 }
 
-proc update_MODELPARAM_VALUE.SimInsert { MODELPARAM_VALUE.SimInsert PARAM_VALUE.SimInsert } {
+proc update_MODELPARAM_VALUE.Mode { MODELPARAM_VALUE.Mode PARAM_VALUE.Mode } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
-	set_property value [get_property value ${PARAM_VALUE.SimInsert}] ${MODELPARAM_VALUE.SimInsert}
+	set_property value [get_property value ${PARAM_VALUE.Mode}] ${MODELPARAM_VALUE.Mode}
 }
 
