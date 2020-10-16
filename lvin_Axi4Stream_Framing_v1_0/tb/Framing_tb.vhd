@@ -23,7 +23,6 @@ library IEEE;
 -- ENTITY
 --------------------------------------------------------------------------------
 entity Framing_tb is
---  Port ( );
 end entity Framing_tb;
 
 

@@ -22,9 +22,9 @@ library IEEE;
 --------------------------------------------------------------------------------
 entity Framing is
    Generic(
-      g_EscapeByte : std_logic_vector(7 downto 0) := x"00";
-      g_StartByte  : std_logic_vector(7 downto 0) := x"01";
-      g_StopByte   : std_logic_vector(7 downto 0) := x"02"
+      g_EscapeByte : std_logic_vector(7 downto 0) := x"7F";
+      g_StartByte  : std_logic_vector(7 downto 0) := x"7D";
+      g_StopByte   : std_logic_vector(7 downto 0) := x"7E"
    );
    Port (
       -- Clock and Reset
