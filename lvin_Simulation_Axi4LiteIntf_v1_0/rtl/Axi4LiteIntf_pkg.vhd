@@ -28,7 +28,7 @@ package Axi4LiteIntf_pkg is
       AResetn : std_logic;
       ARValid : std_logic;
       ARReady : std_logic;
-      ARAddr  : std_logic_vector(31 downto 0);
+      ARAddr  : std_logic_vector(63 downto 0);
       ARProt  : std_logic_vector (2 downto 0);
       RValid  : std_logic;
       RReady  : std_logic;
@@ -36,7 +36,7 @@ package Axi4LiteIntf_pkg is
       RResp   : std_logic_vector(1 downto 0);
       AWValid : std_logic;
       AWReady : std_logic;
-      AWAddr  : std_logic_vector(31 downto 0);
+      AWAddr  : std_logic_vector(63 downto 0);
       AWProt  : std_logic_vector (2 downto 0);
       WValid  : std_logic;
       WReady  : std_logic;
