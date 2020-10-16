@@ -79,13 +79,13 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>behavioral/Axi4LiteTransactor_pkg.vhd</spirit:name>
+        <spirit:name>rtl/Axi4LiteTransactor_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_82d2eba3</spirit:userFileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>behavioral/Axi4LiteTransactor_Dummy.vhd</spirit:name>
+        <spirit:name>rtl/Axi4LiteTransactor_Dummy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_0bd049a4</spirit:userFileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
@@ -104,12 +104,12 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>behavioral/Axi4LiteTransactor_pkg.vhd</spirit:name>
+        <spirit:name>rtl/Axi4LiteTransactor_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>behavioral/Axi4LiteTransactor_Dummy.vhd</spirit:name>
+        <spirit:name>rtl/Axi4LiteTransactor_Dummy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
