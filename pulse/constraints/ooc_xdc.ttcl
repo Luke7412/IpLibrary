@@ -1,0 +1,15 @@
+<: set CompName [getComponentNameString] :>
+<: setOutputDirectory "./" :>
+<: setFileName ${CompName}_ooc :>
+<: setFileExtension ".xdc" :>
+<: setFileUsedIn { out_of_context synthesis implementation } :>
+
+<: set ACLK_FREQ [getIntValue "ACLK_FREQ"] :>
+<: set ACLK_PERIOD [format "%.3f" [expr 1000.0 / $ACLK_FREQ]] :>
+
+
+################################################################################
+#
+################################################################################
+
+create_clock -period <=: $ACLK_PERIOD :> -name AClk [get_ports AClk]
