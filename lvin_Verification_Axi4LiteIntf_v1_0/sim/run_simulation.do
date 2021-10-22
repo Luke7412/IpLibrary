@@ -14,7 +14,7 @@ quietly set PATH_TB "../tb"
 ################################################################################
 # Main sources
 
-quietly set LIBRARY "lvin_Simulation_Axi4LiteIntf_v1_0"
+quietly set LIBRARY "lvin_Verification_Axi4LiteIntf_v1_0"
 quietly set TOP_TB "Axi4LiteIntf_Dummy"
 
 file delete -force $LIBRARY

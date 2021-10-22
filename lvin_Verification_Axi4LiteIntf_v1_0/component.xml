@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>lvin</spirit:vendor>
-  <spirit:library>Simulation</spirit:library>
+  <spirit:library>Verification</spirit:library>
   <spirit:name>Axi4LiteIntf</spirit:name>
   <spirit:version>v1_0</spirit:version>
   <spirit:model>
@@ -61,13 +61,13 @@
         <spirit:name>rtl/Axi4LiteIntf_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_75a95296</spirit:userFileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteIntf_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Axi4LiteIntf_Dummy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_4e149d08</spirit:userFileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteIntf_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -75,13 +75,13 @@
       <spirit:file>
         <spirit:name>rtl/Axi4LiteIntf_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteIntf_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Axi4LiteIntf_Dummy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteIntf_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteIntf_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
