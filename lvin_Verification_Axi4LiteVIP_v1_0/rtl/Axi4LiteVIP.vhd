@@ -17,8 +17,8 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
    use IEEE.STD_LOGIC_ARITH.ALL;
 
-library lvin_Simulation_Axi4LiteIntf_v1_0;
-   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
+library lvin_Verification_Axi4LiteIntf_v1_0;
+   use lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
 
 
 --------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ entity Axi4LiteVIP is
       Master_BReady  : out std_logic;
       Master_BResp   : in  std_logic_vector(1 downto 0)           
    );
-   constant MaxNofIntf : natural := lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.nofIntfs;
+   constant MaxNofIntf : natural := lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.nofIntfs;
 begin
    -- synthesis translate_off
    assert IntfIndex < MaxNofIntf
@@ -96,7 +96,7 @@ architecture rtl of Axi4LiteVIP is
                                  -- synthesis translate_on
 ;
 
-   alias Ctrl : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(IntfIndex);
+   alias Ctrl : t_Axi4LiteIntf is lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(IntfIndex);
 
 begin
 

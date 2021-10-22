@@ -17,11 +17,11 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
    use IEEE.STD_LOGIC_ARITH.ALL;
 
-library lvin_Simulation_Axi4LiteIntf_v1_0;
-   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
+library lvin_Verification_Axi4LiteIntf_v1_0;
+   use lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
 
-library lvin_simulation_Axi4LiteTransactor_v1_0;
-   use lvin_simulation_Axi4LiteTransactor_v1_0.Axi4LiteTransactor_pkg.all;
+library lvin_Verification_Axi4LiteTransactor_v1_0;
+   use lvin_Verification_Axi4LiteTransactor_v1_0.Axi4LiteTransactor_pkg.all;
 
 library lvin_Axi4Lite_Regbank_v1_0;
 
@@ -66,8 +66,8 @@ architecture rtl of Axi4LiteVIP_tb is
    constant c_PeriodAClk : time    := 5 ns;
    signal ClockEnable    : boolean := False;
 
-   alias Ctrl0 : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(0);
-   alias Ctrl1 : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(1);
+   alias Ctrl0 : t_Axi4LiteIntf is lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(0);
+   alias Ctrl1 : t_Axi4LiteIntf is lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(1);
 
 begin
 
