@@ -18,8 +18,8 @@ library IEEE;
    use IEEE.STD_LOGIC_1164.ALL;
    use IEEE.std_logic_arith.all;
 
-library lvin_Simulation_Axi4LiteIntf_v1_0;
-   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
+library lvin_Verification_Axi4LiteIntf_v1_0;
+   use lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
 
 
 --------------------------------------------------------------------------------

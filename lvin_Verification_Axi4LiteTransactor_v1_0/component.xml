@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>lvin</spirit:vendor>
-  <spirit:library>Simulation</spirit:library>
+  <spirit:library>Verification</spirit:library>
   <spirit:name>Axi4LiteTransactor</spirit:name>
   <spirit:version>v1_0</spirit:version>
   <spirit:model>
@@ -13,7 +13,7 @@
         <spirit:language>VHDL</spirit:language>
         <spirit:modelName>Axi4LiteTransactor_Dummy</spirit:modelName>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagesynthesis_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:localName>
+          <spirit:localName>xilinx_anylanguagesynthesis_lvin_Verification_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
@@ -32,7 +32,7 @@
         <spirit:language>VHDL</spirit:language>
         <spirit:modelName>Axi4LiteTransactor_Dummy</spirit:modelName>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagebehavioralsimulation_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:localName>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_lvin_Verification_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
@@ -82,20 +82,20 @@
         <spirit:name>rtl/Axi4LiteTransactor_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_82d2eba3</spirit:userFileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Axi4LiteTransactor_Dummy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_0bd049a4</spirit:userFileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagesynthesis_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:name>
+      <spirit:name>xilinx_anylanguagesynthesis_lvin_Verification_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:name>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xsi:type="xilinx:componentRefType" xilinx:vendor="lvin" xilinx:library="Simulation" xilinx:name="Axi4LiteIntf" xilinx:version="v1_0">
+          <xilinx:componentRef xsi:type="xilinx:componentRefType" xilinx:vendor="lvin" xilinx:library="Verification" xilinx:name="Axi4LiteIntf" xilinx:version="v1_0">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -106,19 +106,19 @@
       <spirit:file>
         <spirit:name>rtl/Axi4LiteTransactor_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Axi4LiteTransactor_Dummy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Simulation_Axi4LiteTransactor_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Verification_Axi4LiteTransactor_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagebehavioralsimulation_lvin_Simulation_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:name>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_lvin_Verification_Axi4LiteIntf_v1_0__ref_view_fileset</spirit:name>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="lvin" xilinx:library="Simulation" xilinx:name="Axi4LiteIntf" xilinx:version="v1_0">
+          <xilinx:componentRef xilinx:vendor="lvin" xilinx:library="Verification" xilinx:name="Axi4LiteIntf" xilinx:version="v1_0">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>

@@ -19,8 +19,8 @@ library IEEE;
 library work;
    use work.Axi4LiteTransactor_pkg.all;
 
-library lvin_Simulation_Axi4LiteIntf_v1_0;
-   use lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
+library lvin_Verification_Axi4LiteIntf_v1_0;
+   use lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.all;
 
 
 --------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ end entity Axi4LiteTransactor_tb;
 --------------------------------------------------------------------------------
 architecture tb of Axi4LiteTransactor_tb is
    
-   alias Ctrl : t_Axi4LiteIntf is lvin_Simulation_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(0);
+   alias Ctrl : t_Axi4LiteIntf is lvin_Verification_Axi4LiteIntf_v1_0.Axi4LiteIntf_pkg.Axi4LiteIntfArray(0);
 
    signal AClk           : std_logic;
    signal AResetn        : std_logic;
