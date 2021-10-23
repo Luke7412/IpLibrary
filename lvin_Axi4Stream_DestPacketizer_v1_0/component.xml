@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>lvin</spirit:vendor>
-  <spirit:library>Axis</spirit:library>
+  <spirit:library>Axi4Stream</spirit:library>
   <spirit:name>DestPacketizer</spirit:name>
   <spirit:version>v1_0</spirit:version>
   <spirit:busInterfaces>
@@ -199,7 +199,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -244,7 +244,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>86bb8bec</spirit:value>
+            <spirit:value>3cea12b2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -260,7 +260,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>86bb8bec</spirit:value>
+            <spirit:value>3cea12b2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -589,7 +589,7 @@
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choice_list_74b5137e</spirit:name>
+      <spirit:name>choice_list_9d8b0d81</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
       <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
     </spirit:choice>
@@ -600,18 +600,18 @@
       <spirit:file>
         <spirit:name>rtl/DestExtract.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Axis_DestPacketizer_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Axi4Stream_DestPacketizer_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/DestInsert.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Axis_DestPacketizer_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Axi4Stream_DestPacketizer_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/DestPacketizer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_950b91de</spirit:userFileType>
-        <spirit:logicalName>lvin_Axis_DestPacketizer_v1_0</spirit:logicalName>
+        <spirit:userFileType>CHECKSUM_d849faa8</spirit:userFileType>
+        <spirit:logicalName>lvin_Axi4Stream_DestPacketizer_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -619,17 +619,17 @@
       <spirit:file>
         <spirit:name>rtl/DestExtract.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Axis_DestPacketizer_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Axi4Stream_DestPacketizer_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/DestInsert.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Axis_DestPacketizer_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Axi4Stream_DestPacketizer_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/DestPacketizer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Axis_DestPacketizer_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Axi4Stream_DestPacketizer_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -658,18 +658,32 @@
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:vendorDisplayName>lvin</xilinx:vendorDisplayName>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-07-01T20:54:00Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-10-23T14:38:58Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="lvin:user:DestPacketizer:1.0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_axis_destpacketizer_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="lvin:Axis:DestPacketizer:1.0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_axis_destpacketizer_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="lvin:Axis:DestPacketizer:v1_0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_axis_destpacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25033e82_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@24b0587c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44ce8364_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1124d60a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f9d7c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@382b0f01_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@291e1041_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@bab4368_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ff4f62b_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74a8a77a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ff10d5_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16651b3a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23e010d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6dbd7c61_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_DestPacketizer_v1_0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="e1ad4a7f"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="efa869a8"/>
+      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="76f36413"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="c664306a"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="16c285ae"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="adfa0d95"/>
     </xilinx:packagingInfo>
