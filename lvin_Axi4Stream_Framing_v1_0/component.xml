@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>lvin</spirit:vendor>
-  <spirit:library>Axis</spirit:library>
+  <spirit:library>Axi4Stream</spirit:library>
   <spirit:name>Framing</spirit:name>
   <spirit:version>v1_0</spirit:version>
   <spirit:busInterfaces>
@@ -167,7 +167,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -212,7 +212,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c8ae0495</spirit:value>
+            <spirit:value>3aaa82fe</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -228,7 +228,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c8ae0495</spirit:value>
+            <spirit:value>3aaa82fe</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -243,7 +243,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f6734567</spirit:value>
+            <spirit:value>b67d4574</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -507,23 +507,23 @@
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="std_logic_vector(7 downto 0)">
         <spirit:name>g_EscapeByte</spirit:name>
         <spirit:displayName>G Escapebyte</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_EscapeByte" spirit:bitStringLength="8">0x00</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_EscapeByte" spirit:bitStringLength="8">&quot;01111111&quot;</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="std_logic_vector(7 downto 0)">
         <spirit:name>g_StartByte</spirit:name>
         <spirit:displayName>G Startbyte</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_StartByte" spirit:bitStringLength="8">0x01</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_StartByte" spirit:bitStringLength="8">&quot;01111101&quot;</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="std_logic_vector(7 downto 0)">
         <spirit:name>g_StopByte</spirit:name>
         <spirit:displayName>G Stopbyte</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_StopByte" spirit:bitStringLength="8">0x02</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_StopByte" spirit:bitStringLength="8">&quot;01111110&quot;</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choice_list_74b5137e</spirit:name>
+      <spirit:name>choice_list_9d8b0d81</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
       <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
     </spirit:choice>
@@ -534,23 +534,28 @@
       <spirit:file>
         <spirit:name>rtl/DeFramer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Framer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/RemoveEscape.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/InsertEscape.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Framing.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_a5b164f9</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_1719a215</spirit:userFileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -558,22 +563,27 @@
       <spirit:file>
         <spirit:name>rtl/DeFramer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Framer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/RemoveEscape.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/InsertEscape.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>rtl/Framing.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -583,11 +593,7 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
         <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>vivado/Framing_tb_behav.wcfg</spirit:name>
-        <spirit:fileType>unknown</spirit:fileType>
-        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:logicalName>lvin_Axi4Stream_Framing_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -605,17 +611,17 @@
     <spirit:parameter>
       <spirit:name>g_EscapeByte</spirit:name>
       <spirit:displayName>Escape Byte</spirit:displayName>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.g_EscapeByte" spirit:bitStringLength="8">0x00</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.g_EscapeByte" spirit:bitStringLength="8">&quot;01111111&quot;</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>g_StartByte</spirit:name>
       <spirit:displayName>Start Byte</spirit:displayName>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.g_StartByte" spirit:bitStringLength="8">0x01</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.g_StartByte" spirit:bitStringLength="8">&quot;01111101&quot;</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>g_StopByte</spirit:name>
       <spirit:displayName>Stop Byte</spirit:displayName>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.g_StopByte" spirit:bitStringLength="8">0x02</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.g_StopByte" spirit:bitStringLength="8">&quot;01111110&quot;</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
@@ -630,21 +636,62 @@
       <xilinx:displayName>Framing v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-07-07T14:23:15Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-10-23T14:31:28Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="lvin:user:Framing:1.0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_axis_framing_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="lvin:Axis:Framing:1.0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_axis_framing_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="lvin:Axis:Framing:v1_0_ARCHIVE_LOCATION">d:/documents/git/iplibrary/lvin_axis_framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@753177e2_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6faf2be2_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b0090de_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29273ded_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@33e5012a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@124c851b_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43851033_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ab94aa1_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c7646cb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6de95c5c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@206d5ba6_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@256dbc52_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1232c1fc_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40ed5824_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1de41d6a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b77ec0_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56edb1eb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3003c507_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5929955a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13b99a04_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26b8935e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1dc3f2a0_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e4c18a3_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5bc3febe_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@438a213e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45cfdedb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a5a6f93_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36076cc4_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c953146_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e82889e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b557dbb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@920bf8e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ac6c369_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a31c58c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@33e2b419_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69cabf05_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e6b37d8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5782b74d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d99d65d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c16de16_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a1b9370_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Axi4Stream_Framing_v1_0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="336593af"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f5468719"/>
+      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="7573b768"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="38f9a8ce"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="fa52a195"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="deda9e3f"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="914c9cbc"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="e05ef57a"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="a998aab9"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
