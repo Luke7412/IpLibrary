@@ -20,6 +20,12 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>AClk</spirit:name>
@@ -158,7 +164,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1580a253</spirit:value>
+            <spirit:value>efb96c64</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -174,7 +180,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1580a253</spirit:value>
+            <spirit:value>efb96c64</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -189,7 +195,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1d8458e6</spirit:value>
+            <spirit:value>1cc223f9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -392,6 +398,13 @@
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
+  <spirit:choices>
+    <spirit:choice>
+      <spirit:name>choice_list_74b5137e</spirit:name>
+      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
+      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
+    </spirit:choice>
+  </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
@@ -408,7 +421,7 @@
       <spirit:file>
         <spirit:name>rtl/AxisUart.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_c6e222d7</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_1ec9bab7</spirit:userFileType>
         <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
@@ -481,8 +494,8 @@
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:vendorDisplayName>lvin</xilinx:vendorDisplayName>
-      <xilinx:coreRevision>6</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-12-22T21:38:38Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>7</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-10-23T14:35:52Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@45cb4ef0_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@5d2247fc_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
@@ -501,12 +514,23 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6a6b875b_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@5c3f7427_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@8b5ad5d_ARCHIVE_LOCATION">d:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26dd55b3_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b4975fb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@445d0ed8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c6ec636_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@168646bb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@707d2bc3_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@845f5f4_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@314e37e7_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@fbd86d4_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@150559dc_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f721690_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="772f2012"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="43df74ce"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="d3d3af9a"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="8bb1a3ab"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="ef7c8230"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2aa240c5"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="ee442781"/>
