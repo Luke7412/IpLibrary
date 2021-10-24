@@ -44,6 +44,12 @@ package Axi4LiteTransactor_pkg is
 
    procedure WriteAxi(
       signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  integer;
+      constant Data  : in  std_logic_vector
+   );
+
+   procedure WriteAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
       constant Addr  : in  std_logic_vector;
       constant Data  : in  std_logic_vector
    );
@@ -59,6 +65,12 @@ package Axi4LiteTransactor_pkg is
       signal AxiIntf : inout t_Axi4LiteIntf;
       constant Addr  : in  integer;
       variable Data  : out integer
+   );
+
+   procedure ReadAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  integer;
+      variable Data  : out std_logic_vector
    );
 
    procedure ReadAxi(
@@ -139,6 +151,20 @@ package body Axi4LiteTransactor_pkg is
    -----------------------------------------------------------------------------
    procedure WriteAxi(
       signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in integer;
+      constant Data  : in std_logic_vector
+   ) is
+   begin
+      WriteAxi(
+         AxiIntf, 
+         conv_std_logic_vector(Addr, AxiIntf.AWAddr'length),
+         Data
+      );
+   end procedure;
+
+   -----------------------------------------------------------------------------
+   procedure WriteAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
       constant Addr  : in  std_logic_vector;
       constant Data  : in  std_logic_vector
    ) is
@@ -201,6 +227,21 @@ package body Axi4LiteTransactor_pkg is
          slv_data
       );
       Data := conv_integer(unsigned(slv_data));
+   end procedure;
+
+   -----------------------------------------------------------------------------
+   procedure ReadAxi(
+      signal AxiIntf : inout t_Axi4LiteIntf;
+      constant Addr  : in  integer;
+      variable Data  : out std_logic_vector
+   ) is 
+      variable slv_data : std_logic_vector(AxiIntf.RData'range);
+   begin
+      ReadAxi(
+         AxiIntf, 
+         std_logic_vector(conv_unsigned(Addr, AxiIntf.ARAddr'length)),
+         Data
+      );
    end procedure;
 
    -----------------------------------------------------------------------------
