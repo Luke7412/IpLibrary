@@ -10,7 +10,7 @@ quietly set PATH_TB "../tb"
 ################################################################################
 # External IPs
 
-quietly set LIBRARY "lvin_Simulation_Axi4LiteIntf_v1_0"
+quietly set LIBRARY "lvin_Verification_Axi4LiteIntf_v1_0"
 
 file delete -force $LIBRARY
 vlib $LIBRARY
@@ -19,7 +19,7 @@ vcom -93 -quiet +acc -work $LIBRARY \
    $PATH_IPLIBRARY/$LIBRARY/rtl/Axi4LiteIntf_pkg.vhd
 
 
-quietly set LIBRARY "lvin_Simulation_Axi4LiteTransactor_v1_0"
+quietly set LIBRARY "lvin_Verification_Axi4LiteTransactor_v1_0"
 
 file delete -force $LIBRARY
 vlib $LIBRARY
