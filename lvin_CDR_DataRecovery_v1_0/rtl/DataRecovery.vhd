@@ -16,12 +16,12 @@ entity DataRecovery is
       mode: string := "phased"
    );
    port (
-      AClk       : in  std_logic;
-      AClk90     : in  std_logic;
-      AResetn    : in  std_logic;
-      In_Data    : in  std_logic;
-      Out_TValid : out std_logic;
-      Out_TData  : out std_logic_vector(7 downto 0)
+      AClk     : in  std_logic;
+      AClk90   : in  std_logic;
+      AResetn  : in  std_logic;
+      In_Data  : in  std_logic;
+      M_TValid : out std_logic;
+      M_TData  : out std_logic_vector(7 downto 0)
    );
 end entity DataRecovery;
 
@@ -193,8 +193,8 @@ begin
       variable cnt : unsigned(shift_cnt'range);
    begin
       if resetn = '0' then
-         out_valid <= '0';
-         out_data  <= (others => '0');
+         M_TValid  <= '0';
+         M_TData   <= (others => '0');
          shift_reg <= (others => '0');
          shift_cnt <= (others => '0');
 
@@ -213,15 +213,15 @@ begin
          end if;
 
          if shift_cnt = 8 then 
-            out_valid <= '1';
-            out_data  <= shift_reg(shift_reg'high downto 1);
-            cnt       := cnt-8;
+            M_TValid <= '1';
+            M_TData  <= shift_reg(shift_reg'high downto 1);
+            cnt      := cnt-8;
          elsif shift_cnt  = 9 then
-            out_valid <= '1';
-            out_data  <= shift_reg(shift_reg'high-1 downto 0);
+            M_TValid <= '1';
+            M_TData  <= shift_reg(shift_reg'high-1 downto 0);
             cnt       := cnt-8;
          else
-            out_valid <= '0';
+            M_TValid <= '0';
          end if;
 
          shift_reg <= reg;
