@@ -21,7 +21,7 @@ library axi_mm2s_mapper_v1_1_19;
 --------------------------------------------------------------------------------
 -- ENTITY
 --------------------------------------------------------------------------------
-entity UartMaster is
+entity AxiUartMaster is
    Generic(
       g_AClkFrequency : natural := 200000000;
       g_BaudRate      : natural := 9600;
@@ -38,52 +38,51 @@ entity UartMaster is
       Uart_TxD      : out std_logic;
       Uart_RxD      : in  std_logic;
       -- Axi4 Interface
-      M_AXI_AWValid : out std_logic;
-      M_AXI_AWReady : in  std_logic;
-      M_AXI_AWAddr  : out std_logic_vector (31 downto 0);
-      M_AXI_AWLen   : out std_logic_vector (7  downto 0);
-      M_AXI_AWSize  : out std_logic_vector (2  downto 0);
-      M_AXI_AWBurst : out std_logic_vector (1  downto 0);
-      M_AXI_AWLock  : out std_logic_vector (0  downto 0);
-      M_AXI_AWCache : out std_logic_vector (3  downto 0);
-      M_AXI_AWProt  : out std_logic_vector (2  downto 0);
-      M_AXI_AWQos   : out std_logic_vector (3  downto 0);
-      M_AXI_WValid  : out std_logic;
-      M_AXI_WReady  : in  std_logic;
-      M_AXI_WData   : out std_logic_vector (31 downto 0);
-      M_AXI_WStrb   : out std_logic_vector (3  downto 0);
-      M_AXI_WLast   : out std_logic;
-      M_AXI_BValid  : in  std_logic;
-      M_AXI_BReady  : out std_logic;
-      M_AXI_BResp   : in  std_logic_vector (1  downto 0);
-      M_AXI_ARValid : out std_logic;
-      M_AXI_ARReady : in  std_logic;
-      M_AXI_ARAddr  : out std_logic_vector (31 downto 0);
-      M_AXI_ARLen   : out std_logic_vector (7  downto 0);
-      M_AXI_ARSize  : out std_logic_vector (2  downto 0);
-      M_AXI_ARBurst : out std_logic_vector (1  downto 0);
-      M_AXI_ARLock  : out std_logic_vector (0  downto 0);
-      M_AXI_ARCache : out std_logic_vector (3  downto 0);
-      M_AXI_ARProt  : out std_logic_vector (2  downto 0);
-      M_AXI_ARQos   : out std_logic_vector (3  downto 0);
-      M_AXI_RValid  : in  std_logic;
-      M_AXI_RReady  : out std_logic;
-      M_AXI_RData   : in  std_logic_vector (31 downto 0);
-      M_AXI_RResp   : in  std_logic_vector (1  downto 0);
-      M_AXI_RLast   : in  std_logic
+      S_AXI_AWValid : in  std_logic;
+      S_AXI_AWReady : out std_logic;
+      S_AXI_AWAddr  : in  std_logic_vector (31 downto 0);
+      S_AXI_AWLen   : in  std_logic_vector (7  downto 0);
+      S_AXI_AWSize  : in  std_logic_vector (2  downto 0);
+      S_AXI_AWBurst : in  std_logic_vector (1  downto 0);
+      S_AXI_AWLock  : in  std_logic_vector (0  downto 0);
+      S_AXI_AWCache : in  std_logic_vector (3  downto 0);
+      S_AXI_AWProt  : in  std_logic_vector (2  downto 0);
+      S_AXI_AWQos   : in  std_logic_vector (3  downto 0);
+      S_AXI_WValid  : in  std_logic;
+      S_AXI_WReady  : out std_logic;
+      S_AXI_WData   : in  std_logic_vector (31 downto 0);
+      S_AXI_WStrb   : in  std_logic_vector (3  downto 0);
+      S_AXI_WLast   : in  std_logic;
+      S_AXI_BValid  : out std_logic;
+      S_AXI_BReady  : in  std_logic;
+      S_AXI_BResp   : out std_logic_vector (1  downto 0);
+      S_AXI_ARValid : in  std_logic;
+      S_AXI_ARReady : out std_logic;
+      S_AXI_ARAddr  : in  std_logic_vector (31 downto 0);
+      S_AXI_ARLen   : in  std_logic_vector (7  downto 0);
+      S_AXI_ARSize  : in  std_logic_vector (2  downto 0);
+      S_AXI_ARBurst : in  std_logic_vector (1  downto 0);
+      S_AXI_ARLock  : in  std_logic_vector (0  downto 0);
+      S_AXI_ARCache : in  std_logic_vector (3  downto 0);
+      S_AXI_ARProt  : in  std_logic_vector (2  downto 0);
+      S_AXI_ARQos   : in  std_logic_vector (3  downto 0);
+      S_AXI_RValid  : out std_logic;
+      S_AXI_RReady  : in  std_logic;
+      S_AXI_RData   : out std_logic_vector (31 downto 0);
+      S_AXI_RResp   : out std_logic_vector (1  downto 0);
+      S_AXI_RLast   : out std_logic
    );
-end entity UartMaster;
+end entity AxiUartMaster;
 
 
 --------------------------------------------------------------------------------
 -- ARCHITECTURE
 --------------------------------------------------------------------------------
-architecture rtl of UartMaster is
+architecture rtl of AxiUartMaster is
 
    signal TxByte_TValid   : std_logic;
    signal TxByte_TReady   : std_logic;
    signal TxByte_TData    : std_logic_vector(7 downto 0);
-   signal TxByte_TKeep    : std_logic_vector(0 downto 0);
    
    signal RxByte_TValid   : std_logic;
    signal RxByte_TReady   : std_logic;
@@ -131,53 +130,53 @@ architecture rtl of UartMaster is
          aclk           : in  std_logic;
          aresetn        : in  std_logic;
 
-         s_axi_awvalid  : in  std_logic                                       := '0';
+         s_axi_awvalid  : in  std_logic                                       ;
          s_axi_awready  : out std_logic;
          s_axi_awid     : in  std_logic_vector(C_AXI_ID_WIDTH-1 downto 0)     := (others => '0');
-         s_axi_awaddr   : in  std_logic_vector(C_AXI_ADDR_WIDTH-1 downto 0)   := (others => '0');
-         s_axi_awlen    : in  std_logic_vector(8-1 downto 0)                  := (others => '0');
-         s_axi_awsize   : in  std_logic_vector(3-1 downto 0)                  := (others => '0');
-         s_axi_awburst  : in  std_logic_vector(2-1 downto 0)                  := (others => '0');
-         s_axi_awlock   : in  std_logic_vector(1-1 downto 0)                  := (others => '0');
-         s_axi_awcache  : in  std_logic_vector(4-1 downto 0)                  := (others => '0');
-         s_axi_awprot   : in  std_logic_vector(3-1 downto 0)                  := (others => '0');
+         s_axi_awaddr   : in  std_logic_vector(C_AXI_ADDR_WIDTH-1 downto 0)   ;
+         s_axi_awlen    : in  std_logic_vector(8-1 downto 0)                  ;
+         s_axi_awsize   : in  std_logic_vector(3-1 downto 0)                  ;
+         s_axi_awburst  : in  std_logic_vector(2-1 downto 0)                  ;
+         s_axi_awlock   : in  std_logic_vector(1-1 downto 0)                  ;
+         s_axi_awcache  : in  std_logic_vector(4-1 downto 0)                  ;
+         s_axi_awprot   : in  std_logic_vector(3-1 downto 0)                  ;
          s_axi_awregion : in  std_logic_vector(4-1 downto 0)                  := (others => '0');
-         s_axi_awqos    : in  std_logic_vector(4-1 downto 0)                  := (others => '0');
+         s_axi_awqos    : in  std_logic_vector(4-1 downto 0)                  ;
          s_axi_awuser   : in  std_logic_vector(C_AXI_AWUSER_WIDTH-1 downto 0) := (others => '0');
-         s_axi_wvalid   : in  std_logic                                       := '0';
+         s_axi_wvalid   : in  std_logic                                       ;
          s_axi_wready   : out std_logic;
-         s_axi_wdata    : in  std_logic_vector(C_AXI_DATA_WIDTH-1   downto 0) := (others => '0');
-         s_axi_wstrb    : in  std_logic_vector(C_AXI_DATA_WIDTH/8-1 downto 0) := (others => '0');
+         s_axi_wdata    : in  std_logic_vector(C_AXI_DATA_WIDTH-1   downto 0) ;
+         s_axi_wstrb    : in  std_logic_vector(C_AXI_DATA_WIDTH/8-1 downto 0) ;
          s_axi_wuser    : in  std_logic_vector(C_AXI_WUSER_WIDTH-1 downto 0)  := (others => '0');
-         s_axi_wlast    : in  std_logic                                       := '0';
+         s_axi_wlast    : in  std_logic                                       ;
          s_axi_bvalid   : out std_logic;
-         s_axi_bready   : in  std_logic                                       := '0';
-         s_axi_buser    : out std_logic_vector(C_AXI_BUSER_WIDTH-1 downto 0);
-         s_axi_bid      : out std_logic_vector(C_AXI_ID_WIDTH-1 downto 0);
+         s_axi_bready   : in  std_logic                                       ;
+         s_axi_buser    : out std_logic_vector(C_AXI_BUSER_WIDTH-1 downto 0)  := (others => '0');
+         s_axi_bid      : out std_logic_vector(C_AXI_ID_WIDTH-1 downto 0)     := (others => '0');
          s_axi_bresp    : out std_logic_vector(2-1 downto 0);
-         s_axi_arvalid  : in  std_logic                                       := '0';
+         s_axi_arvalid  : in  std_logic                                       ;
          s_axi_arready  : out std_logic;
          s_axi_arid     : in  std_logic_vector(C_AXI_ID_WIDTH-1 downto 0)     := (others => '0');
-         s_axi_araddr   : in  std_logic_vector(C_AXI_ADDR_WIDTH-1 downto 0)   := (others => '0');
-         s_axi_arlen    : in  std_logic_vector(8-1 downto 0)                  := (others => '0');
-         s_axi_arsize   : in  std_logic_vector(3-1 downto 0)                  := (others => '0');
-         s_axi_arburst  : in  std_logic_vector(2-1 downto 0)                  := (others => '0');
-         s_axi_arlock   : in  std_logic_vector(1-1 downto 0)                  := (others => '0');
-         s_axi_arcache  : in  std_logic_vector(4-1 downto 0)                  := (others => '0');
-         s_axi_arprot   : in  std_logic_vector(3-1 downto 0)                  := (others => '0');
+         s_axi_araddr   : in  std_logic_vector(C_AXI_ADDR_WIDTH-1 downto 0)   ;
+         s_axi_arlen    : in  std_logic_vector(8-1 downto 0)                  ;
+         s_axi_arsize   : in  std_logic_vector(3-1 downto 0)                  ;
+         s_axi_arburst  : in  std_logic_vector(2-1 downto 0)                  ;
+         s_axi_arlock   : in  std_logic_vector(1-1 downto 0)                  ;
+         s_axi_arcache  : in  std_logic_vector(4-1 downto 0)                  ;
+         s_axi_arprot   : in  std_logic_vector(3-1 downto 0)                  ;
          s_axi_arregion : in  std_logic_vector(4-1 downto 0)                  := (others => '0');
-         s_axi_arqos    : in  std_logic_vector(4-1 downto 0)                  := (others => '0');
+         s_axi_arqos    : in  std_logic_vector(4-1 downto 0)                  ;
          s_axi_aruser   : in  std_logic_vector(C_AXI_ARUSER_WIDTH-1 downto 0) := (others => '0');
          s_axi_rvalid   : out std_logic;                    
-         s_axi_rready   : in  std_logic                                       := '0';                      
+         s_axi_rready   : in  std_logic                                       ;         
          s_axi_rdata    : out std_logic_vector(C_AXI_DATA_WIDTH-1 downto 0);   
-         s_axi_ruser    : out std_logic_vector(C_AXI_RUSER_WIDTH-1 downto 0);   
-         s_axi_rid      : out std_logic_vector(C_AXI_ID_WIDTH-1 downto 0);   
+         s_axi_ruser    : out std_logic_vector(C_AXI_RUSER_WIDTH-1 downto 0)  := (others => '0');   
+         s_axi_rid      : out std_logic_vector(C_AXI_ID_WIDTH-1 downto 0)     := (others => '0');   
          s_axi_rresp    : out std_logic_vector(2-1 downto 0);            
          s_axi_rlast    : out std_logic;                   
 
          m_axi_awvalid  : out std_logic;
-         m_axi_awready  : in  std_logic;
+         m_axi_awready  : in  std_logic                                       := '0';
          m_axi_awid     : out std_logic_vector(C_AXI_ID_WIDTH-1 downto 0);
          m_axi_awaddr   : out std_logic_vector(C_AXI_ADDR_WIDTH-1 downto 0);
          m_axi_awlen    : out std_logic_vector(8-1 downto 0);
@@ -190,18 +189,18 @@ architecture rtl of UartMaster is
          m_axi_awqos    : out std_logic_vector(4-1 downto 0);
          m_axi_awuser   : out std_logic_vector(C_AXI_AWUSER_WIDTH-1 downto 0);
          m_axi_wvalid   : out std_logic;
-         m_axi_wready   : in  std_logic;
+         m_axi_wready   : in  std_logic                                       := '0';
          m_axi_wdata    : out std_logic_vector(C_AXI_DATA_WIDTH-1   downto 0);
          m_axi_wstrb    : out std_logic_vector(C_AXI_DATA_WIDTH/8-1 downto 0);
          m_axi_wuser    : out std_logic_vector(C_AXI_WUSER_WIDTH-1 downto 0);
          m_axi_wlast    : out std_logic;
-         m_axi_bvalid   : in  std_logic;
+         m_axi_bvalid   : in  std_logic                                       := '0';
          m_axi_bready   : out std_logic;
-         m_axi_buser    : in  std_logic_vector(C_AXI_BUSER_WIDTH-1 downto 0);
-         m_axi_bid      : in  std_logic_vector(C_AXI_ID_WIDTH-1 downto 0);
-         m_axi_bresp    : in  std_logic_vector(2-1 downto 0);
+         m_axi_buser    : in  std_logic_vector(C_AXI_BUSER_WIDTH-1 downto 0)  := (others => '0');
+         m_axi_bid      : in  std_logic_vector(C_AXI_ID_WIDTH-1 downto 0)     := (others => '0');
+         m_axi_bresp    : in  std_logic_vector(2-1 downto 0)                  := (others => '0');
          m_axi_arvalid  : out std_logic;
-         m_axi_arready  : in  std_logic;
+         m_axi_arready  : in  std_logic                                       := '0';
          m_axi_arid     : out std_logic_vector(C_AXI_ID_WIDTH-1 downto 0);
          m_axi_araddr   : out std_logic_vector(C_AXI_ADDR_WIDTH-1 downto 0);
          m_axi_arlen    : out std_logic_vector(8-1 downto 0);
@@ -213,13 +212,13 @@ architecture rtl of UartMaster is
          m_axi_arregion : out std_logic_vector(4-1 downto 0);
          m_axi_arqos    : out std_logic_vector(4-1 downto 0);
          m_axi_aruser   : out std_logic_vector(C_AXI_ARUSER_WIDTH-1 downto 0);
-         m_axi_rvalid   : in  std_logic;                    
+         m_axi_rvalid   : in  std_logic                                       := '0';                    
          m_axi_rready   : out std_logic;                      
-         m_axi_rdata    : in  std_logic_vector(C_AXI_DATA_WIDTH-1 downto 0);   
-         m_axi_ruser    : in  std_logic_vector(C_AXI_RUSER_WIDTH-1 downto 0);   
-         m_axi_rid      : in  std_logic_vector(C_AXI_ID_WIDTH-1 downto 0);   
-         m_axi_rresp    : in  std_logic_vector(2-1 downto 0);            
-         m_axi_rlast    : in  std_logic;
+         m_axi_rdata    : in  std_logic_vector(C_AXI_DATA_WIDTH-1 downto 0)   := (others => '0');   
+         m_axi_ruser    : in  std_logic_vector(C_AXI_RUSER_WIDTH-1 downto 0)  := (others => '0');   
+         m_axi_rid      : in  std_logic_vector(C_AXI_ID_WIDTH-1 downto 0)     := (others => '0');   
+         m_axi_rresp    : in  std_logic_vector(2-1 downto 0)                  := (others => '0');            
+         m_axi_rlast    : in  std_logic                                       := '0';
 
          s_axis_tvalid  : in  std_logic;
          s_axis_tready  : out std_logic;
@@ -255,7 +254,6 @@ begin
          TxByte_TValid => TxByte_TValid,
          TxByte_TReady => TxByte_TReady,
          TxByte_TData  => TxByte_TData ,
-         TxByte_TKeep  => TxByte_TKeep ,
          -- Axi4-Stream RxByte Interface
          RxByte_TValid => RxByte_TValid,
          RxByte_TReady => RxByte_TReady,
@@ -330,50 +328,39 @@ begin
       aclk           => aclk,
       aresetn        => aresetn,
 
-      m_axi_awvalid  => m_axi_awvalid,
-      m_axi_awready  => m_axi_awready,
-      m_axi_awid     => open,
-      m_axi_awaddr   => m_axi_awaddr,
-      m_axi_awlen    => m_axi_awlen,
-      m_axi_awsize   => m_axi_awsize,
-      m_axi_awburst  => m_axi_awburst,
-      m_axi_awlock   => m_axi_awlock,
-      m_axi_awcache  => m_axi_awcache,
-      m_axi_awprot   => m_axi_awprot,
-      m_axi_awregion => open,
-      m_axi_awqos    => m_axi_awqos,
-      m_axi_awuser   => open,
-      m_axi_wvalid   => m_axi_wvalid,
-      m_axi_wready   => m_axi_wready,
-      m_axi_wdata    => m_axi_wdata,
-      m_axi_wstrb    => m_axi_wstrb,
-      m_axi_wlast    => m_axi_wlast,
-      m_axi_wuser    => open,
-      m_axi_bvalid   => m_axi_bvalid,
-      m_axi_bready   => m_axi_bready,
-      m_axi_bid      => (others => '0'),
-      m_axi_bresp    => m_axi_bresp,
-      m_axi_buser    => (others => '0'),
-      m_axi_arvalid  => m_axi_arvalid,
-      m_axi_arready  => m_axi_arready,
-      m_axi_arid     => open,
-      m_axi_araddr   => m_axi_araddr,
-      m_axi_arlen    => m_axi_arlen,
-      m_axi_arsize   => m_axi_arsize,
-      m_axi_arburst  => m_axi_arburst,
-      m_axi_arlock   => m_axi_arlock,
-      m_axi_arcache  => m_axi_arcache,
-      m_axi_arprot   => m_axi_arprot,
-      m_axi_arregion => open,
-      m_axi_arqos    => m_axi_arqos,
-      m_axi_aruser   => open,
-      m_axi_rvalid   => m_axi_rvalid,
-      m_axi_rready   => m_axi_rready,
-      m_axi_rdata    => m_axi_rdata,
-      m_axi_ruser    => (others => '0'),
-      m_axi_rid      => (others => '0'),
-      m_axi_rresp    => m_axi_rresp,
-      m_axi_rlast    => m_axi_rlast,
+      s_axi_awvalid => S_AXI_AWValid,
+      s_axi_awready => S_AXI_AWReady,
+      s_axi_awaddr  => S_AXI_AWAddr ,
+      s_axi_awlen   => S_AXI_AWLen  ,
+      s_axi_awsize  => S_AXI_AWSize ,
+      s_axi_awburst => S_AXI_AWBurst,
+      s_axi_awlock  => S_AXI_AWLock ,
+      s_axi_awcache => S_AXI_AWCache,
+      s_axi_awprot  => S_AXI_AWProt ,
+      s_axi_awqos   => S_AXI_AWQos  ,
+      s_axi_wvalid  => S_AXI_WValid ,
+      s_axi_wready  => S_AXI_WReady ,
+      s_axi_wdata   => S_AXI_WData  ,
+      s_axi_wstrb   => S_AXI_WStrb  ,
+      s_axi_wlast   => S_AXI_WLast  ,
+      s_axi_bvalid  => S_AXI_BValid ,
+      s_axi_bready  => S_AXI_BReady ,
+      s_axi_bresp   => S_AXI_BResp  ,
+      s_axi_arvalid => S_AXI_ARValid,
+      s_axi_arready => S_AXI_ARReady,
+      s_axi_araddr  => S_AXI_ARAddr ,
+      s_axi_arlen   => S_AXI_ARLen  ,
+      s_axi_arsize  => S_AXI_ARSize ,
+      s_axi_arburst => S_AXI_ARBurst,
+      s_axi_arlock  => S_AXI_ARLock ,
+      s_axi_arcache => S_AXI_ARCache,
+      s_axi_arprot  => S_AXI_ARProt ,
+      s_axi_arqos   => S_AXI_ARQos  ,
+      s_axi_rvalid  => S_AXI_RValid ,
+      s_axi_rready  => S_AXI_RReady ,
+      s_axi_rdata   => S_AXI_RData  ,
+      s_axi_rresp   => S_AXI_RResp  ,
+      s_axi_rlast   => S_AXI_RLast  ,
 
       s_axis_tvalid  => RxPacket_tvalid,
       s_axis_tready  => RxPacket_tready,

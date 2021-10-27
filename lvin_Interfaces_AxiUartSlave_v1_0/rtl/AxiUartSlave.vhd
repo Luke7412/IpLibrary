@@ -83,7 +83,6 @@ architecture rtl of AxiUartSlave is
    signal TxByte_TValid   : std_logic;
    signal TxByte_TReady   : std_logic;
    signal TxByte_TData    : std_logic_vector(7 downto 0);
-   signal TxByte_TKeep    : std_logic_vector(0 downto 0);
    
    signal RxByte_TValid   : std_logic;
    signal RxByte_TReady   : std_logic;
@@ -255,7 +254,6 @@ begin
          TxByte_TValid => TxByte_TValid,
          TxByte_TReady => TxByte_TReady,
          TxByte_TData  => TxByte_TData ,
-         TxByte_TKeep  => TxByte_TKeep ,
          -- Axi4-Stream RxByte Interface
          RxByte_TValid => RxByte_TValid,
          RxByte_TReady => RxByte_TReady,

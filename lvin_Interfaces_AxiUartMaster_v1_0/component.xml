@@ -2,7 +2,7 @@
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>lvin</spirit:vendor>
   <spirit:library>Interfaces</spirit:library>
-  <spirit:name>UartMaster</spirit:name>
+  <spirit:name>AxiUartMaster</spirit:name>
   <spirit:version>v1_0</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
@@ -45,7 +45,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_BUSIF">M_AXI</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_BUSIF">S_AXI</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_RESET</spirit:name>
@@ -78,19 +78,19 @@
       </spirit:portMaps>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>M_AXI</spirit:name>
+      <spirit:name>S_AXI</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm_rtl" spirit:version="1.0"/>
-      <spirit:master>
-        <spirit:addressSpaceRef spirit:addressSpaceRef="M_AXI"/>
-      </spirit:master>
+      <spirit:slave>
+        <spirit:memoryMapRef spirit:memoryMapRef="S_AXI"/>
+      </spirit:slave>
       <spirit:portMaps>
         <spirit:portMap>
           <spirit:logicalPort>
             <spirit:name>AWADDR</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWAddr</spirit:name>
+            <spirit:name>S_AXI_AWAddr</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -98,7 +98,7 @@
             <spirit:name>AWLEN</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWLen</spirit:name>
+            <spirit:name>S_AXI_AWLen</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -106,7 +106,7 @@
             <spirit:name>AWSIZE</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWSize</spirit:name>
+            <spirit:name>S_AXI_AWSize</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -114,7 +114,7 @@
             <spirit:name>AWBURST</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWBurst</spirit:name>
+            <spirit:name>S_AXI_AWBurst</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -122,7 +122,7 @@
             <spirit:name>AWLOCK</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWLock</spirit:name>
+            <spirit:name>S_AXI_AWLock</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -130,7 +130,7 @@
             <spirit:name>AWCACHE</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWCache</spirit:name>
+            <spirit:name>S_AXI_AWCache</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -138,7 +138,7 @@
             <spirit:name>AWPROT</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWProt</spirit:name>
+            <spirit:name>S_AXI_AWProt</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -146,7 +146,7 @@
             <spirit:name>AWQOS</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWQos</spirit:name>
+            <spirit:name>S_AXI_AWQos</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -154,7 +154,7 @@
             <spirit:name>AWVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWValid</spirit:name>
+            <spirit:name>S_AXI_AWValid</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -162,7 +162,7 @@
             <spirit:name>AWREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_AWReady</spirit:name>
+            <spirit:name>S_AXI_AWReady</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -170,7 +170,7 @@
             <spirit:name>WDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_WData</spirit:name>
+            <spirit:name>S_AXI_WData</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -178,7 +178,7 @@
             <spirit:name>WSTRB</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_WStrb</spirit:name>
+            <spirit:name>S_AXI_WStrb</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -186,7 +186,7 @@
             <spirit:name>WLAST</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_WLast</spirit:name>
+            <spirit:name>S_AXI_WLast</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -194,7 +194,7 @@
             <spirit:name>WVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_WValid</spirit:name>
+            <spirit:name>S_AXI_WValid</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -202,7 +202,7 @@
             <spirit:name>WREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_WReady</spirit:name>
+            <spirit:name>S_AXI_WReady</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -210,7 +210,7 @@
             <spirit:name>BRESP</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_BResp</spirit:name>
+            <spirit:name>S_AXI_BResp</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -218,7 +218,7 @@
             <spirit:name>BVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_BValid</spirit:name>
+            <spirit:name>S_AXI_BValid</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -226,7 +226,7 @@
             <spirit:name>BREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_BReady</spirit:name>
+            <spirit:name>S_AXI_BReady</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -234,7 +234,7 @@
             <spirit:name>ARADDR</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARAddr</spirit:name>
+            <spirit:name>S_AXI_ARAddr</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -242,7 +242,7 @@
             <spirit:name>ARLEN</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARLen</spirit:name>
+            <spirit:name>S_AXI_ARLen</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -250,7 +250,7 @@
             <spirit:name>ARSIZE</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARSize</spirit:name>
+            <spirit:name>S_AXI_ARSize</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -258,7 +258,7 @@
             <spirit:name>ARBURST</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARBurst</spirit:name>
+            <spirit:name>S_AXI_ARBurst</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -266,7 +266,7 @@
             <spirit:name>ARLOCK</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARLock</spirit:name>
+            <spirit:name>S_AXI_ARLock</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -274,7 +274,7 @@
             <spirit:name>ARCACHE</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARCache</spirit:name>
+            <spirit:name>S_AXI_ARCache</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -282,7 +282,7 @@
             <spirit:name>ARPROT</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARProt</spirit:name>
+            <spirit:name>S_AXI_ARProt</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -290,7 +290,7 @@
             <spirit:name>ARQOS</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARQos</spirit:name>
+            <spirit:name>S_AXI_ARQos</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -298,7 +298,7 @@
             <spirit:name>ARVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARValid</spirit:name>
+            <spirit:name>S_AXI_ARValid</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -306,7 +306,7 @@
             <spirit:name>ARREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_ARReady</spirit:name>
+            <spirit:name>S_AXI_ARReady</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -314,7 +314,7 @@
             <spirit:name>RDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_RData</spirit:name>
+            <spirit:name>S_AXI_RData</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -322,7 +322,7 @@
             <spirit:name>RRESP</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_RResp</spirit:name>
+            <spirit:name>S_AXI_RResp</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -330,7 +330,7 @@
             <spirit:name>RLAST</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_RLast</spirit:name>
+            <spirit:name>S_AXI_RLast</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -338,7 +338,7 @@
             <spirit:name>RVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_RValid</spirit:name>
+            <spirit:name>S_AXI_RValid</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -346,19 +346,24 @@
             <spirit:name>RREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>M_AXI_RReady</spirit:name>
+            <spirit:name>S_AXI_RReady</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
     </spirit:busInterface>
   </spirit:busInterfaces>
-  <spirit:addressSpaces>
-    <spirit:addressSpace>
-      <spirit:name>M_AXI</spirit:name>
-      <spirit:range spirit:format="long">4294967296</spirit:range>
-      <spirit:width spirit:format="long">32</spirit:width>
-    </spirit:addressSpace>
-  </spirit:addressSpaces>
+  <spirit:memoryMaps>
+    <spirit:memoryMap>
+      <spirit:name>S_AXI</spirit:name>
+      <spirit:addressBlock>
+        <spirit:name>reg0</spirit:name>
+        <spirit:baseAddress spirit:format="bitString" spirit:resolve="user" spirit:bitStringLength="32">0</spirit:baseAddress>
+        <spirit:range spirit:format="long" spirit:resolve="user" spirit:minimum="4096" spirit:rangeType="long">4294967296</spirit:range>
+        <spirit:width spirit:format="long" spirit:resolve="user">32</spirit:width>
+        <spirit:usage>register</spirit:usage>
+      </spirit:addressBlock>
+    </spirit:memoryMap>
+  </spirit:memoryMaps>
   <spirit:model>
     <spirit:views>
       <spirit:view>
@@ -366,7 +371,7 @@
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>UartMaster</spirit:modelName>
+        <spirit:modelName>AxiUartMaster</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_lvin_Interfaces_AxisUart_v1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -385,7 +390,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c18605ed</spirit:value>
+            <spirit:value>fab2fbeb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -394,7 +399,7 @@
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>UartMaster</spirit:modelName>
+        <spirit:modelName>AxiUartMaster</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_lvin_Interfaces_AxisUart_v1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -413,7 +418,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c18605ed</spirit:value>
+            <spirit:value>fab2fbeb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -421,7 +426,7 @@
         <spirit:name>xilinx_xpgui</spirit:name>
         <spirit:displayName>UI Layout</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:xgui.ui</spirit:envIdentifier>
-        <spirit:modelName>UartMaster</spirit:modelName>
+        <spirit:modelName>AxiUartMaster</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_xpgui_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -487,20 +492,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWValid</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>M_AXI_AWReady</spirit:name>
+        <spirit:name>S_AXI_AWValid</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -516,9 +508,22 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWAddr</spirit:name>
+        <spirit:name>S_AXI_AWReady</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>S_AXI_AWAddr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -530,12 +535,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWLen</spirit:name>
+        <spirit:name>S_AXI_AWLen</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">7</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -547,12 +555,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWSize</spirit:name>
+        <spirit:name>S_AXI_AWSize</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">2</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -567,9 +578,9 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWBurst</spirit:name>
+        <spirit:name>S_AXI_AWBurst</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">1</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -581,12 +592,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWLock</spirit:name>
+        <spirit:name>S_AXI_AWLock</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">0</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -598,12 +612,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWCache</spirit:name>
+        <spirit:name>S_AXI_AWCache</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -615,12 +632,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">3</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWProt</spirit:name>
+        <spirit:name>S_AXI_AWProt</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">2</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -632,12 +652,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_AWQos</spirit:name>
+        <spirit:name>S_AXI_AWQos</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -649,23 +672,13 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_WValid</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>M_AXI_WReady</spirit:name>
+        <spirit:name>S_AXI_WValid</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -681,9 +694,22 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_WData</spirit:name>
+        <spirit:name>S_AXI_WReady</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>S_AXI_WData</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -695,12 +721,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_WStrb</spirit:name>
+        <spirit:name>S_AXI_WStrb</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -712,23 +741,13 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_WLast</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>M_AXI_BValid</spirit:name>
+        <spirit:name>S_AXI_WLast</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -744,7 +763,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_BReady</spirit:name>
+        <spirit:name>S_AXI_BValid</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -757,9 +776,25 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_BResp</spirit:name>
+        <spirit:name>S_AXI_BReady</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>S_AXI_BResp</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">1</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -771,26 +806,10 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARValid</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>M_AXI_ARReady</spirit:name>
+        <spirit:name>S_AXI_ARValid</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -806,9 +825,22 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARAddr</spirit:name>
+        <spirit:name>S_AXI_ARReady</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>S_AXI_ARAddr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -820,12 +852,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARLen</spirit:name>
+        <spirit:name>S_AXI_ARLen</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">7</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -837,12 +872,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARSize</spirit:name>
+        <spirit:name>S_AXI_ARSize</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">2</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -857,9 +895,9 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARBurst</spirit:name>
+        <spirit:name>S_AXI_ARBurst</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">1</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -871,12 +909,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARLock</spirit:name>
+        <spirit:name>S_AXI_ARLock</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">0</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -888,12 +929,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARCache</spirit:name>
+        <spirit:name>S_AXI_ARCache</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -905,12 +949,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">3</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARProt</spirit:name>
+        <spirit:name>S_AXI_ARProt</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">2</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -922,12 +969,15 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_ARQos</spirit:name>
+        <spirit:name>S_AXI_ARQos</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
             <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
@@ -939,26 +989,13 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>M_AXI_RValid</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
           <spirit:driver>
             <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_RReady</spirit:name>
+        <spirit:name>S_AXI_RValid</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -971,47 +1008,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>M_AXI_RData</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">31</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>M_AXI_RResp</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">1</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>M_AXI_RLast</spirit:name>
+        <spirit:name>S_AXI_RReady</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -1024,6 +1021,53 @@
           <spirit:driver>
             <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
           </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>S_AXI_RData</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>S_AXI_RResp</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">1</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>S_AXI_RLast</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
     </spirit:ports>
@@ -1071,10 +1115,10 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>rtl/UartMaster.vhd</spirit:name>
+        <spirit:name>rtl/AxiUartMaster.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_c18605ed</spirit:userFileType>
-        <spirit:logicalName>lvin_Interfaces_UartMaster_v1_0</spirit:logicalName>
+        <spirit:userFileType>CHECKSUM_fab2fbeb</spirit:userFileType>
+        <spirit:logicalName>lvin_Interfaces_AxiUartMaster_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1120,9 +1164,9 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>rtl/UartMaster.vhd</spirit:name>
+        <spirit:name>rtl/AxiUartMaster.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Interfaces_UartMaster_v1_0</spirit:logicalName>
+        <spirit:logicalName>lvin_Interfaces_AxiUartMaster_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1168,14 +1212,14 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/UartMaster_vv1_0.tcl</spirit:name>
+        <spirit:name>xgui/AxiUartMaster_vv1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_26c9d8f5</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>UartMaster v1_0</spirit:description>
+  <spirit:description>AxiUartMaster v1_0</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>g_AClkFrequency</spirit:name>
@@ -1230,7 +1274,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">UartMaster_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">AxiUartMaster_v1_0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -1238,175 +1282,212 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>UartMaster v1_0</xilinx:displayName>
+      <xilinx:displayName>AxiUartMaster v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>8</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-10-23T15:50:41Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>10</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-10-24T14:33:33Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@18367f90_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@44d5045d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@518491f7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3cc49ae7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@534e0673_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@40125512_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@720eb36a_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fc3e588_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e9c0ea8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@61d48daf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d0c21f0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ecf98f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@175881a9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2464c2de_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3144825d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@70db128f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4977c8a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6741b027_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@320d98a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@31e44c8b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c63bbcf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e6bd48b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@292c1633_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@78854629_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@48ea4792_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@30aadd75_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@417d9e66_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ad6f8e6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f74b8a2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3385155c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b279ad8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1180fbbd_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@536e3ed2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@71cc3fc3_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@481b06e2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@57b72d91_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6933be3f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a2f3f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6beeedcd_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@e7eefb1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@63d31d25_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@22eb0e62_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fc31b1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@34f7b343_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@74414377_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@67932a4e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@784d75f4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@335d88c8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@73002ceb_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5571ac54_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4bca572d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@fe23cfb_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d48cec9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e9c46a0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1119b24_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@29a10a0c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@14eb6759_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@35e60854_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5efbabb7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@65fe7ab0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cb53bb8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@30576a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@ab3eca7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@51502b94_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1494aa1e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@61416da0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6cb6b0a6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7306de3f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4928bf6e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6fdf03d5_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f963710_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1cbbce1e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7b010d6f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d475d06_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@67036b0b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f3f926e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2780acf2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@663c7452_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1023dbcf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f4a0c73_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b8993dc_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c437b40_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@43424fa_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@204d4e39_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c19ed73_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@74d490fc_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@52484aa_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@11a840e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5177193e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6124080_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@56ad2635_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@762a29a1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@611bdc6f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ec88ebe_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c97edf9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6aaddd49_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@41f3c44c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2193df57_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a1a6448_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@45c8d014_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@27a72e59_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@32b98dc0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@47a66dea_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6cf5d299_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2df4e8a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@77493a8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a2379bf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@14b7daf2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@57f4b5ad_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@9a788a5_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3debbb97_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@18ec6e06_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@330c8ac6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ff70d28_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@257bc506_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b9f48c8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@75c2a882_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@776b0fb7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@150b555e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ca94e5d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b2329ff_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3944268_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@56bb56fe_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@516b8b35_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@59fbe526_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@88ea4aa_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@29138a6f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@16caf7d1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5226d19b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@23f76e6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7aab14cf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@fe53a57_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ec9a63e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fdc8700_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@370563f4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b1b8282_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fdd04ff_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f923ae1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@62d9a164_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@30a2338f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@123459c3_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e9daae0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b6198a3_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7109c9dd_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1cf25bee_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2add7ec1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@12a6b78d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ff9f3c7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f8cc929_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@f9ad5d4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@73cccce9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@13d00503_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f3efa6e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_uartmaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18367f90_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44d5045d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@518491f7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3cc49ae7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@534e0673_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40125512_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@720eb36a_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fc3e588_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e9c0ea8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61d48daf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d0c21f0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ecf98f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@175881a9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2464c2de_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3144825d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70db128f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4977c8a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6741b027_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@320d98a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31e44c8b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c63bbcf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e6bd48b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@292c1633_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78854629_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48ea4792_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30aadd75_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@417d9e66_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ad6f8e6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f74b8a2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3385155c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b279ad8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1180fbbd_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@536e3ed2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71cc3fc3_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@481b06e2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57b72d91_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6933be3f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a2f3f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6beeedcd_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e7eefb1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63d31d25_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22eb0e62_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fc31b1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34f7b343_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74414377_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67932a4e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@784d75f4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@335d88c8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73002ceb_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5571ac54_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4bca572d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@fe23cfb_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d48cec9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e9c46a0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1119b24_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29a10a0c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@14eb6759_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35e60854_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5efbabb7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65fe7ab0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cb53bb8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30576a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ab3eca7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@51502b94_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1494aa1e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61416da0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6cb6b0a6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7306de3f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4928bf6e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6fdf03d5_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f963710_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1cbbce1e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7b010d6f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d475d06_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67036b0b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f3f926e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2780acf2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@663c7452_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1023dbcf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f4a0c73_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b8993dc_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c437b40_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43424fa_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@204d4e39_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c19ed73_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74d490fc_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52484aa_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11a840e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5177193e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6124080_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56ad2635_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@762a29a1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@611bdc6f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ec88ebe_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c97edf9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6aaddd49_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41f3c44c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2193df57_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a1a6448_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45c8d014_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27a72e59_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@32b98dc0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47a66dea_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6cf5d299_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2df4e8a7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77493a8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a2379bf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@14b7daf2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57f4b5ad_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9a788a5_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3debbb97_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18ec6e06_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@330c8ac6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ff70d28_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@257bc506_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b9f48c8_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75c2a882_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@776b0fb7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@150b555e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ca94e5d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b2329ff_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3944268_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56bb56fe_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@516b8b35_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@59fbe526_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@88ea4aa_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29138a6f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16caf7d1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5226d19b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23f76e6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7aab14cf_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@fe53a57_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ec9a63e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fdc8700_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@370563f4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b1b8282_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fdd04ff_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f923ae1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62d9a164_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30a2338f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@123459c3_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e9daae0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b6198a3_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7109c9dd_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1cf25bee_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2add7ec1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12a6b78d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ff9f3c7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f8cc929_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f9ad5d4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73cccce9_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13d00503_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f3efa6e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a787fd6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@197c20e7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8c8a3a0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d9f4e18_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@299bb846_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47c29408_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e0a0773_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c4ee045_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29dcb003_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fd3b9a6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d012c90_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@efc1a39_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10c6573b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d4bbf2e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@427b59f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11fab6a5_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b014199_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f3cdf26_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d21c86d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7294de96_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@126efe97_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d16ab96_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7b8f91ba_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36a84579_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@766fd50e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74e96c71_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38d588c6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4be9ed49_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16b45a38_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63efb59c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56f55726_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@86d934a_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20eb4c0d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@437457f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17db2832_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@51904f3e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@547ea9c7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartMaster_v1_0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4913fd47"/>
-      <xilinx:checksum xilinx:scope="addressSpaces" xilinx:value="dab0a384"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="31f6923a"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="92c45bde"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="d15e827a"/>
+      <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="f2afdf52"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="8c851e6c"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="3dda4590"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="77ec800c"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="49e23727"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="63250e99"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
