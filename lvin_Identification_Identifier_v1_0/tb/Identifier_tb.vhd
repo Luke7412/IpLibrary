@@ -28,7 +28,7 @@ end entity Identifier_tb;
 --------------------------------------------------------------------------------
 architecture tb of Identifier_tb is
   
-   constant c_Name         : string  := "DEADBEEFTESTDATA";
+   constant c_Name         : string  := "ABCDEFGHIJKLMNOP";
    constant c_MajorVersion : integer := 2;
    constant c_MinorVersion : integer := 8;
 

@@ -23,7 +23,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -57,7 +57,9 @@
       <spirit:name>Ctrl</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm_rtl" spirit:version="1.0"/>
-      <spirit:slave/>
+      <spirit:slave>
+        <spirit:memoryMapRef spirit:memoryMapRef="Ctrl"/>
+      </spirit:slave>
       <spirit:portMaps>
         <spirit:portMap>
           <spirit:logicalPort>
@@ -118,6 +120,18 @@
       </spirit:portMaps>
     </spirit:busInterface>
   </spirit:busInterfaces>
+  <spirit:memoryMaps>
+    <spirit:memoryMap>
+      <spirit:name>Ctrl</spirit:name>
+      <spirit:addressBlock>
+        <spirit:name>reg0</spirit:name>
+        <spirit:baseAddress spirit:format="bitString" spirit:resolve="user" spirit:bitStringLength="32">0</spirit:baseAddress>
+        <spirit:range spirit:format="long" spirit:resolve="user" spirit:minimum="4096" spirit:rangeType="long">256</spirit:range>
+        <spirit:width spirit:format="long" spirit:resolve="user">32</spirit:width>
+        <spirit:usage>register</spirit:usage>
+      </spirit:addressBlock>
+    </spirit:memoryMap>
+  </spirit:memoryMaps>
   <spirit:model>
     <spirit:views>
       <spirit:view>
@@ -132,7 +146,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>b3976f64</spirit:value>
+            <spirit:value>a9735ff4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -148,7 +162,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>b3976f64</spirit:value>
+            <spirit:value>a9735ff4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -162,7 +176,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f77bc582</spirit:value>
+            <spirit:value>d37facd8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -316,18 +330,18 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>g_MajorVersion</spirit:name>
         <spirit:displayName>G Majorversion</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_MajorVersion" spirit:minimum="0">1</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_MajorVersion" spirit:minimum="0" spirit:rangeType="long">1</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
-        <spirit:name>g_MInorVersion</spirit:name>
+        <spirit:name>g_MinorVersion</spirit:name>
         <spirit:displayName>G Minorversion</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_MInorVersion" spirit:minimum="0">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_MinorVersion" spirit:minimum="0">0</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choice_list_74b5137e</spirit:name>
+      <spirit:name>choice_list_9d8b0d81</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
       <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
     </spirit:choice>
@@ -348,7 +362,7 @@
       <spirit:file>
         <spirit:name>rtl/Identifier.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_2a989d31</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_bdada2a1</spirit:userFileType>
         <spirit:logicalName>lvin_Identification_Identifier_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
@@ -375,7 +389,7 @@
       <spirit:file>
         <spirit:name>xgui/Identifier_vv1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_f77bc582</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_d37facd8</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -393,13 +407,13 @@
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_MajorVersion" spirit:minimum="0" spirit:maximum="65535" spirit:rangeType="long">1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
-      <spirit:name>g_MInorVersion</spirit:name>
-      <spirit:displayName>Minor Version</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_MInorVersion" spirit:minimum="0" spirit:maximum="65535" spirit:rangeType="long">0</spirit:value>
-    </spirit:parameter>
-    <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">Identifier_v1_0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>g_MinorVersion</spirit:name>
+      <spirit:displayName>Minor Version</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_MinorVersion" spirit:minimum="0" spirit:maximum="65535" spirit:rangeType="long">0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -410,8 +424,8 @@
       <xilinx:displayName>Identifier v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-10-24T10:33:31Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-10-24T11:06:58Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@38616bad_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2789d690_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
@@ -442,15 +456,35 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4dd4ac19_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2a6d4441_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7766f33e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54f287b6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7047d8f1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74a70041_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7dd093b7_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ae14952_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@346a433e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9dc4d34_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3edb11fa_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@435bcd43_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2fdbf4d2_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c41a50a_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77eac21d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e546e1b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69ab0c3_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52eea1e0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@51b0e0d5_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@383a7e3d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16f63c6a_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@420fdd00_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_identification_identifier_v1_0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="0d7e0f63"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3e810029"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="fb27351b"/>
+      <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="2125ef49"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="415bab14"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="4a29f0de"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="26cdd867"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="1d09e031"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="5c0ff840"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="dbc9aceb"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
