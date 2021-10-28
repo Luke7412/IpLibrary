@@ -362,6 +362,21 @@
   <spirit:model>
     <spirit:views>
       <spirit:view>
+        <spirit:name>xilinx_blockdiagram</spirit:name>
+        <spirit:displayName>Block Diagram</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:block.diagram</spirit:envIdentifier>
+        <spirit:modelName>AxisUart</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_blockdiagram_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>a29623f6</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
         <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
@@ -385,7 +400,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ea8ebc58</spirit:value>
+            <spirit:value>e02e7121</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -413,7 +428,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ea8ebc58</spirit:value>
+            <spirit:value>e02e7121</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -428,7 +443,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>26c9d8f5</spirit:value>
+            <spirit:value>8d0bc7fb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1069,11 +1084,23 @@
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
+      <spirit:name>xilinx_blockdiagram_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>tcl/bd.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>rtl/AxiStream2MemMapped.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Interfaces_AxiUartSlave_v1_0</spirit:logicalName>
+      </spirit:file>
       <spirit:file>
         <spirit:name>rtl/AxiUartSlave.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_ea8ebc58</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_85496017</spirit:userFileType>
         <spirit:logicalName>lvin_Interfaces_AxiUartSlave_v1_0</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
@@ -1119,6 +1146,11 @@
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>rtl/AxiStream2MemMapped.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lvin_Interfaces_AxiUartSlave_v1_0</spirit:logicalName>
+      </spirit:file>
       <spirit:file>
         <spirit:name>rtl/AxiUartSlave.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
@@ -1170,7 +1202,7 @@
       <spirit:file>
         <spirit:name>xgui/AxiUartSlave_vv1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_26c9d8f5</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_8d0bc7fb</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1184,12 +1216,12 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>g_BaudRate</spirit:name>
-      <spirit:displayName>Baudrate</spirit:displayName>
+      <spirit:displayName>Baud Rate</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_BaudRate">9600</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>g_BaudRateSim</spirit:name>
-      <spirit:displayName>Baudrate sim</spirit:displayName>
+      <spirit:displayName>Baud Rate (sim)</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_BaudRateSim">50000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
@@ -1241,8 +1273,8 @@
       <xilinx:displayName>AxiUartSlave v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>9</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-10-24T14:37:26Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>12</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-10-28T19:09:08Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@54e5e6ed_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6c05e9e0_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
@@ -1256,16 +1288,46 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@789e6f75_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@52c78b64_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2a0e44ea_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5506bae5_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@525d1f56_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d757476_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73db8a8b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7b9fcd97_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@305f235f_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a2cac14_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ef6be3c_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d9b6217_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4933e242_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f314ff4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17790ebc_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34d72369_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78ea73e_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23a67bf6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@14b680e6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40119ac6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f60c7cd_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63f0f82b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@141edc4a_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2766e2c6_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70f1d5a4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@592abf7d_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@583ce6ed_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f39da4a_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b07b274_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d11a62b_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c8cf8d4_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1342d8fb_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4a351cb1_ARCHIVE_LOCATION">e:/documents/git/iplibrary/lvin_interfaces_AxiUartSlave_v1_0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="7d1e8335"/>
       <xilinx:checksum xilinx:scope="addressSpaces" xilinx:value="dab0a384"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="68aa5b05"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b63481e7"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="92c45bde"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="77ec800c"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="e5a71212"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="de6edaff"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

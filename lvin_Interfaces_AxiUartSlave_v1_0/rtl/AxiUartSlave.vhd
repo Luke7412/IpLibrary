@@ -14,8 +14,8 @@ library lvin_Axi4Stream_Framing_v1_0;
 library lvin_Axi4Stream_DestPacketizer_v1_0;
    use lvin_Axi4Stream_DestPacketizer_v1_0.DestPacketizer;
 
-library axi_mm2s_mapper_v1_1_19;
-   use axi_mm2s_mapper_v1_1_19.axi_mm2s_mapper_v1_1_19_top;
+--library axi_mm2s_mapper_v1_1_19;
+--   use axi_mm2s_mapper_v1_1_19.axi_mm2s_mapper_v1_1_19_top;
 
 
 --------------------------------------------------------------------------------
@@ -313,7 +313,6 @@ begin
          RxPacket_TLast  => RxPacket_TLast ,
          RxPacket_TData  => RxPacket_TData ,
          RxPacket_TId    => RxPacket_TId   ,
-         --RxPacket_TKeep  : out std_logic_vector(0 downto 0);
          -- Axi4-Stream TxPacket interface
          TxPacket_TValid => TxPacket_TValid,
          TxPacket_TReady => TxPacket_TReady,
@@ -323,70 +322,123 @@ begin
       );
 
 
-  i_Axi4Stream_2_Axi4MM : axi_mm2s_mapper_v1_1_19_top
-   port map (
-      aclk           => aclk,
-      aresetn        => aresetn,
+   i_AxiStream2MemMapped : entity work.AxiStream2MemMapped
+      Port map(
+         -- Clock and Reset
+         AClk            => AClk   ,
+         AResetn         => AResetn,
+         -- Axi4-Stream RxPacket interface
+         RxPacket_TValid => RxPacket_TValid,
+         RxPacket_TReady => RxPacket_TReady,
+         RxPacket_TLast  => RxPacket_TLast ,
+         RxPacket_TData  => RxPacket_TData ,
+         RxPacket_TId    => RxPacket_TId   ,
+         -- Axi4-Stream TxPacket interface
+         TxPacket_TValid => TxPacket_TValid,
+         TxPacket_TReady => TxPacket_TReady,
+         TxPacket_TLast  => TxPacket_TLast ,
+         TxPacket_TData  => TxPacket_TData ,
+         TxPacket_TId    => TxPacket_TId   ,
+         -- Axi4 Interface
+         M_AXI_AWValid   => M_AXI_AWValid,
+         M_AXI_AWReady   => M_AXI_AWReady,
+         M_AXI_AWAddr    => M_AXI_AWAddr ,
+         M_AXI_AWLen     => M_AXI_AWLen  ,
+         M_AXI_AWSize    => M_AXI_AWSize ,
+         M_AXI_AWBurst   => M_AXI_AWBurst,
+         M_AXI_AWLock    => M_AXI_AWLock ,
+         M_AXI_AWCache   => M_AXI_AWCache,
+         M_AXI_AWProt    => M_AXI_AWProt ,
+         M_AXI_AWQos     => M_AXI_AWQos  ,
+         M_AXI_WValid    => M_AXI_WValid ,
+         M_AXI_WReady    => M_AXI_WReady ,
+         M_AXI_WData     => M_AXI_WData  ,
+         M_AXI_WStrb     => M_AXI_WStrb  ,
+         M_AXI_WLast     => M_AXI_WLast  ,
+         M_AXI_BValid    => M_AXI_BValid ,
+         M_AXI_BReady    => M_AXI_BReady ,
+         M_AXI_BResp     => M_AXI_BResp  ,
+         M_AXI_ARValid   => M_AXI_ARValid,
+         M_AXI_ARReady   => M_AXI_ARReady,
+         M_AXI_ARAddr    => M_AXI_ARAddr ,
+         M_AXI_ARLen     => M_AXI_ARLen  ,
+         M_AXI_ARSize    => M_AXI_ARSize ,
+         M_AXI_ARBurst   => M_AXI_ARBurst,
+         M_AXI_ARLock    => M_AXI_ARLock ,
+         M_AXI_ARCache   => M_AXI_ARCache,
+         M_AXI_ARProt    => M_AXI_ARProt ,
+         M_AXI_ARQos     => M_AXI_ARQos  ,
+         M_AXI_RValid    => M_AXI_RValid ,
+         M_AXI_RReady    => M_AXI_RReady ,
+         M_AXI_RData     => M_AXI_RData  ,
+         M_AXI_RResp     => M_AXI_RResp  ,
+         M_AXI_RLast     => M_AXI_RLast
+      );
 
-      m_axi_awvalid  => m_axi_awvalid,
-      m_axi_awready  => m_axi_awready,
-      m_axi_awid     => open,
-      m_axi_awaddr   => m_axi_awaddr,
-      m_axi_awlen    => m_axi_awlen,
-      m_axi_awsize   => m_axi_awsize,
-      m_axi_awburst  => m_axi_awburst,
-      m_axi_awlock   => m_axi_awlock,
-      m_axi_awcache  => m_axi_awcache,
-      m_axi_awprot   => m_axi_awprot,
-      m_axi_awregion => open,
-      m_axi_awqos    => m_axi_awqos,
-      m_axi_awuser   => open,
-      m_axi_wvalid   => m_axi_wvalid,
-      m_axi_wready   => m_axi_wready,
-      m_axi_wdata    => m_axi_wdata,
-      m_axi_wstrb    => m_axi_wstrb,
-      m_axi_wlast    => m_axi_wlast,
-      m_axi_wuser    => open,
-      m_axi_bvalid   => m_axi_bvalid,
-      m_axi_bready   => m_axi_bready,
-      m_axi_bid      => (others => '0'),
-      m_axi_bresp    => m_axi_bresp,
-      m_axi_buser    => (others => '0'),
-      m_axi_arvalid  => m_axi_arvalid,
-      m_axi_arready  => m_axi_arready,
-      m_axi_arid     => open,
-      m_axi_araddr   => m_axi_araddr,
-      m_axi_arlen    => m_axi_arlen,
-      m_axi_arsize   => m_axi_arsize,
-      m_axi_arburst  => m_axi_arburst,
-      m_axi_arlock   => m_axi_arlock,
-      m_axi_arcache  => m_axi_arcache,
-      m_axi_arprot   => m_axi_arprot,
-      m_axi_arregion => open,
-      m_axi_arqos    => m_axi_arqos,
-      m_axi_aruser   => open,
-      m_axi_rvalid   => m_axi_rvalid,
-      m_axi_rready   => m_axi_rready,
-      m_axi_rdata    => m_axi_rdata,
-      m_axi_ruser    => (others => '0'),
-      m_axi_rid      => (others => '0'),
-      m_axi_rresp    => m_axi_rresp,
-      m_axi_rlast    => m_axi_rlast,
+  --i_Axi4Stream_2_Axi4MM : axi_mm2s_mapper_v1_1_19_top
+  -- port map (
+  --    aclk           => aclk,
+  --    aresetn        => aresetn,
 
-      s_axis_tvalid  => RxPacket_tvalid,
-      s_axis_tready  => RxPacket_tready,
-      s_axis_tdata   => RxPacket_tdata,
-      s_axis_tkeep   => (others => '0'),
-      s_axis_tid     => RxPacket_tid,
-      s_axis_tlast   => RxPacket_tlast,
+  --    m_axi_awvalid  => m_axi_awvalid,
+  --    m_axi_awready  => m_axi_awready,
+  --    m_axi_awid     => open,
+  --    m_axi_awaddr   => m_axi_awaddr,
+  --    m_axi_awlen    => m_axi_awlen,
+  --    m_axi_awsize   => m_axi_awsize,
+  --    m_axi_awburst  => m_axi_awburst,
+  --    m_axi_awlock   => m_axi_awlock,
+  --    m_axi_awcache  => m_axi_awcache,
+  --    m_axi_awprot   => m_axi_awprot,
+  --    m_axi_awregion => open,
+  --    m_axi_awqos    => m_axi_awqos,
+  --    m_axi_awuser   => open,
+  --    m_axi_wvalid   => m_axi_wvalid,
+  --    m_axi_wready   => m_axi_wready,
+  --    m_axi_wdata    => m_axi_wdata,
+  --    m_axi_wstrb    => m_axi_wstrb,
+  --    m_axi_wlast    => m_axi_wlast,
+  --    m_axi_wuser    => open,
+  --    m_axi_bvalid   => m_axi_bvalid,
+  --    m_axi_bready   => m_axi_bready,
+  --    m_axi_bid      => (others => '0'),
+  --    m_axi_bresp    => m_axi_bresp,
+  --    m_axi_buser    => (others => '0'),
+  --    m_axi_arvalid  => m_axi_arvalid,
+  --    m_axi_arready  => m_axi_arready,
+  --    m_axi_arid     => open,
+  --    m_axi_araddr   => m_axi_araddr,
+  --    m_axi_arlen    => m_axi_arlen,
+  --    m_axi_arsize   => m_axi_arsize,
+  --    m_axi_arburst  => m_axi_arburst,
+  --    m_axi_arlock   => m_axi_arlock,
+  --    m_axi_arcache  => m_axi_arcache,
+  --    m_axi_arprot   => m_axi_arprot,
+  --    m_axi_arregion => open,
+  --    m_axi_arqos    => m_axi_arqos,
+  --    m_axi_aruser   => open,
+  --    m_axi_rvalid   => m_axi_rvalid,
+  --    m_axi_rready   => m_axi_rready,
+  --    m_axi_rdata    => m_axi_rdata,
+  --    m_axi_ruser    => (others => '0'),
+  --    m_axi_rid      => (others => '0'),
+  --    m_axi_rresp    => m_axi_rresp,
+  --    m_axi_rlast    => m_axi_rlast,
 
-      m_axis_tvalid  => TxPacket_TValid,
-      m_axis_tready  => TxPacket_TReady,
-      m_axis_tdata   => TxPacket_TData,
-      m_axis_tkeep   => open,
-      m_axis_tid     => TxPacket_TId,
-      m_axis_tlast   => TxPacket_TLast
-   );
+  --    s_axis_tvalid  => RxPacket_tvalid,
+  --    s_axis_tready  => RxPacket_tready,
+  --    s_axis_tdata   => RxPacket_tdata,
+  --    s_axis_tkeep   => (others => '0'),
+  --    s_axis_tid     => RxPacket_tid,
+  --    s_axis_tlast   => RxPacket_tlast,
+
+  --    m_axis_tvalid  => TxPacket_TValid,
+  --    m_axis_tready  => TxPacket_TReady,
+  --    m_axis_tdata   => TxPacket_TData,
+  --    m_axis_tkeep   => open,
+  --    m_axis_tid     => TxPacket_TId,
+  --    m_axis_tlast   => TxPacket_TLast
+  -- );
 
 
 end architecture rtl;

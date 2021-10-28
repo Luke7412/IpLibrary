@@ -3,12 +3,18 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "Component_Name"
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
-  ipgui::add_param $IPINST -name "g_AClkFrequency" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "g_BaudRate" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "g_BaudRateSim" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "g_EscapeByte" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "g_StartByte" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "g_StopByte" -parent ${Page_0}
+  #Adding Group
+  set Timing [ipgui::add_group $IPINST -name "Timing" -parent ${Page_0}]
+  ipgui::add_param $IPINST -name "g_AClkFrequency" -parent ${Timing}
+  ipgui::add_param $IPINST -name "g_BaudRateSim" -parent ${Timing}
+  ipgui::add_param $IPINST -name "g_BaudRate" -parent ${Timing}
+
+  #Adding Group
+  set config [ipgui::add_group $IPINST -name "config" -parent ${Page_0} -display_name {Framing}]
+  ipgui::add_param $IPINST -name "g_EscapeByte" -parent ${config}
+  ipgui::add_param $IPINST -name "g_StartByte" -parent ${config}
+  ipgui::add_param $IPINST -name "g_StopByte" -parent ${config}
+
 
 
 }
