@@ -30,7 +30,6 @@ entity DestPacketizer is
       RxPacket_TLast  : out std_logic;
       RxPacket_TData  : out std_logic_vector(7 downto 0);
       RxPacket_TId    : out std_logic_vector(2 downto 0);
-      --RxPacket_TKeep  : out std_logic_vector(0 downto 0);
       -- Axi4-Stream TxPacket interface
       TxPacket_TValid : in  std_logic;
       TxPacket_TReady : out std_logic;
@@ -47,9 +46,6 @@ end DestPacketizer;
 architecture RTL of DestPacketizer is
 
 begin
-
-   --RxPacket_TKeep <= (others => '1');
-
 
    DestExtract_1 : entity work.DestExtract
       port map (
