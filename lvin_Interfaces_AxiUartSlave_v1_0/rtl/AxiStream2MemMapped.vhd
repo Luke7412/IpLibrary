@@ -118,34 +118,41 @@ begin
    process(AClk, AResetn) 
    begin
       if AResetn = '0' then
-         M_AXI_AWValid_i <= '1';
-         M_AXI_ARValid_i <= '1';
-         M_AXI_WValid_i  <= '1';
+         M_AXI_AWValid_i <= '0';
+         M_AXI_ARValid_i <= '0';
+         M_AXI_WValid_i  <= '0';
 
       elsif rising_edge(AClk) then
+         if M_AXI_AWValid_i = '1' and M_AXI_AWReady = '1' then
+            M_AXI_AWValid_i <= '0';
+         end if;
+
+         if M_AXI_ARValid_i = '1' and M_AXI_ARReady = '1' then
+            M_AXI_ARValid_i <= '0';
+         end if;
+
+         if M_AXI_WValid_i = '1' and M_AXI_WReady = '1' then
+            M_AXI_WValid_i <= '0';
+         end if;
+
+
          if RxPacket_TValid = '1' and RxPacket_TReady_i = '1' then
 
-            if M_AXI_AWValid_i = '1' and M_AXI_AWReady = '1' then
-               M_AXI_AWValid_i <= '0';
-            elsif RxPacket_TId = "001" then
+            if RxPacket_TId = "001" then
                ShiftAW <= RxPacket_TData & ShiftAW(ShiftAW'high downto 8);
                if RxPacket_TLast = '1' then
                   M_AXI_AWValid_i <= '1';
                end if;
             end if;
 
-            if M_AXI_ARValid_i = '1' and M_AXI_ARReady = '1' then
-               M_AXI_ARValid_i <= '0';
-            elsif RxPacket_TId = "010" then
+            if RxPacket_TId = "010" then
                ShiftAR <= RxPacket_TData & ShiftAR(ShiftAR'high downto 8);
                if RxPacket_TLast = '1' then
                   M_AXI_ARValid_i <= '1';
                end if;
             end if;
 
-            if M_AXI_WValid_i = '1' and M_AXI_WReady = '1' then
-               M_AXI_WValid_i <= '0';
-            elsif RxPacket_TId = "100" then
+            if RxPacket_TId = "100" then
                ShiftW <= RxPacket_TData & ShiftW(ShiftW'high downto 8);
                if RxPacket_TLast = '1' then
                   M_AXI_WValid_i <= '1';
@@ -162,13 +169,16 @@ begin
       (RxPacket_TId = "010" and M_AXI_ARValid_i = '1') or
       (RxPacket_TId = "100" and M_AXI_WValid_i = '1') else '1';
 
+   RxPacket_TReady <= RxPacket_TReady_i;
+
 
 
    process(AClk, AResetn) 
    begin
       if AResetn = '0' then
-         Cnt_ShiftR <= (others => '0');
-         Cnt_ShiftB <= (others => '0');
+         Cnt_ShiftR        <= (others => '0');
+         Cnt_ShiftB        <= (others => '0');
+         TxPacket_TValid_i <= '0';
 
       elsif rising_edge(AClk) then
          if M_AXI_RValid = '1' and M_AXI_RReady_i = '1' then
@@ -213,8 +223,11 @@ begin
    end process;
 
 
-   M_AXI_RReady_i <= '1' when Cnt_ShiftR = 0 and Cnt_ShiftB = 0 else '0';
-   M_AXI_BReady_i <= '1' when Cnt_ShiftR = 0 and Cnt_ShiftB = 0 else '0';
-
+   M_AXI_RReady_i  <= '1' when Cnt_ShiftR = 0 and Cnt_ShiftB = 0 else '0';
+   M_AXI_BReady_i  <= '1' when Cnt_ShiftR = 0 and Cnt_ShiftB = 0 else '0';
+   
+   TxPacket_TValid <= TxPacket_TValid_i;
+   M_AXI_RReady    <= M_AXI_RReady_i;
+   M_AXI_BReady    <= M_AXI_BReady_i;
 
 end architecture rtl;

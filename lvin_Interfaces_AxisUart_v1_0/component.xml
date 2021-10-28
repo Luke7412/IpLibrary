@@ -424,7 +424,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_blockdiagram_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>tcl/bd.tcl</spirit:name>
+        <spirit:name>bd/bd.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
