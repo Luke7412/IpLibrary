@@ -204,7 +204,7 @@ begin
                TxPacket_TValid_i <= '1';
                ShiftR            <= x"00" & ShiftR(ShiftR'high downto 8);
                TxPacket_TData    <= ShiftR(7 downto 0);
-               TxPacket_TId      <= "001";
+               TxPacket_TId      <= "011";
                TxPacket_TLast    <= '0';
                if Cnt_ShiftR = 1 then
                   TxPacket_TLast <= '1';
