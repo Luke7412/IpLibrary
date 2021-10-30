@@ -22,3 +22,5 @@ proc propagate { cell_name {prop_info {}} } {
    set_property CONFIG.g_AClkFrequency $freq $ip
 
 }
+
+ifx_debug_trace_setup
