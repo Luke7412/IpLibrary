@@ -11,6 +11,8 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "POLY_LENGTH" -parent ${Page_0}
   ipgui::add_param $IPINST -name "POLY_TAP" -parent ${Page_0}
   ipgui::add_param $IPINST -name "TDATA_WIDTH" -parent ${Page_0}
+
+
 }
 
 proc update_PARAM_VALUE.CHK_MODE { PARAM_VALUE.CHK_MODE PARAM_VALUE.Mode } {

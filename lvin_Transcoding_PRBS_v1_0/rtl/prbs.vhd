@@ -20,7 +20,7 @@ entity PRBS is
         AClk     : in  std_logic;
         AResetn  : in  std_logic;
         -- AXI4-Stream target
-        S_TValid : in  std_logic;
+        S_TValid : in  std_logic                                := '0';
         S_TReady : out std_logic;
         S_TData  : in  std_logic_vector(TDATA_WIDTH-1 downto 0) := (others => '0');
         -- AXI4-Stream initiator
