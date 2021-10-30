@@ -9,9 +9,7 @@
       <spirit:name>Slave</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm_rtl" spirit:version="1.0"/>
-      <spirit:slave>
-        <spirit:memoryMapRef spirit:memoryMapRef="Slave"/>
-      </spirit:slave>
+      <spirit:slave/>
       <spirit:connectionRequired>true</spirit:connectionRequired>
       <spirit:portMaps>
         <spirit:portMap>
@@ -227,9 +225,7 @@
       <spirit:name>Master</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm_rtl" spirit:version="1.0"/>
-      <spirit:master>
-        <spirit:addressSpaceRef spirit:addressSpaceRef="Master"/>
-      </spirit:master>
+      <spirit:master/>
       <spirit:connectionRequired>true</spirit:connectionRequired>
       <spirit:portMaps>
         <spirit:portMap>
@@ -394,27 +390,23 @@
       </spirit:vendorExtensions>
     </spirit:busInterface>
   </spirit:busInterfaces>
-  <spirit:addressSpaces>
-    <spirit:addressSpace>
-      <spirit:name>Master</spirit:name>
-      <spirit:range spirit:format="long" spirit:resolve="dependent" spirit:dependency="pow(2,(spirit:decode(id(&apos;MODELPARAM_VALUE.AddrWidth&apos;)) - 1) + 1)" spirit:minimum="4096" spirit:rangeType="long">4294967296</spirit:range>
-      <spirit:width spirit:format="long" spirit:resolve="user">32</spirit:width>
-    </spirit:addressSpace>
-  </spirit:addressSpaces>
-  <spirit:memoryMaps>
-    <spirit:memoryMap>
-      <spirit:name>Slave</spirit:name>
-      <spirit:addressBlock>
-        <spirit:name>reg0</spirit:name>
-        <spirit:baseAddress spirit:format="bitString" spirit:resolve="user" spirit:bitStringLength="32">0</spirit:baseAddress>
-        <spirit:range spirit:format="long" spirit:resolve="dependent" spirit:dependency="pow(2,(spirit:decode(id(&apos;MODELPARAM_VALUE.AddrWidth&apos;)) - 1) + 1)" spirit:minimum="4096" spirit:rangeType="long">4294967296</spirit:range>
-        <spirit:width spirit:format="long" spirit:resolve="user">32</spirit:width>
-        <spirit:usage>register</spirit:usage>
-      </spirit:addressBlock>
-    </spirit:memoryMap>
-  </spirit:memoryMaps>
   <spirit:model>
     <spirit:views>
+      <spirit:view>
+        <spirit:name>xilinx_blockdiagram</spirit:name>
+        <spirit:displayName>Block Diagram</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:block.diagram</spirit:envIdentifier>
+        <spirit:modelName>Axi4LiteVIP</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_blockdiagram_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>ceb99e05</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
       <spirit:view>
         <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
         <spirit:displayName>Synthesis</spirit:displayName>
@@ -1156,6 +1148,14 @@
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
+      <spirit:name>xilinx_blockdiagram_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>bd/bd.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:logicalName>lvin_Simulation_Axi4LiteVIP_v1_0</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>rtl/Axi4LiteVIP.vhd</spirit:name>
@@ -1232,114 +1232,8 @@
       <xilinx:displayName>Axi4LiteVIP v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>25</xilinx:coreRevision>
+      <xilinx:coreRevision>26</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-10-23T16:37:07Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@177ae159_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d7bf63a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4227de52_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d24ae8d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@e83754_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@71130f96_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@49643beb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@360c7e6b_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@214572f8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@59798add_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@683766b_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ca6e1ee_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b8dfac6_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@747ca194_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ea48460_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@55971061_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@450f215d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@77ae3a35_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ba8e419_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@411a9f2c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f1d775a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3689ed0f_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@24e772ea_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@324637f9_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@bffecd7_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e46bd2f_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@36688f23_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7096a3a2_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1875216e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@74a4b4c3_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ae7bb09_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@704dbc3d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@32afc173_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a88d7a4_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d26a5ec_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@996e275_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d6c3a5a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4123fe75_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@48259917_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@63aa1672_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a6180a6_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1bafaebb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f1a892_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@14012eb8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f033f91_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@609188d8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6000f6a2_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c36c8c4_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d919c02_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@30b04939_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@159a95f5_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@20c1bf4e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@172a413a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3854c63c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@74491408_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@22c6eaa0_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5559dc2c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7eff2c9_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@952ee7f_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@37c9055c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@18a8921c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@76c1cd10_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@48636407_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@710fc7fe_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7493504e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@10b83040_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@54d56ae8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3efdf371_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@18cce399_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4622fc95_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3609036a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@211178a8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6952f2fb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5653923f_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e11cf8c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@196f5888_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@643ac465_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@d39995c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@951d1d8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fbd91fc_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a9cee9d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@71575a1f_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@78db8849_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@256eb5fd_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@76a8e706_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@49169b88_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6be9e120_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@59662f93_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d9ec70a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@680abeb_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@500ec2dc_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@34561f82_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@94b1384_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@12716f9b_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a26ee5c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e017fa9_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@605e89ce_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7272ed81_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@36d58d77_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@31ecc78e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@22636fe2_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@140cad39_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@44da5119_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@63a30852_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Verification_Axi4LiteVIP_v1_0</xilinx:tag>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
