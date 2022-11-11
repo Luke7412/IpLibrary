@@ -4,7 +4,7 @@
 
 //------------------------------------------------------------------------------
 module deescaper #(
-  localparam logic [7:0] ESCAPE_BYTE = 8'h7F,
+  parameter logic [7:0] ESCAPE_BYTE = 8'h7F,
 )(
   // Clock and Reset
   input  logic        aclk,

@@ -4,9 +4,9 @@
 
 //------------------------------------------------------------------------------
 module escaper #(
-  localparam logic [7:0] ESCAPE_BYTE = 8'h7F,
-  localparam logic [7:0] START_BYTE  = 8'h7D,
-  localparam logic [7:0] STOP_BYTE   = 8'h7E
+  parameter logic [7:0] ESCAPE_BYTE = 8'h7F,
+  parameter logic [7:0] START_BYTE  = 8'h7D,
+  parameter logic [7:0] STOP_BYTE   = 8'h7E
 )(
   // Clock and Reset
   logic input         aclk,
