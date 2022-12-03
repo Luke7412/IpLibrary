@@ -1,0 +1,16 @@
+{
+  "vlnv": {
+    "vendor"  : "lvin",
+    "library" : "interfaces",
+    "name"    : "axis_uart",
+    "version" : "v1.0"
+  },
+
+  "module_name": "axis_uart",
+  
+  "sim_synth_files": [
+    "src/axis_uart_rx.sv",
+    "src/axis_uart_tx.sv",
+    "src/axis_uart.sv"
+  ]
+}
