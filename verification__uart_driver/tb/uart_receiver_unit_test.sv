@@ -5,7 +5,7 @@
 // Description : 
 //------------------------------------------------------------------------------
 `include "svunit_defines.svh"
-`timescale 1ns/1ns;
+`timescale 1ns/1ns
 
 
 module uart_receiver_unit_test;
