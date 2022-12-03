@@ -1,0 +1,17 @@
+{
+  "vlnv": {
+    "vendor"  : "lvin",
+    "library" : "verification",
+    "name"    : "axi4s_driver",
+    "version" : "v1.0"
+  },
+
+  "incdirs": [
+    "src/"
+  ],
+  
+  "sim_files": [
+    "src/axi4s_intf.sv",
+    "src/axi4s_pkg.sv"
+  ]
+}
