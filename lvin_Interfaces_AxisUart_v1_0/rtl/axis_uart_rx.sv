@@ -1,41 +1,38 @@
-//------------------------------------------------------------------------------
-
 
 
 //------------------------------------------------------------------------------
-module uart_rx #(
+module axis_uart_rx #(
   parameter int ACLK_FREQUENCY = 200000000,
   parameter int BAUD_RATE      = 9600,
-  parameter int BAUD_RATESIM   = 50000000,
-  localparam real BAUDRATE_SAMPLE = $real(ACLK_FREQUENCY) / $real(ACLK_FREQUENCY/BAUD_RATE);
+  parameter int BAUD_RATE_SIM  = 50000000
+  // localparam real BAUDRATE_SAMPLE = $real(ACLK_FREQUENCY) / $real(ACLK_FREQUENCY/BAUD_RATE)
 )( 
   input  logic        aclk,
   input  logic        aresetn,
   input  logic        uart_rxd,
   output logic        rxbyte_tvalid,
   input  logic        rxbyte_tready,
-  input  logic [7:0]  rxbyte_tdata
-  );
-begin
+  output logic [7:0]  rxbyte_tdata
+);
 
 
   //----------------------------------------------------------------------------
   // synthesis translate_off
-  assert 10.0*(1.0-$real(BAUD_RATE)/BAUDRATE_SAMPLE) < 0.45
-    report "Unsafe baudrate ratio."
-    severity error;
+  // assert (10.0*(1.0-$real(BAUD_RATE)/BAUDRATE_SAMPLE) < 0.45)
+  //   report "Unsafe baudrate ratio."
+  //   severity error;
   // synthesis translate_on
 
  
   localparam int USED_BAUD_RATE = BAUD_RATE
-                            // synthesis translate_off
-                            - BAUD_RATE + BAUDRATE_SAMPLE
-                            // synthesis translate_on
-                            ;
+    // synthesis translate_off
+    - BAUD_RATE + BAUD_RATE_SIM
+    // synthesis translate_on
+    ;
 
   localparam int TICS_PER_BEAT = ACLK_FREQUENCY / USED_BAUD_RATE;                     
 
-  enum logic [1:0] (WAIT_FOR_START, SAMPLING, OUTPUTTING) state;
+  enum logic [1:0] {WAIT_FOR_START, SAMPLING, OUTPUTTING} state;
   
   logic [$clog2(9)-1:0]             beat_cnt;
   logic [$clog2(TICS_PER_BEAT)-1:0] tic_cnt;
@@ -52,7 +49,7 @@ begin
       deglitch_shift <= '1;
       rxd_deglitch   <= '1;
 
-      RxByte_TValid <= '0;
+      rxbyte_tvalid <= '0;
       state         <= WAIT_FOR_START;
 
     end else begin
@@ -88,7 +85,7 @@ begin
             if (beat_cnt != 0) begin
               beat_cnt <= beat_cnt-1;
             end else begin
-              state <= s_outputting;
+              state <= OUTPUTTING;
             end
           end
        end

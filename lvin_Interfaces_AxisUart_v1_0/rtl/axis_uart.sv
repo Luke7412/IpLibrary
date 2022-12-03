@@ -6,32 +6,32 @@
 module axis_uart #(
   parameter int ACLK_FREQUENCY = 200000000,
   parameter int BAUD_RATE      = 9600,
-  parameter int BAUD_RATESIM   = 50000000
+  parameter int BAUD_RATE_SIM  = 50000000
 )(
   // Clock and Reset
-  input  logic        AClk,
-  input  logic        AResetn,
+  input  logic        aclk,
+  input  logic        aresetn,
   // Uart Interface
-  output logic        Uart_TxD,
-  input  logic        Uart_RxD,
+  output logic        uart_txd,
+  input  logic        uart_rxd,
   // Axi4-Stream TxByte Interface
-  input  logic        TxByte_TValid,
-  output logic        TxByte_TReady,
-  input  logic [7:0]  TxByte_TData,
-  input  logic [0:0]  TxByte_TKeep,
+  input  logic        txbyte_tvalid,
+  output logic        txbyte_tready,
+  input  logic [7:0]  txbyte_tdata,
+  input  logic [0:0]  txbyte_tkeep,
   // Axi4-Stream RxByte Interface
-  output logic        RxByte_TValid,
-  input  logic        RxByte_TReady,
-  output logic [7:0]  RxByte_TData
+  output logic        rxbyte_tvalid,
+  input  logic        rxbyte_tready,
+  output logic [7:0]  rxbyte_tdata
 );
 
 
   //--------------------------------------------------------------------------  
-  uart_rx i_uart_rx #(
+  axis_uart_rx #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
     .BAUD_RATE      (BAUD_RATE),
-    .BAUD_RATESIM   (BAUD_RATESIM)
-  )( 
+    .BAUD_RATE_SIM  (BAUD_RATE_SIM)
+  ) i_axis_uart_rx ( 
     .aclk           (aclk),
     .aresetn        (aresetn),
     .uart_rxd       (uart_rxd),
@@ -41,11 +41,11 @@ module axis_uart #(
   );
 
 
-  uart_tx i_uart_tx #(
+  axis_uart_tx #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
     .BAUD_RATE      (BAUD_RATE),
-    .BAUD_RATESIM   (BAUD_RATESIM)
-  )( 
+    .BAUD_RATE_SIM  (BAUD_RATE_SIM)
+  ) i_axis_uart_tx ( 
     .aclk           (aclk),
     .aresetn        (aresetn),
     .uart_txd       (uart_txd),
