@@ -19,7 +19,7 @@ interface Axi4sIntf #(
   logic [TSTRB_WIDTH-1:0] tstrb;
   logic [TUSER_WIDTH-1:0] tuser;
   logic [TDEST_WIDTH-1:0] tdest;
-  logic [TID_WIDTH]       tid;
+  logic [TID_WIDTH-1:0]   tid;
   logic                   tlast;
 
 endinterface

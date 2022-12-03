@@ -1,21 +1,15 @@
 
 
-class Axi4sMonitor #(
-  parameter int TDATA_WIDTH = 8,
-  parameter int TKEEP_WIDTH = TDATA_WIDTH/8,
-  parameter int TSTRB_WIDTH = TDATA_WIDTH/8,
-  parameter int TUSER_WIDTH = 1,
-  parameter int TDEST_WIDTH = 1,
-  parameter int TID_WIDTH   = 1
-) extends axi4s_base;
+class Axi4sMonitor #(type T Axi4sTransaction) extends axi4s_base;
 
   typedef Axi4sIntf #(
-    TDATA_WIDTH, TKEEP_WIDTH, TSTRB_WIDTH, TUSER_WIDTH, TDEST_WIDTH, TID_WIDTH
+    Axi4sTransaction.TDATA_WIDTH, Axi4sTransaction.TKEEP_WIDTH, 
+    Axi4sTransaction.TSTRB_WIDTH, Axi4sTransaction.TUSER_WIDTH, 
+    Axi4sTransaction.TDEST_WIDTH, Axi4sTransaction.TID_WIDTH
   ) t_vif;
 
   t_vif vif;
-
-  T queue [$];
+  Axi4sTransaction queue [$];
 
 
   //----------------------------------------------------------------------------
@@ -30,10 +24,18 @@ class Axi4sMonitor #(
     super.start();
   endfunction
 
+
   task main();
+    Axi4sTransaction transaction;
+
     forever begin
       @(posedge vif.aclk) iff (vif.tvalid && vif.tready);
-      queue.push_back();
+      transaction = new (
+        .tdata (vif.tdata), .tkeep (vif.tkeep), .tstrb (vif.tstrb),
+        .tuser (vif.tuser), .tdest (vif.tdest), .tid (vif.tid),
+        .tlast (vif.tlast)
+      )
+      queue.push_back(transaction);
     end
   endtask
 
