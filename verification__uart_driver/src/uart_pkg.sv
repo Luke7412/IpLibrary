@@ -1,12 +1,18 @@
+//------------------------------------------------------------------------------
+// Project Name: IpLibrary
+//------------------------------------------------------------------------------
+// Author      : Lukas Vinkx (lvin)
+// Description : 
+//------------------------------------------------------------------------------
 
 
+`timescale 1ns/1ns;
 
-//--------------------------------------------------------------------------
+
 package uart_pkg;
-    `timescale 1ns/1ps;
 
-    `include "uart_base.svh";
-    `include "uart_master.svh";
-    `include "uart_slave.svh";
+  `include "uart_base.svh";
+  `include "uart_transmitter.svh";
+  `include "uart_receiver.svh";
 
 endpackage

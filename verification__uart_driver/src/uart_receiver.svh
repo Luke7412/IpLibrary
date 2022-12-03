@@ -1,3 +1,9 @@
+//------------------------------------------------------------------------------
+// Project Name: IpLibrary
+//------------------------------------------------------------------------------
+// Author      : Lukas Vinkx (lvin)
+// Description : 
+//------------------------------------------------------------------------------
 
 
 class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
@@ -12,7 +18,13 @@ class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
     this.vif = vif;
   endfunction
 
+
   //----------------------------------------------------------------------------
+  task start();
+    rx_queue.delete();
+    super.start();
+  endtask
+
   task main();
     logic [9:0] rx;
     
@@ -28,5 +40,6 @@ class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
         rx_queue.push_back(rx[8:1]);
     end
   endtask
+
 
 endclass
