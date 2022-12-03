@@ -8,8 +8,8 @@
 
 interface UartIntf();
 
-  logic rx;
-  logic tx;
+  logic rxd;
+  logic txd;
   string state;
 
 endinterface

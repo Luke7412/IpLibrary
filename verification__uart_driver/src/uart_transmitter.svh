@@ -25,7 +25,7 @@ class UartTransmitter #(real BAUD_RATE=9600) extends UartBase;
   endtask
 
   task init();
-    vif.tx <= '1;
+    vif.txd <= '1;
   endtask
 
   task main();
@@ -38,10 +38,10 @@ class UartTransmitter #(real BAUD_RATE=9600) extends UartBase;
 
   //----------------------------------------------------------------------------
   task send_byte(byte data);
-    logic [9:0] framed_data = {1'b1, data, 1'b0};
+    logic [9:0] bits = {1'b1, data, 1'b0};
 
-    for (int i=0; i<$size(framed_data); i++) begin
-      vif.tx <= framed_data[i];
+    for (int i=0; i<$size(bits); i++) begin
+      vif.txd <= bits[i];
       #(BIT_PERIOD); 
     end
   endtask

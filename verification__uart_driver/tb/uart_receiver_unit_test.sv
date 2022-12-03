@@ -26,7 +26,7 @@ module uart_receiver_unit_test;
 
 
   //----------------------------------------------------------------------------
-  assign uart_intf.rx = uart_intf.tx;
+  assign uart_intf.rxd = uart_intf.txd;
 
 
   //----------------------------------------------------------------------------
@@ -39,7 +39,7 @@ module uart_receiver_unit_test;
   task setup();
     svunit_ut.setup();
     receiver.start();
-    uart_intf.tx <= '1;
+    uart_intf.txd <= '1;
     #(5*BIT_PERIOD);
   endtask
 
@@ -57,7 +57,7 @@ module uart_receiver_unit_test;
     foreach(values[i]) begin
       bits = {1'b1, values[i], 1'b0};
       for (int i=0; i<$size(bits); i++) begin
-        uart_intf.tx <= bits[i];
+        uart_intf.txd <= bits[i];
         #(BIT_PERIOD); 
       end
     end

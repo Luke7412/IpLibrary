@@ -26,18 +26,18 @@ class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
   endtask
 
   task main();
-    logic [9:0] rx;
+    logic [9:0] bits;
     
     forever begin
-      @ (negedge vif.rx);
+      @ (negedge vif.rxd);
       #(BIT_PERIOD/2);
-      rx[0] = vif.rx;
-      for (int i=1; i<$size(rx); i++) begin
+      bits[0] = vif.rxd;
+      for (int i=1; i<$size(bits); i++) begin
         #(BIT_PERIOD);
-        rx[i] = vif.rx;
+        bits[i] = vif.rxd;
       end
-      if (!rx[0] && rx[9])
-        rx_queue.push_back(rx[8:1]);
+      if (!bits[0] && bits[9])
+        rx_queue.push_back(bits[8:1]);
     end
   endtask
 

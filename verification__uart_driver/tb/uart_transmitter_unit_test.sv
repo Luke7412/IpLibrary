@@ -28,21 +28,21 @@ module uart_transmitter_unit_test;
 
 
   //----------------------------------------------------------------------------
-  assign uart_intf.rx = uart_intf.tx;
+  assign uart_intf.rxd = uart_intf.txd;
 
   initial begin
-    logic [9:0] rx;
+    logic [9:0] bits;
     
     forever begin
-      @ (negedge uart_intf.rx);
+      @ (negedge uart_intf.rxd);
       #(BIT_PERIOD/2);
-      rx[0] = uart_intf.rx;
-      for (int i=1; i<$size(rx); i++) begin
+      bits[0] = uart_intf.rxd;
+      for (int i=1; i<$size(bits); i++) begin
         #(BIT_PERIOD);
-        rx[i] = uart_intf.rx;
+        bits[i] = uart_intf.rxd;
       end
-      if (!rx[0] && rx[9]) begin
-        rx_queue.push_back(rx[8:1]);
+      if (!bits[0] && bits[9]) begin
+        rx_queue.push_back(bits[8:1]);
       end
     end
   end
