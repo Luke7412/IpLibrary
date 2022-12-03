@@ -1,5 +1,5 @@
 # ignore these files and folders
-
+.venv
 
 Sublime/
 
@@ -16,3 +16,6 @@ Sublime/
 */sim/*
 !*/sim/run_simulation.do
 !*/sim/wave.do
+
+# ignore svunit outputs
+*/tb/sim/*
