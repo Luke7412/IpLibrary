@@ -8,10 +8,10 @@
 `timescale 1ns/1ns
 
 
-module axis_uart_unit_test;
+module axi4s_uart_unit_test;
   import svunit_pkg::svunit_testcase;
 
-  string name = "axis_uart_ut";
+  string name = "axi4s_uart_ut";
   svunit_testcase svunit_ut;
 
 
@@ -44,7 +44,7 @@ module axis_uart_unit_test;
 
 
   //----------------------------------------------------------------------------
-  axis_uart #(
+  axi4s_uart #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
     .BAUD_RATE (BAUD_RATE),
     .BAUD_RATE_SIM (BAUD_RATE)

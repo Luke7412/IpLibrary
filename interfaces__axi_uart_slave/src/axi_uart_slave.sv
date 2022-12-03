@@ -69,11 +69,11 @@ module axi_uart_slave #(
   
   
   //----------------------------------------------------------------------------
-  axis_uart #(
+  axi4s_uart #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
     .BAUD_RATE      (BAUD_RATE),
     .BAUD_RATE_SIM  (BAUD_RATE_SIM),
-  ) i_axis_uart (
+  ) i_axi4s_uart (
     // Clock and Reset
     .aclk           (aclk),
     .aresetn        (aresetn),

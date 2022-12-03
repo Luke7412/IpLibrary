@@ -3,7 +3,7 @@
 
 
 //------------------------------------------------------------------------------
-module axis_uart_tx #(
+module axi4s_uart_tx #(
   parameter int ACLK_FREQUENCY = 200000000,
   parameter int BAUD_RATE      = 9600,
   parameter int BAUD_RATE_SIM  = 50000000

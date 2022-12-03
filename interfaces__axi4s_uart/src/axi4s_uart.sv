@@ -3,7 +3,7 @@
 
 
 //----------------------------------------------------------------------------
-module axis_uart #(
+module axi4s_uart #(
   parameter int ACLK_FREQUENCY = 200000000,
   parameter int BAUD_RATE      = 9600,
   parameter int BAUD_RATE_SIM  = 50000000
@@ -27,11 +27,11 @@ module axis_uart #(
 
 
   //--------------------------------------------------------------------------  
-  axis_uart_rx #(
+  axi4s_uart_rx #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
     .BAUD_RATE      (BAUD_RATE),
     .BAUD_RATE_SIM  (BAUD_RATE_SIM)
-  ) i_axis_uart_rx ( 
+  ) i_axi4s_uart_rx ( 
     .aclk           (aclk),
     .aresetn        (aresetn),
     .uart_rxd       (uart_rxd),
@@ -41,11 +41,11 @@ module axis_uart #(
   );
 
 
-  axis_uart_tx #(
+  axi4s_uart_tx #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
     .BAUD_RATE      (BAUD_RATE),
     .BAUD_RATE_SIM  (BAUD_RATE_SIM)
-  ) i_axis_uart_tx ( 
+  ) i_axi4s_uart_tx ( 
     .aclk           (aclk),
     .aresetn        (aresetn),
     .uart_txd       (uart_txd),
