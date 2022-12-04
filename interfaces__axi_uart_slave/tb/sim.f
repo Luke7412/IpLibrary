@@ -1,11 +1,11 @@
--sv -sv09compat
+-sv -sv09compat +acc
 
-../../src/axis_uart_rx.sv
-../../src/axis_uart_tx.sv
-../../src/axis_uart.sv
+../../../interfaces__axi4s_uart/src/axi4s_uart_rx.sv
+../../../interfaces__axi4s_uart/src/axi4s_uart_tx.sv
+../../../interfaces__axi4s_uart/src/axi4s_uart.sv
 
-../../../axi4s__framing/src/deescaper.sv
 ../../../axi4s__framing/src/escaper.sv
+../../../axi4s__framing/src/deescaper.sv
 ../../../axi4s__framing/src/framer.sv
 ../../../axi4s__framing/src/deframer.sv
 ../../../axi4s__framing/src/framing.sv
