@@ -1,4 +1,4 @@
--sv -sv09compat
+-sv -sv09compat +acc
 
 +incdir+../../../verification__uart_driver/src/
 ../../../verification__uart_driver/src/uart_intf.sv

@@ -18,6 +18,7 @@ module axi_uart_driver_unit_test;
   //----------------------------------------------------------------------------
   import axi_uart_pkg::*;
 
+  localparam real     BAUD_RATE   = 1000000;
   localparam bit[7:0] START_BYTE  = 'h7D;
   localparam bit[7:0] STOP_BYTE   = 'h7E;
   localparam bit[7:0] ESCAPE_BYTE = 'h7F;
@@ -26,7 +27,7 @@ module axi_uart_driver_unit_test;
   typedef t_pkt t_pkts [$];
   
   UartIntf vif();
-  AxiUartDriver #(START_BYTE, STOP_BYTE, ESCAPE_BYTE) driver;
+  AxiUartDriver #(BAUD_RATE, START_BYTE, STOP_BYTE, ESCAPE_BYTE) driver;
 
 
   //----------------------------------------------------------------------------
@@ -41,11 +42,13 @@ module axi_uart_driver_unit_test;
 
   task setup();
     svunit_ut.setup();
+    driver.start();
   endtask
 
 
   task teardown();
     svunit_ut.teardown();
+    driver.stop();
   endtask
 
 
@@ -206,12 +209,13 @@ module axi_uart_driver_unit_test;
 
   //----------------------------------------------------------------------------
   `SVTEST(test_write)
-    t_pkt_id pkt_id = WRITE_DATA;
     int addr = 8;
     bit [7:0] data [4] = '{1, 2, 3, 4};
 
     driver.write(addr, data);
     $display("%p", driver.tx.tx_queue);
+
+    #1ms;
   `SVTEST_END
 
 
