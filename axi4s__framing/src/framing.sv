@@ -81,10 +81,10 @@ module framing #(
   ) i_escaper (
     .aclk             (aclk),
     .aresetn          (aresetn),
-    .target_tvalid    (txframe_tvalid),
-    .target_tready    (txframe_tready),
-    .target_tdata     (txframe_tdata),
-    .target_tlast     (txframe_tlast),
+    .target_tvalid    (tx_frame_tvalid),
+    .target_tready    (tx_frame_tready),
+    .target_tdata     (tx_frame_tdata),
+    .target_tlast     (tx_frame_tlast),
     .initiator_tvalid (escaped_tvalid),
     .initiator_tready (escaped_tready),
     .initiator_tdata  (escaped_tdata),
@@ -102,9 +102,9 @@ module framing #(
     .target_tready    (escaped_tready),
     .target_tdata     (escaped_tdata),
     .target_tlast     (escaped_tlast),
-    .initiator_tvalid (txbyte_tvalid),
-    .initiator_tready (txbyte_tready),
-    .initiator_tdata  (txbyte_tdata) 
+    .initiator_tvalid (tx_byte_tvalid),
+    .initiator_tready (tx_byte_tready),
+    .initiator_tdata  (tx_byte_tdata) 
   );
 
 
