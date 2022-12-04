@@ -10,6 +10,5 @@ interface UartIntf();
 
   logic rxd;
   logic txd;
-  string state;
 
 endinterface

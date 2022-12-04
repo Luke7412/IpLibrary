@@ -9,9 +9,10 @@
 class UartTransmitter #(real BAUD_RATE=9600) extends UartBase;
 
   localparam real BIT_PERIOD = 1000000000/BAUD_RATE;
-  virtual UartIntf vif;
+  typedef bit [7:0] u8;
 
-  byte tx_queue [$];
+  virtual UartIntf vif;
+  u8 tx_queue [$];
 
   //----------------------------------------------------------------------------
   function new (virtual UartIntf vif);
@@ -37,7 +38,7 @@ class UartTransmitter #(real BAUD_RATE=9600) extends UartBase;
   endtask
 
   //----------------------------------------------------------------------------
-  task send_byte(byte data);
+  task send_byte(u8 data);
     logic [9:0] bits = {1'b1, data, 1'b0};
 
     for (int i=0; i<$size(bits); i++) begin
@@ -46,7 +47,7 @@ class UartTransmitter #(real BAUD_RATE=9600) extends UartBase;
     end
   endtask
 
-  task send_bytes(byte bytes [], bit blocking=1);
+  task send_bytes(u8 bytes [], bit blocking=1);
     foreach(bytes[i])
       tx_queue.push_back(bytes[i]);
 

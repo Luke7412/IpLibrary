@@ -9,9 +9,10 @@
 class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
 
   localparam real BIT_PERIOD = 1000000000/BAUD_RATE;
+  typedef bit [7:0] u8;
+  
   virtual UartIntf vif;
-
-  byte rx_queue [$];
+  u8 rx_queue [$];
 
   //----------------------------------------------------------------------------
   function new (virtual UartIntf vif);
@@ -41,5 +42,17 @@ class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
     end
   endtask
 
+
+  //----------------------------------------------------------------------------
+  task fetch_byte(output u8 data, input bit blocking=1);
+    if (blocking)
+      wait (rx_queue.size() > 1);
+    data = rx_queue.pop_front();
+  endtask
+
+  task send_bytes(output u8 bytes [], input bit blocking=1);
+    foreach(bytes[i])
+      fetch_byte(bytes[i], blocking);
+  endtask
 
 endclass

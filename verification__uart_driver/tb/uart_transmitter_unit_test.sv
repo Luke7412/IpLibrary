@@ -21,10 +21,12 @@ module uart_transmitter_unit_test;
   localparam real BAUD_RATE = 9600;
   localparam real BIT_PERIOD = 1s/BAUD_RATE;
 
+  typedef bit [7:0] u8;
+
   UartIntf uart_intf();
   UartTransmitter #(BAUD_RATE) transmitter;
 
-  byte rx_queue [$];
+  u8 rx_queue [$];
 
 
   //----------------------------------------------------------------------------
@@ -74,7 +76,7 @@ module uart_transmitter_unit_test;
   `SVUNIT_TESTS_BEGIN
 
   `SVTEST(test_send_single_byte)
-    byte value = 'h05;  
+    u8 value = 'h05;  
     transmitter.send_byte(value);
 
     #(10*BIT_PERIOD);
@@ -84,7 +86,7 @@ module uart_transmitter_unit_test;
 
 
   `SVTEST(test_send_byte_stream)
-    byte values [8] = '{'h05, 'h06, 'h78, 'h96, 'hFF, 'h35, 'hED, 'h96};  
+    u8 values [8] = '{'h05, 'h06, 'h78, 'h96, 'hFF, 'h35, 'hED, 'h96};  
     transmitter.send_bytes(values);
 
     #(10*BIT_PERIOD);
@@ -95,7 +97,7 @@ module uart_transmitter_unit_test;
 
 
   `SVTEST(test_send_single_byte_non_blocking)
-    byte value = 'h05;  
+    u8 value = 'h05;  
     transmitter.send_byte(value);
 
     #(10*BIT_PERIOD);
@@ -105,7 +107,7 @@ module uart_transmitter_unit_test;
 
 
   `SVTEST(test_send_byte_stream_non_blocking)
-    byte values [8] = '{'h05, 'h06, 'h78, 'h96, 'hFF, 'h35, 'hED, 'h96};  
+    u8 values [8] = '{'h05, 'h06, 'h78, 'h96, 'hFF, 'h35, 'hED, 'h96};  
     transmitter.send_bytes(values);
 
     #(8*10*BIT_PERIOD);

@@ -22,11 +22,11 @@ virtual class UartBase;
     end
   endtask
 
-  function void stop();
+  task stop();
     if (p != null)
         p.kill();
     p = null;
-  endfunction
+  endtask
 
   pure virtual task main(); 
 

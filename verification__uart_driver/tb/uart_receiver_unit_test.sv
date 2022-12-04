@@ -21,6 +21,8 @@ module uart_receiver_unit_test;
   localparam real BAUD_RATE = 9600;
   localparam real BIT_PERIOD = 1s/BAUD_RATE;
 
+  typedef bit [7:0] u8;
+
   UartIntf uart_intf();
   UartReceiver #(BAUD_RATE) receiver;
 
@@ -51,7 +53,7 @@ module uart_receiver_unit_test;
 
 
   //----------------------------------------------------------------------------
-  task send_bytes(byte values []);
+  task send_bytes(u8 values []);
     logic [9:0] bits;
 
     foreach(values[i]) begin
@@ -68,7 +70,7 @@ module uart_receiver_unit_test;
   `SVUNIT_TESTS_BEGIN
 
   `SVTEST(test_receive_single_byte)
-    byte values [1] = '{'h05}; 
+    u8 values [1] = '{'h05}; 
     send_bytes(values);
 
     `FAIL_IF(receiver.rx_queue.size() != 1);
@@ -77,7 +79,7 @@ module uart_receiver_unit_test;
 
 
   `SVTEST(test_receive_byte_stream)
-    byte values [8] = '{'h05, 'h06, 'h78, 'h96, 'hFF, 'h35, 'hED, 'h96};  
+    u8 values [8] = '{'h05, 'h06, 'h78, 'h96, 'hFF, 'h35, 'hED, 'h96};  
     send_bytes(values);
 
     `FAIL_IF(receiver.rx_queue.size() != 8);
