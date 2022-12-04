@@ -46,11 +46,11 @@ class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
   //----------------------------------------------------------------------------
   task fetch_byte(output u8 data, input bit blocking=1);
     if (blocking)
-      wait (rx_queue.size() > 1);
+      wait (rx_queue.size() > 0);
     data = rx_queue.pop_front();
   endtask
 
-  task send_bytes(output u8 bytes [], input bit blocking=1);
+  task fetch_bytes(output u8 bytes [], input bit blocking=1);
     foreach(bytes[i])
       fetch_byte(bytes[i], blocking);
   endtask
