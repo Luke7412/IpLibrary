@@ -10,9 +10,9 @@ module axi4s_uart_rx #(
   input  logic        aclk,
   input  logic        aresetn,
   input  logic        uart_rxd,
-  output logic        rxbyte_tvalid,
-  input  logic        rxbyte_tready,
-  output logic [7:0]  rxbyte_tdata
+  output logic        rx_byte_tvalid,
+  input  logic        rx_byte_tready,
+  output logic [7:0]  rx_byte_tdata
 );
 
 
@@ -49,20 +49,20 @@ module axi4s_uart_rx #(
       deglitch_shift <= '1;
       rxd_deglitch   <= '1;
 
-      rxbyte_tvalid <= '0;
-      state         <= WAIT_FOR_START;
+      rx_byte_tvalid <= '0;
+      state          <= WAIT_FOR_START;
 
     end else begin
       deglitch_shift <= {uart_rxd, deglitch_shift} >> 1;
 
-      if (deglitch_shift == 0) begin
+      if (deglitch_shift == 4'b0000) begin
         rxd_deglitch <= '0;
-      end else if ((~deglitch_shift) == 0) begin
+      end else if (deglitch_shift == 4'b1111) begin
         rxd_deglitch <= '1;
       end
 
-      if (rxbyte_tvalid && rxbyte_tready) begin
-        rxbyte_tvalid <= '0;
+      if (rx_byte_tvalid && rx_byte_tready) begin
+        rx_byte_tvalid <= '0;
       end
 
       case (state)
@@ -79,7 +79,7 @@ module axi4s_uart_rx #(
             tic_cnt <= tic_cnt-1;
 
           end else begin
-            tic_cnt     <= TICS_PER_BEAT-1;
+            tic_cnt   <= TICS_PER_BEAT-1;
             rxd_shift <= {rxd_deglitch, rxd_shift} >> 1;
 
             if (beat_cnt != 0) begin
@@ -92,9 +92,9 @@ module axi4s_uart_rx #(
 
         OUTPUTTING : begin
           state <= WAIT_FOR_START;
-          if (!rxbyte_tvalid && !rxd_shift[0] && rxd_shift[9]) begin
-            rxbyte_tvalid <= '1;
-            rxbyte_tdata  <= rxd_shift[8:1];
+          if (!rx_byte_tvalid && !rxd_shift[0] && rxd_shift[9]) begin
+            rx_byte_tvalid <= '1;
+            rx_byte_tdata  <= rxd_shift[8:1];
           end
         end
 

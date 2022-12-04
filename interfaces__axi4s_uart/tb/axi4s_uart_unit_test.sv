@@ -30,13 +30,13 @@ module axi4s_uart_unit_test;
 
   logic        aclk;
   logic        aresetn;
-  logic        txbyte_tready;
-  logic        txbyte_tvalid;
-  logic [7:0]  txbyte_tdata;
-  logic [0:0]  txbyte_tkeep;
-  logic        rxbyte_tvalid;
-  logic        rxbyte_tready;
-  logic [7:0]  rxbyte_tdata;
+  logic        tx_byte_tready;
+  logic        tx_byte_tvalid;
+  logic [7:0]  tx_byte_tdata;
+  logic [0:0]  tx_byte_tkeep;
+  logic        rx_byte_tvalid;
+  logic        rx_byte_tready;
+  logic [7:0]  rx_byte_tdata;
 
 
   //----------------------------------------------------------------------------
@@ -46,24 +46,24 @@ module axi4s_uart_unit_test;
   //----------------------------------------------------------------------------
   axi4s_uart #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
-    .BAUD_RATE (BAUD_RATE),
-    .BAUD_RATE_SIM (BAUD_RATE)
+    .BAUD_RATE      (BAUD_RATE),
+    .BAUD_RATE_SIM  (BAUD_RATE)
   ) DUT (
     // Clock and Reset
-    .aclk (aclk),
-    .aresetn (aresetn),
+    .aclk           (aclk),
+    .aresetn        (aresetn),
     // Uart Interface
-    .uart_txd (uart_intf.rxd),
-    .uart_rxd (uart_intf.txd),
+    .uart_txd       (uart_intf.rxd),
+    .uart_rxd       (uart_intf.txd),
     // Axi4-Stream TxByte Interface
-    .txbyte_tvalid (txbyte_tvalid),
-    .txbyte_tready (txbyte_tready),
-    .txbyte_tdata (txbyte_tdata),
-    .txbyte_tkeep (txbyte_tkeep),
+    .tx_byte_tvalid (tx_byte_tvalid),
+    .tx_byte_tready (tx_byte_tready),
+    .tx_byte_tdata  (tx_byte_tdata),
+    .tx_byte_tkeep  (tx_byte_tkeep),
     // Axi4-Stream RxByte Interface
-    .rxbyte_tvalid (rxbyte_tvalid),
-    .rxbyte_tready (rxbyte_tready),
-    .rxbyte_tdata (rxbyte_tdata)
+    .rx_byte_tvalid (rx_byte_tvalid),
+    .rx_byte_tready (rx_byte_tready),
+    .rx_byte_tdata  (rx_byte_tdata)
   );
 
 

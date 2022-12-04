@@ -15,14 +15,14 @@ module axi4s_uart #(
   output logic        uart_txd,
   input  logic        uart_rxd,
   // Axi4-Stream TxByte Interface
-  input  logic        txbyte_tvalid,
-  output logic        txbyte_tready,
-  input  logic [7:0]  txbyte_tdata,
-  input  logic [0:0]  txbyte_tkeep,
+  input  logic        tx_byte_tvalid,
+  output logic        tx_byte_tready,
+  input  logic [7:0]  tx_byte_tdata,
+  input  logic [0:0]  tx_byte_tkeep,
   // Axi4-Stream RxByte Interface
-  output logic        rxbyte_tvalid,
-  input  logic        rxbyte_tready,
-  output logic [7:0]  rxbyte_tdata
+  output logic        rx_byte_tvalid,
+  input  logic        rx_byte_tready,
+  output logic [7:0]  rx_byte_tdata
 );
 
 
@@ -35,9 +35,9 @@ module axi4s_uart #(
     .aclk           (aclk),
     .aresetn        (aresetn),
     .uart_rxd       (uart_rxd),
-    .rxbyte_tvalid  (rxbyte_tvalid),
-    .rxbyte_tready  (rxbyte_tready),
-    .rxbyte_tdata   (rxbyte_tdata)
+    .rx_byte_tvalid  (rx_byte_tvalid),
+    .rx_byte_tready  (rx_byte_tready),
+    .rx_byte_tdata   (rx_byte_tdata)
   );
 
 
@@ -49,10 +49,10 @@ module axi4s_uart #(
     .aclk           (aclk),
     .aresetn        (aresetn),
     .uart_txd       (uart_txd),
-    .txbyte_tvalid  (txbyte_tvalid),
-    .txbyte_tready  (txbyte_tready),
-    .txbyte_tdata   (txbyte_tdata),
-    .txbyte_tkeep   (txbyte_tkeep) 
+    .tx_byte_tvalid (tx_byte_tvalid),
+    .tx_byte_tready (tx_byte_tready),
+    .tx_byte_tdata  (tx_byte_tdata),
+    .tx_byte_tkeep  (tx_byte_tkeep) 
   );
 
 
