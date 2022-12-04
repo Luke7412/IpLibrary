@@ -16,11 +16,11 @@ virtual class AxisBase;
     end
   endtask
 
-  function void stop();
+  task stop();
     if (p != null)
-        p.kill();
+      p.kill();
     p = null;
-  endfunction
+  endtask
 
   pure virtual task main(); 
 

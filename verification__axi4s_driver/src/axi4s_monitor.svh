@@ -19,10 +19,10 @@ class Axi4sMonitor #(type T Axi4sTransaction) extends axi4s_base;
 
 
   //----------------------------------------------------------------------------
-  function void start();
+  task start();
     queue.delete();
     super.start();
-  endfunction
+  endtask
 
 
   task main();
