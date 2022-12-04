@@ -4,27 +4,27 @@ module dest_packetizer (
   input  logic       aclk,
   input  logic       aresetn,
   // Axi4-Stream RxFrame interface
-  input  logic       rxframe_tvalid,
-  output logic       rxframe_tready,
-  input  logic       rxframe_tlast,
-  input  logic [7:0] rxframe_tdata,
+  input  logic       rx_frame_tvalid,
+  output logic       rx_frame_tready,
+  input  logic       rx_frame_tlast,
+  input  logic [7:0] rx_frame_tdata,
   // Axi4-Stream TxFrame interface
-  output logic       txframe_tvalid,
-  input  logic       txframe_tready,
-  output logic       txframe_tlast,
-  output logic [7:0] txframe_tdata,
+  output logic       tx_frame_tvalid,
+  input  logic       tx_frame_tready,
+  output logic       tx_frame_tlast,
+  output logic [7:0] tx_frame_tdata,
   // Axi4-Stream RxPacket interface
-  output logic       rxpacket_tvalid,
-  input  logic       rxpacket_tready,
-  output logic       rxpacket_tlast,
-  output logic [7:0] rxpacket_tdata,
-  output logic [2:0] rxpacket_tid,
+  output logic       rx_packet_tvalid,
+  input  logic       rx_packet_tready,
+  output logic       rx_packet_tlast,
+  output logic [7:0] rx_packet_tdata,
+  output logic [2:0] rx_packet_tid,
   // Axi4-Stream TxPacket interface
-  input  logic       txpacket_tvalid,
-  output logic       txpacket_tready,
-  input  logic       txpacket_tlast,
-  input  logic [7:0] txpacket_tdata,
-  input  logic [2:0] txpacket_tid
+  input  logic       tx_packet_tvalid,
+  output logic       tx_packet_tready,
+  input  logic       tx_packet_tlast,
+  input  logic [7:0] tx_packet_tdata,
+  input  logic [2:0] tx_packet_tid
 );
 
 
@@ -32,29 +32,29 @@ module dest_packetizer (
   dest_extract i_dest_extract (
     .aclk             (aclk),
     .aresetn          (aresetn),
-    .target_tvalid    (rxframe_tvalid),
-    .target_tready    (rxframe_tready),
-    .target_tlast     (rxframe_tlast),
-    .target_tdata     (rxframe_tdata),
-    .initiator_tvalid (rxpacket_tvalid),
-    .initiator_tready (rxpacket_tready),
-    .initiator_tlast  (rxpacket_tlast),
-    .initiator_tdata  (rxpacket_tdata),
-    .initiator_tid    (rxpacket_tid)
+    .target_tvalid    (rx_frame_tvalid),
+    .target_tready    (rx_frame_tready),
+    .target_tlast     (rx_frame_tlast),
+    .target_tdata     (rx_frame_tdata),
+    .initiator_tvalid (rx_packet_tvalid),
+    .initiator_tready (rx_packet_tready),
+    .initiator_tlast  (rx_packet_tlast),
+    .initiator_tdata  (rx_packet_tdata),
+    .initiator_tid    (rx_packet_tid)
   );
 
   dest_insert i_dest_insert (
     .aclk             (aclk),
     .aresetn          (aresetn),
-    .target_tvalid    (txpacket_tvalid),
-    .target_tready    (txpacket_tready),
-    .target_tlast     (txpacket_tlast),
-    .target_tdata     (txpacket_tdata),
-    .target_tid       (txpacket_tid),
-    .initiator_tvalid (txframe_tvalid),
-    .initiator_tready (txframe_tready),
-    .initiator_tlast  (txframe_tlast),
-    .initiator_tdata  (txframe_tdata)
+    .target_tvalid    (tx_packet_tvalid),
+    .target_tready    (tx_packet_tready),
+    .target_tlast     (tx_packet_tlast),
+    .target_tdata     (tx_packet_tdata),
+    .target_tid       (tx_packet_tid),
+    .initiator_tvalid (tx_frame_tvalid),
+    .initiator_tready (tx_frame_tready),
+    .initiator_tlast  (tx_frame_tlast),
+    .initiator_tdata  (tx_frame_tdata)
   );
 
 endmodule
