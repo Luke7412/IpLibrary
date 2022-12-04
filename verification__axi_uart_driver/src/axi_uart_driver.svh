@@ -1,6 +1,7 @@
 
 
 class AxiUartDriver #(
+  parameter real      BAUD_RATE   = 9600,
   parameter bit [7:0] START_BYTE  = 'h7D,
   parameter bit [7:0] STOP_BYTE   = 'h7E,
   parameter bit [7:0] ESCAPE_BYTE = 'h7F
@@ -18,8 +19,9 @@ class AxiUartDriver #(
   typedef u8 t_pkt [$];
   typedef t_pkt t_pkts [$];
   
-  UartReceiver    rx;
-  UartTransmitter tx;
+  UartReceiver #(BAUD_RATE) rx;
+  UartTransmitter #(BAUD_RATE) tx;
+
 
   //----------------------------------------------------------------------------
   function new(virtual UartIntf vif);
@@ -41,10 +43,10 @@ class AxiUartDriver #(
   //----------------------------------------------------------------------------
   function t_pkt make_addr_pkt(t_pkt_id pkt_id, int addr, int length);
     t_pkt pkt;
-    bit [57:0] vec = {
-      ID, LOCK, 8'(length-1), CACHE, BURST, SIZE, PROT, addr, 8'(pkt_id)
-    };
+    bit [57:0] vec = {ID, LOCK, 8'(length-1), CACHE, BURST, SIZE, PROT, addr};
     
+    pkt.push_back(pkt_id);
+
     for(int i=0; i<8; i++) begin
       pkt.push_back(vec[7:0]);
       vec >>= 8;
@@ -168,7 +170,7 @@ class AxiUartDriver #(
   endtask
 
   task receive_pkt(output t_pkt pkt);
-    // fetch_pkt(pkt);
+    fetch_pkt(pkt);
     pkt = remove_framing(pkt);
     pkt = remove_escape_chars(pkt);
   endtask
@@ -201,8 +203,8 @@ class AxiUartDriver #(
     int aligned_addr = addr - offset;
 
     // Send write address packet
-    int length = (data.size() + offset + BYTES_PER_BEAT-1) / BYTES_PER_BEAT;
-    pkt = make_addr_pkt(.pkt_id(WRITE_ADDR), .addr(aligned_addr), .length(length));
+    int nof_beats = (data.size() + offset + BYTES_PER_BEAT-1) / BYTES_PER_BEAT;
+    pkt = make_addr_pkt(.pkt_id(WRITE_ADDR), .addr(aligned_addr), .length(nof_beats));
     send_pkt(pkt);
 
     // Send write data packet
@@ -225,12 +227,12 @@ class AxiUartDriver #(
     int aligned_addr = addr - offset;
 
     // Send read address packet
-    int nof_packets = (length + offset + BYTES_PER_BEAT-1) / BYTES_PER_BEAT;
-    pkt = make_addr_pkt(.pkt_id(WRITE_ADDR), .addr(aligned_addr), .length(length));
+    int nof_beats = (length + offset + BYTES_PER_BEAT-1) / BYTES_PER_BEAT;
+    pkt = make_addr_pkt(.pkt_id(READ_ADDR), .addr(aligned_addr), .length(nof_beats));
     send_pkt(pkt);
 
     // Fetch read response packet
-    repeat (nof_packets) begin
+    repeat (nof_beats) begin
       receive_pkt(pkt);
       pkts.push_back(pkt);
     end
