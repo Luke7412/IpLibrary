@@ -43,7 +43,7 @@ module deframer #(
         initiator_tvalid <= '0;
       end
       
-      if (target_tvalid || target_tready) begin
+      if (target_tvalid && target_tready) begin
         int_tdata        <= target_tdata;
         initiator_tvalid <= int_tvalid;
         initiator_tdata  <= int_tdata;

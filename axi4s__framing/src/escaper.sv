@@ -27,7 +27,7 @@ module escaper #(
   //----------------------------------------------------------------------------  
   logic match;
   logic is_from_packet;
-  logic istopacket;
+  logic is_to_packet;
 
   logic insert_tvalid;
   logic insert_tready;

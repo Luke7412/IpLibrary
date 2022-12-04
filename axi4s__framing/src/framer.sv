@@ -17,8 +17,8 @@ module framer #(
   input  logic        target_tlast,
   // Axi4-Stream Initiator Interface
   output logic        initiator_tvalid,
-  input  logic [7:0]  initiator_tready,
-  output logic        initiator_tdata
+  input  logic        initiator_tready,
+  output logic [7:0]  initiator_tdata
 );
 
 
