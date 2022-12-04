@@ -18,9 +18,9 @@ module axi_uart_slave_unit_test;
   //----------------------------------------------------------------------------
   import axi_uart_pkg::*;
 
-  localparam int ACLK_FREQUENCY    = 200000000;
+  localparam int ACLK_FREQUENCY    = 100000000;
   localparam int BAUD_RATE         = 9600;
-  localparam int BAUD_RATE_SIM     = 50000000;
+  localparam int BAUD_RATE_SIM     = 1000000;
   localparam bit[7:0] START_BYTE  = 'h7D;
   localparam bit[7:0] STOP_BYTE   = 'h7E;
   localparam bit[7:0] ESCAPE_BYTE = 'h7F;
@@ -79,8 +79,14 @@ module axi_uart_slave_unit_test;
   t_ar bus_ar;
   t_r  bus_r;
 
+  t_aw queue_aw [$];
+  t_w  queue_w  [$];
+  t_b  queue_b  [$];
+  t_ar queue_ar [$];
+  t_r  queue_r  [$];
+
   UartIntf uart_intf();
-  AxiUartDriver #(START_BYTE, STOP_BYTE, ESCAPE_BYTE) driver;
+  AxiUartDriver #(BAUD_RATE_SIM, START_BYTE, STOP_BYTE, ESCAPE_BYTE) driver;
 
 
   //----------------------------------------------------------------------------
@@ -140,6 +146,83 @@ module axi_uart_slave_unit_test;
 
 
   //----------------------------------------------------------------------------
+  int length;
+
+  always_ff @(posedge aclk or negedge aresetn) begin
+    if (!aresetn) begin
+      awready <= '1;
+      wready  <= '0; 
+      bvalid  <= '0;
+      arready <= '1;
+      rvalid  <= '0;
+      queue_aw.delete();
+      queue_w.delete();
+      queue_b.delete();
+      queue_ar.delete();
+      queue_r.delete();
+
+    end else begin
+      if (awvalid && awready) begin
+        awready <= '0;
+        wready  <= '1;
+
+        queue_aw.push_back('{
+          addr :bus_aw.addr, len:bus_aw.len, size :bus_aw.size, 
+          burst:bus_aw.burst, lock :bus_aw.lock, cache:bus_aw.cache,
+          prot :bus_aw.prot, qos:bus_aw.qos
+        });
+      end
+
+      if (wvalid && wready) begin
+        if (bus_w.last) begin
+          wready <= '0;
+          bvalid <= '1;
+        end
+
+        queue_w.push_back('{
+          data:bus_w.data, strb:bus_w.strb, last:bus_w.last
+        });
+      end
+
+      if (bvalid && bready) begin
+        bvalid  <= '0;
+        awready <= '1;
+
+        queue_b.push_back('{resp:bus_b.resp});
+      end
+
+      if (arvalid && arready) begin
+        arready <= '0;
+        rvalid  <= '1;
+        length  <= bus_ar.len; 
+
+        queue_ar.push_back('{
+          addr:bus_ar.addr, len:bus_ar.len, size:bus_ar.size,
+          burst:bus_ar.burst, lock:bus_ar.lock, cache:bus_ar.cache,
+          prot:bus_ar.prot, qos:bus_ar.qos    
+        }); 
+      end
+
+      if (rvalid && rready) begin
+        length <= length - 1;
+        if (bus_r.last) begin
+          rvalid  <= '0;
+          arready <= '1;
+        end
+
+        queue_r.push_back('{
+          data:bus_r.data, resp:bus_r.resp, last:bus_r.last
+        });
+      end
+    
+    end
+  end
+
+  assign bus_r.data = length;
+  assign bus_r.last = rvalid && length == 0;
+
+
+  //----------------------------------------------------------------------------
   function void build();
     svunit_ut = new(name);
     driver = new(uart_intf);
@@ -149,17 +232,28 @@ module axi_uart_slave_unit_test;
   task setup();
     svunit_ut.setup();
     driver.start();
+
+    aresetn <= '0;
+    wait_tics(5);
+    aresetn <= '1;
+    wait_tics(5);
   endtask
 
 
   task teardown();
     svunit_ut.teardown();
     driver.stop();
+
+    #(5*ACLK_PERIOD);
+    aresetn <= '0;
   endtask
 
 
   //----------------------------------------------------------------------------
-
+  task wait_tics(int tics=1);
+    repeat(tics)
+      @(posedge aclk);
+  endtask;
 
   //----------------------------------------------------------------------------
   `SVUNIT_TESTS_BEGIN
@@ -170,9 +264,33 @@ module axi_uart_slave_unit_test;
 
   //----------------------------------------------------------------------------
   `SVTEST(test_write)
+    int addr = 8;
+    bit [7:0] data [4] = '{1, 2, 3, 4};
 
+    driver.write(addr, data);
+
+    $display("%p", queue_aw);
+    $display("%p", queue_w); 
+    $display("%p", queue_b); 
+    $display("%p", queue_ar);
+    $display("%p", queue_r); 
   `SVTEST_END
 
+
+  `SVTEST(test_read)
+    int addr = 8;
+    bit [7:0] data [8];
+
+    driver.read(addr, $size(data), data);
+
+    $display("%p", queue_aw);
+    $display("%p", queue_w); 
+    $display("%p", queue_b); 
+    $display("%p", queue_ar);
+    $display("%p", queue_r); 
+
+    $display("%p", data); 
+  `SVTEST_END
 
 
 
