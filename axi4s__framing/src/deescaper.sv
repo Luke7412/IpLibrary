@@ -4,7 +4,7 @@
 
 //------------------------------------------------------------------------------
 module deescaper #(
-  parameter logic [7:0] ESCAPE_BYTE = 8'h7F,
+  parameter bit [7:0] ESCAPE_BYTE = 8'h7F
 )(
   // Clock and Reset
   input  logic        aclk,
@@ -23,7 +23,7 @@ module deescaper #(
 
 
   //----------------------------------------------------------------------------
-  enum logic [0:0] (REMOVE_ESCAPE, FEED_THROUGH) state;
+  enum logic [0:0] {REMOVE_ESCAPE, FEED_THROUGH} state;
 
 
   //----------------------------------------------------------------------------
@@ -53,7 +53,7 @@ module deescaper #(
   end
 
 
-  assign initiator_tvalid = (state == FEED_THROUGH or target_tdata != ESCAPE_BYTE) ? target_tvalid : '0;
+  assign initiator_tvalid = (state == FEED_THROUGH || target_tdata != ESCAPE_BYTE) ? target_tvalid : '0;
   assign initiator_tdata  = target_tdata;
   assign initiator_tlast  = target_tlast;
 

@@ -4,23 +4,23 @@
 
 //------------------------------------------------------------------------------
 module escaper #(
-  parameter logic [7:0] ESCAPE_BYTE = 8'h7F,
-  parameter logic [7:0] START_BYTE  = 8'h7D,
-  parameter logic [7:0] STOP_BYTE   = 8'h7E
+  parameter bit [7:0] ESCAPE_BYTE = 8'h7F,
+  parameter bit [7:0] START_BYTE  = 8'h7D,
+  parameter bit [7:0] STOP_BYTE   = 8'h7E
 )(
   // Clock and Reset
-  logic input         aclk,
-  logic input         aresetn,
+  input  logic        aclk,
+  input  logic        aresetn,
   // Axi4Stream Target Interface
-  logic input         target_tvalid,
-  logic output        target_tready,
-  logic input [7:0]   target_tdata,
-  logic input         target_tlast,
+  input  logic        target_tvalid,
+  output logic        target_tready,
+  input  logic [7:0]  target_tdata,
+  input  logic        target_tlast,
   // Axi4Stream Initiator Interface
-  logic output        initiator_tvalid,
-  logic input         initiator_tready,
-  logic output [7:0]  initiator_tdata,
-  logic output        initiator_tlast
+  output logic        initiator_tvalid,
+  input  logic        initiator_tready,
+  output logic [7:0]  initiator_tdata,
+  output logic        initiator_tlast
 );
 
 
@@ -33,7 +33,7 @@ module escaper #(
   logic insert_tready;
 
   //----------------------------------------------------------------------------  
-  assing match = target_tdata inside {START_BYTE, STOP_BYTE, ESCAPE_BYTE};
+  assign match = target_tdata inside {START_BYTE, STOP_BYTE, ESCAPE_BYTE};
 
 
   always_ff @(posedge aclk or negedge aresetn) begin
@@ -51,7 +51,7 @@ module escaper #(
 
 
   // Identify bytes to escape
-  assign is_to_packet = (target_tvalid && match)
+  assign is_to_packet = (target_tvalid && match);
 
   // Make Insert packet when the transition of packets is found
   assign insert_tvalid = is_from_packet && is_to_packet;

@@ -4,8 +4,8 @@
 
 //----------------------------------------------------------------------------
 module framer #(
-  parameter logic [7:0] START_BYTE = 8'h7D,
-  parameter logic [7:0] STOP_BYTE  = 8'h7E
+  parameter bit [7:0] START_BYTE = 8'h7D,
+  parameter bit [7:0] STOP_BYTE  = 8'h7E
 )(
   // Clock and Reset
   input  logic        aclk,
@@ -23,12 +23,12 @@ module framer #(
 
 
   //----------------------------------------------------------------------------
-  enum logic [1:0] (INSERT_START, RUNNING, INSERT_STOP) state;
+  enum logic [1:0] {INSERT_START, RUNNING, INSERT_STOP} state;
 
 
   //----------------------------------------------------------------------------
   always_ff @(posedge aclk or negedge aresetn) begin
-    if (!AResetn) begin
+    if (!aresetn) begin
       initiator_tvalid <= '0;
       state            <= INSERT_START;
 

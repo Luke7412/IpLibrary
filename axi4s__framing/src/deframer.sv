@@ -4,9 +4,9 @@
 
 //----------------------------------------------------------------------------
 module deframer #(
-  parameter logic [7:0] ESCAPE_BYTE = 8'h7F,
-  parameter logic [7:0] START_BYTE  = 8'h7D,
-  parameter logic [7:0] STOP_BYTE   = 8'h7E
+  parameter bit [7:0] ESCAPE_BYTE = 8'h7F,
+  parameter bit [7:0] START_BYTE  = 8'h7D,
+  parameter bit [7:0] STOP_BYTE   = 8'h7E
 )(
   // Clock and Reset
   input  logic        aclk,
@@ -24,7 +24,7 @@ module deframer #(
 
 
   //----------------------------------------------------------------------------
-  enum logic [0:0] (REMOVE_START, RUNNING) state;
+  enum logic [0:0] {REMOVE_START, RUNNING} state;
 
   logic       int_tvalid;
   logic [7:0] int_tdata;
@@ -32,8 +32,8 @@ module deframer #(
 
 
   //----------------------------------------------------------------------------
-  always_ff @(posedge aclk or negedge areset_n) begin
-    if (!AResetn) begin
+  always_ff @(posedge aclk or negedge aresetn) begin
+    if (!aresetn) begin
       initiator_tvalid <= '0;
       int_tvalid       <= '0;
       state            <= REMOVE_START;
