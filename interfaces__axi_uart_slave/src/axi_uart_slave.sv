@@ -84,6 +84,7 @@ module axi_uart_slave #(
     .tx_byte_tvalid (tx_byte_tvalid),
     .tx_byte_tready (tx_byte_tready),
     .tx_byte_tdata  (tx_byte_tdata),
+    .tx_byte_tkeep  ('1),
     // Axi4-Stream RxByte Interface
     .rx_byte_tvalid (rx_byte_tvalid),
     .rx_byte_tready (rx_byte_tready),
@@ -120,7 +121,7 @@ module axi_uart_slave #(
   );
 
 
-  destpacketizer i_destpacketizer (
+  dest_packetizer i_dest_packetizer (
     // Clock and reset
     .aclk             (aclk),
     .aresetn          (aresetn),
