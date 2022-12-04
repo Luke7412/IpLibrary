@@ -134,7 +134,7 @@ module axi4s_to_mem_mapped (
             end
           end
 
-          default : null;
+          default : begin end
 
         endcase
       end
@@ -167,8 +167,8 @@ module axi4s_to_mem_mapped (
 
       if (m_axi_bvalid && m_axi_bready) begin
         cnt_shift_b <= 1;
-        shift_b     <= M_AXI_BResp;
-      end if;
+        shift_b     <= m_axi_bresp;
+      end
 
 
       if (tx_packet_tvalid && tx_packet_tready) begin
@@ -184,7 +184,7 @@ module axi4s_to_mem_mapped (
           tx_packet_tid     <= ID_R;
           tx_packet_tlast   <= '0;
           if (cnt_shift_r == 1) begin
-            txpacket_tlast <= '1;
+            tx_packet_tlast <= '1;
           end
 
         end else if (cnt_shift_b != 0) begin

@@ -1,12 +1,12 @@
 
 
 module axi_uart_slave #(
-  parameter int ACLK_FREQUENCY      = 200000000,
-  parameter int BAUD_RATE           = 9600,
-  parameter int BAUD_RATE_SIM       = 50000000,
-  paramater logic [7:0] ESCAPE_BYTE = 'h7F,
-  paramater logic [7:0] START_BYTE  = 'h7D,
-  paramater logic [7:0] STOP_BYTE   = 'h7E
+  parameter int ACLK_FREQUENCY    = 200000000,
+  parameter int BAUD_RATE         = 9600,
+  parameter int BAUD_RATE_SIM     = 50000000,
+  parameter bit[7:0] ESCAPE_BYTE  = 'h7F,
+  parameter bit[7:0] START_BYTE   = 'h7D,
+  parameter bit[7:0] STOP_BYTE    = 'h7E
 )(
   // Clock and Reset
   input  logic        aclk,
@@ -72,7 +72,7 @@ module axi_uart_slave #(
   axi4s_uart #(
     .ACLK_FREQUENCY (ACLK_FREQUENCY),
     .BAUD_RATE      (BAUD_RATE),
-    .BAUD_RATE_SIM  (BAUD_RATE_SIM),
+    .BAUD_RATE_SIM  (BAUD_RATE_SIM)
   ) i_axi4s_uart (
     // Clock and Reset
     .aclk           (aclk),
@@ -102,7 +102,7 @@ module axi_uart_slave #(
     // Axi4-Stream RxByte Interface
     .rx_byte_tvalid   (rx_byte_tvalid),
     .rx_byte_tready   (rx_byte_tready),
-    .rx_byte_tdata    (rx_byte_tdata)
+    .rx_byte_tdata    (rx_byte_tdata),
     // Axi4-Stream RxFrame Interface
     .rx_frame_tvalid  (rx_frame_tvalid),
     .rx_frame_tready  (rx_frame_tready),
@@ -116,7 +116,7 @@ module axi_uart_slave #(
     .tx_frame_tvalid  (tx_frame_tvalid),
     .tx_frame_tready  (tx_frame_tready),
     .tx_frame_tdata   (tx_frame_tdata),
-    .tx_frame_tlast   (tx_frame_tlast),
+    .tx_frame_tlast   (tx_frame_tlast)
   );
 
 
@@ -202,4 +202,4 @@ module axi_uart_slave #(
   );
 
 
-endmodule;
+endmodule
