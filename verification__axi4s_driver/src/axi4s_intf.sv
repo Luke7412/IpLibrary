@@ -1,6 +1,6 @@
 
 
-interface Axi4sIntf #(
+interface AXI4S_Intf #(
   parameter int TDATA_WIDTH = 8,
   parameter int TKEEP_WIDTH = TDATA_WIDTH/8,
   parameter int TSTRB_WIDTH = TDATA_WIDTH/8,
@@ -8,8 +8,8 @@ interface Axi4sIntf #(
   parameter int TDEST_WIDTH = 1,
   parameter int TID_WIDTH   = 1
 )(
-  logic aclk,
-  logic aresetn
+  input logic aclk,
+  input logic aresetn
 );
   
   logic                   tvalid;
@@ -21,5 +21,6 @@ interface Axi4sIntf #(
   logic [TDEST_WIDTH-1:0] tdest;
   logic [TID_WIDTH-1:0]   tid;
   logic                   tlast;
+
 
 endinterface

@@ -1,6 +1,6 @@
 
 
-virtual class AxisBase;
+virtual class AXI4S_Base;
 
   process p;
 
