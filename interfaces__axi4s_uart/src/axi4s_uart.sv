@@ -35,9 +35,9 @@ module axi4s_uart #(
     .aclk           (aclk),
     .aresetn        (aresetn),
     .uart_rxd       (uart_rxd),
-    .rx_byte_tvalid  (rx_byte_tvalid),
-    .rx_byte_tready  (rx_byte_tready),
-    .rx_byte_tdata   (rx_byte_tdata)
+    .rx_byte_tvalid (rx_byte_tvalid),
+    .rx_byte_tready (rx_byte_tready),
+    .rx_byte_tdata  (rx_byte_tdata)
   );
 
 

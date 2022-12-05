@@ -2,10 +2,9 @@
 
 //------------------------------------------------------------------------------
 module axi4s_uart_rx #(
-  parameter int ACLK_FREQUENCY = 200000000,
-  parameter int BAUD_RATE      = 9600,
-  parameter int BAUD_RATE_SIM  = 50000000
-  // localparam real BAUDRATE_SAMPLE = $real(ACLK_FREQUENCY) / $real(ACLK_FREQUENCY/BAUD_RATE)
+  parameter  real ACLK_FREQUENCY = 200000000,
+  parameter  int  BAUD_RATE      = 9600,
+  parameter  int  BAUD_RATE_SIM  = 50000000
 )( 
   input  logic        aclk,
   input  logic        aresetn,
@@ -30,6 +29,7 @@ module axi4s_uart_rx #(
     // synthesis translate_on
     ;
 
+  // Assigning real to integer will round to nearest integer.
   localparam int TICS_PER_BEAT = ACLK_FREQUENCY / USED_BAUD_RATE;                     
 
   enum logic [1:0] {WAIT_FOR_START, SAMPLING, OUTPUTTING} state;
