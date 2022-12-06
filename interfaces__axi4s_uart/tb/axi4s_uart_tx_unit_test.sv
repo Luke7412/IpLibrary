@@ -19,7 +19,7 @@ module axi4s_uart_tx_unit_test;
   import uart_pkg::*;
   import axi4s_pkg::*;
 
-  localparam real BAUD_RATE = 600000;
+  localparam real BAUD_RATE = 1000000;
   localparam real BIT_PERIOD = 1s/BAUD_RATE;
 
   localparam real ACLK_FREQUENCY = 100000000;
@@ -35,10 +35,10 @@ module axi4s_uart_tx_unit_test;
   logic        rx_byte_tready;
   logic [7:0]  rx_byte_tdata;
 
-  UartIntf uart_intf();
-  UartReceiver #(BAUD_RATE) receiver;
-  AXI4S_Intf axi4s_intf(aclk, aresetn);
-  AXI4S_Master master;
+  Uart_Intf uart_intf();
+  Uart_Receiver #(BAUD_RATE) receiver;
+  Axi4s_Intf axi4s_intf(aclk, aresetn);
+  Axi4s_Master master;
 
 
   //----------------------------------------------------------------------------

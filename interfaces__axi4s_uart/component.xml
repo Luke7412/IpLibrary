@@ -1,12 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <spirit:vendor>lvin</spirit:vendor>
-  <spirit:library>Interfaces</spirit:library>
-  <spirit:name>AxisUart</spirit:name>
-  <spirit:version>v1_0</spirit:version>
+  <spirit:vendor>xilinx.com</spirit:vendor>
+  <spirit:library>user</spirit:library>
+  <spirit:name>axi4s_uart</spirit:name>
+  <spirit:version>1.0</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
-      <spirit:name>AResetn</spirit:name>
+      <spirit:name>rx_byte</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TDATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rx_byte_tdata</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TVALID</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rx_byte_tvalid</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rx_byte_tready</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>tx_byte</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TDATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tx_byte_tdata</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TKEEP</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tx_byte_tkeep</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TVALID</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tx_byte_tvalid</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tx_byte_tready</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>aresetn</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
       <spirit:slave/>
@@ -16,19 +88,19 @@
             <spirit:name>RST</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>AResetn</spirit:name>
+            <spirit:name>aresetn</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>AClk</spirit:name>
+      <spirit:name>aclk</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
       <spirit:slave/>
@@ -38,113 +110,41 @@
             <spirit:name>CLK</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>AClk</spirit:name>
+            <spirit:name>aclk</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_BUSIF">RxByte:TxByte</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_BUSIF">rx_byte:tx_byte</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_RESET</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_RESET">AResetn</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_RESET">aresetn</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>Uart</spirit:name>
+      <spirit:name>uart</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="uart" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="uart_rtl" spirit:version="1.0"/>
-      <spirit:master/>
+      <spirit:mirroredMaster/>
       <spirit:portMaps>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>RxD</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>Uart_RxD</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
             <spirit:name>TxD</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>Uart_TxD</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-      </spirit:portMaps>
-    </spirit:busInterface>
-    <spirit:busInterface>
-      <spirit:name>RxByte</spirit:name>
-      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis" spirit:version="1.0"/>
-      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis_rtl" spirit:version="1.0"/>
-      <spirit:master/>
-      <spirit:portMaps>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TDATA</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>RxByte_TData</spirit:name>
+            <spirit:name>uart_rxd</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>TVALID</spirit:name>
+            <spirit:name>RxD</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>RxByte_TValid</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TREADY</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>RxByte_TReady</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-      </spirit:portMaps>
-    </spirit:busInterface>
-    <spirit:busInterface>
-      <spirit:name>TxByte</spirit:name>
-      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis" spirit:version="1.0"/>
-      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis_rtl" spirit:version="1.0"/>
-      <spirit:slave/>
-      <spirit:portMaps>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TDATA</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>TxByte_TData</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TKEEP</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>TxByte_TKeep</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TVALID</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>TxByte_TValid</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>TREADY</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>TxByte_TReady</spirit:name>
+            <spirit:name>uart_txd</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
@@ -153,33 +153,18 @@
   <spirit:model>
     <spirit:views>
       <spirit:view>
-        <spirit:name>xilinx_blockdiagram</spirit:name>
-        <spirit:displayName>Block Diagram</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:block.diagram</spirit:envIdentifier>
-        <spirit:modelName>AxisUart</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_blockdiagram_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a29623f6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
         <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
-        <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>AxisUart</spirit:modelName>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>axi4s_uart_wpr</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fd65069a</spirit:value>
+            <spirit:value>861f2c9f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -187,30 +172,15 @@
         <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:language>VHDL</spirit:language>
-        <spirit:modelName>AxisUart</spirit:modelName>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>axi4s_uart_wpr</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fd65069a</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_testbench</spirit:name>
-        <spirit:displayName>Test Bench</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:simulation.testbench</spirit:envIdentifier>
-        <spirit:modelName>AxisUart_tb</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_testbench_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1cc223f9</spirit:value>
+            <spirit:value>861f2c9f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -224,14 +194,14 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>244ac412</spirit:value>
+            <spirit:value>06fd2838</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
     </spirit:views>
     <spirit:ports>
       <spirit:port>
-        <spirit:name>AClk</spirit:name>
+        <spirit:name>aclk</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -244,7 +214,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>AResetn</spirit:name>
+        <spirit:name>aresetn</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -257,7 +227,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>Uart_TxD</spirit:name>
+        <spirit:name>uart_txd</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -270,7 +240,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>Uart_RxD</spirit:name>
+        <spirit:name>uart_rxd</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -283,7 +253,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>TxByte_TValid</spirit:name>
+        <spirit:name>tx_byte_tvalid</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -296,7 +266,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>TxByte_TReady</spirit:name>
+        <spirit:name>tx_byte_tready</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -309,7 +279,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>TxByte_TData</spirit:name>
+        <spirit:name>tx_byte_tdata</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
@@ -329,7 +299,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>TxByte_TKeep</spirit:name>
+        <spirit:name>tx_byte_tkeep</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
@@ -349,7 +319,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>RxByte_TValid</spirit:name>
+        <spirit:name>rx_byte_tvalid</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -362,7 +332,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>RxByte_TReady</spirit:name>
+        <spirit:name>rx_byte_tready</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -378,7 +348,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>RxByte_TData</spirit:name>
+        <spirit:name>rx_byte_tdata</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -396,115 +366,100 @@
       </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
-      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
-        <spirit:name>g_AClkFrequency</spirit:name>
-        <spirit:displayName>G Aclkfrequency</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_AClkFrequency" spirit:minimum="0" spirit:rangeType="long">200000000</spirit:value>
+      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="int">
+        <spirit:name>ACLK_FREQUENCY</spirit:name>
+        <spirit:displayName>Aclk Frequency</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ACLK_FREQUENCY">200000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
-        <spirit:name>g_BaudRate</spirit:name>
-        <spirit:displayName>G Baudrate</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_BaudRate" spirit:minimum="0" spirit:rangeType="long">9600</spirit:value>
+      <spirit:modelParameter spirit:dataType="int">
+        <spirit:name>BAUD_RATE</spirit:name>
+        <spirit:displayName>Baud Rate</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.BAUD_RATE">9600</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
-        <spirit:name>g_BaudRateSim</spirit:name>
-        <spirit:displayName>G Baudratesim</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.g_BaudRateSim" spirit:minimum="0" spirit:rangeType="long">50000000</spirit:value>
+      <spirit:modelParameter spirit:dataType="int">
+        <spirit:name>BAUD_RATE_SIM</spirit:name>
+        <spirit:displayName>Baud Rate Sim</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.BAUD_RATE_SIM">50000000</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choice_list_9d8b0d81</spirit:name>
+      <spirit:name>choice_list_74b5137e</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
       <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
     </spirit:choice>
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
-      <spirit:name>xilinx_blockdiagram_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>bd/bd.tcl</spirit:name>
-        <spirit:fileType>tclSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>rtl/UartRx.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
+        <spirit:name>src/axi4s_uart.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>rtl/UartTx.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
+        <spirit:name>src/axi4s_uart_rx.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>rtl/AxisUart.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_e7b47303</spirit:userFileType>
-        <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
+        <spirit:name>src/axi4s_uart_tx.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>bd/axi4s_uart_wpr.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_7930793e</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>rtl/UartRx.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
+        <spirit:name>src/axi4s_uart.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>rtl/UartTx.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
+        <spirit:name>src/axi4s_uart_rx.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>rtl/AxisUart.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
+        <spirit:name>src/axi4s_uart_tx.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_testbench_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>tb/AxisUart_tb.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-        <spirit:logicalName>lvin_Interfaces_AxisUart_v1_0</spirit:logicalName>
+        <spirit:name>bd/axi4s_uart_wpr.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/AxisUart_vv1_0.tcl</spirit:name>
+        <spirit:name>xgui/axi4s_uart_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_244ac412</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_06fd2838</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>AxisUart_v1_0</spirit:description>
+  <spirit:description>axi4s_uart_v1_0</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
-      <spirit:name>g_AClkFrequency</spirit:name>
-      <spirit:displayName>AClk Frequency [Hz]</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_AClkFrequency">200000000</spirit:value>
+      <spirit:name>ACLK_FREQUENCY</spirit:name>
+      <spirit:displayName>Aclk Frequency</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ACLK_FREQUENCY">200000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
-      <spirit:name>g_BaudRate</spirit:name>
+      <spirit:name>BAUD_RATE</spirit:name>
       <spirit:displayName>Baud Rate</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_BaudRate">9600</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.BAUD_RATE">9600</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>BAUD_RATE_SIM</spirit:name>
+      <spirit:displayName>Baud Rate Sim</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.BAUD_RATE_SIM">50000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">AxisUart_v1_0</spirit:value>
-    </spirit:parameter>
-    <spirit:parameter>
-      <spirit:name>g_BaudRateSim</spirit:name>
-      <spirit:displayName>Baud Rate sim</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.g_BaudRateSim">50000000</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">axi4s_uart_wpr_v1_0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -512,33 +467,19 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>AxisUart v1_0</xilinx:displayName>
-      <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
+      <xilinx:displayName>axi4s_uart_v1_0</xilinx:displayName>
+      <xilinx:autoFamilySupportLevel>level_1</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:vendorDisplayName>lvin</xilinx:vendorDisplayName>
-      <xilinx:coreRevision>21</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-10-27T20:19:56Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c37fc3d_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@685e78_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@b4e5e16_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a10352a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@39c5a013_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@334d7b1b_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1363ee0c_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e00b103_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@29ec9e1a_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1eb3b2d8_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7400e24e_ARCHIVE_LOCATION">e:/Documents/Git/IpLibrary/lvin_Interfaces_AxisUart_v1_0</xilinx:tag>
-      </xilinx:tags>
+      <xilinx:coreRevision>6</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2022-12-06T20:47:16Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="b1809723"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="495f946d"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="ef7c8230"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2aa240c5"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="ee442781"/>
+      <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="e3d1cdbb"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="db24b300"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="d94b7a98"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="056bbd1b"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="7162acbd"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
