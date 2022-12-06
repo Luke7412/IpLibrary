@@ -7,9 +7,9 @@
 
 
 module deframer #(
-  parameter bit [7:0] ESCAPE_BYTE = 8'h7F,
   parameter bit [7:0] START_BYTE  = 8'h7D,
-  parameter bit [7:0] STOP_BYTE   = 8'h7E
+  parameter bit [7:0] STOP_BYTE   = 8'h7E,
+  parameter bit [7:0] ESCAPE_BYTE = 8'h7F
 )(
   // Clock and Reset
   input  logic        aclk,
