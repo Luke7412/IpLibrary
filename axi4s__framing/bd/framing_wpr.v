@@ -7,9 +7,9 @@
 
 
 module framing_wpr #(
-  parameter int START_BYTE  = 125,
-  parameter int STOP_BYTE   = 126,
-  parameter int ESCAPE_BYTE = 127
+  parameter START_BYTE  = 125,
+  parameter STOP_BYTE   = 126,
+  parameter ESCAPE_BYTE = 127
 )(
   input         aclk,
   input         aresetn,

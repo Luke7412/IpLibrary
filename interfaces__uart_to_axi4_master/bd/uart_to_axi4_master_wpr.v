@@ -7,12 +7,12 @@
 
 
 module uart_to_axi4_master_wpr #(
-  parameter int ACLK_FREQUENCY = 200000000,
-  parameter int BAUD_RATE      = 9600,
-  parameter int BAUD_RATE_SIM  = 50000000,
-  parameter int START_BYTE     = 125,
-  parameter int STOP_BYTE      = 126,
-  parameter int ESCAPE_BYTE    = 127
+  parameter ACLK_FREQUENCY = 200000000,
+  parameter BAUD_RATE      = 9600,
+  parameter BAUD_RATE_SIM  = 50000000,
+  parameter START_BYTE     = 125,
+  parameter STOP_BYTE      = 126,
+  parameter ESCAPE_BYTE    = 127
 )(
   input         aclk,
   input         aresetn,

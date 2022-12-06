@@ -7,9 +7,9 @@
 
 
 module axi4s_uart_wpr #(
-  parameter int ACLK_FREQUENCY = 200000000,
-  parameter int BAUD_RATE      = 9600,
-  parameter int BAUD_RATE_SIM  = 50000000
+  parameter ACLK_FREQUENCY = 200000000,
+  parameter BAUD_RATE      = 9600,
+  parameter BAUD_RATE_SIM  = 50000000
 )(
   input         aclk,
   input         aresetn,
