@@ -1,6 +1,6 @@
 
 
-class Axi4sMonitor #(type T Axi4sTransaction) extends axi4s_base;
+class Axi4_Monitor #(type T Axi4_Transaction) extends Axi4_Base;
 
   typedef Axi4sIntf #(
     Axi4sTransaction.TDATA_WIDTH, Axi4sTransaction.TKEEP_WIDTH, 

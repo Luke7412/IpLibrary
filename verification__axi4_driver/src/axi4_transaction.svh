@@ -1,6 +1,6 @@
 
 
-class Axi4sTransaction #(
+class Axi4_Transaction #(
   parameter int TDATA_WIDTH = 8,
   parameter int TKEEP_WIDTH = TDATA_WIDTH/8,
   parameter int TSTRB_WIDTH = TDATA_WIDTH/8,
