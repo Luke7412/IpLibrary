@@ -6,16 +6,16 @@
 //------------------------------------------------------------------------------
 
 
-class UartReceiver #(real BAUD_RATE=9600) extends UartBase;
+class Uart_Receiver #(real BAUD_RATE=9600) extends Uart_Base;
 
   localparam real BIT_PERIOD = 1000000000/BAUD_RATE;
   typedef bit [7:0] u8;
   
-  virtual UartIntf vif;
+  virtual Uart_Intf vif;
   u8 rx_queue [$];
 
   //----------------------------------------------------------------------------
-  function new (virtual UartIntf vif);
+  function new (virtual Uart_Intf vif);
     this.vif = vif;
   endfunction
 

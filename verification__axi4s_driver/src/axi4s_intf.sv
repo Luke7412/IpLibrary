@@ -1,6 +1,12 @@
+//------------------------------------------------------------------------------
+// Project Name: IpLibrary
+//------------------------------------------------------------------------------
+// Author      : Lukas Vinkx (lvin)
+// Description : 
+//------------------------------------------------------------------------------
 
 
-interface AXI4S_Intf #(
+interface Axi4s_Intf #(
   parameter int TDATA_WIDTH = 8,
   parameter int TKEEP_WIDTH = TDATA_WIDTH/8,
   parameter int TSTRB_WIDTH = TDATA_WIDTH/8,

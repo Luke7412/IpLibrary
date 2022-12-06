@@ -46,7 +46,7 @@ module axi4s_transaction_unit_test;
 
 
   `SVTEST(test_typedef_defaults)
-    typedef AXI4S_Transaction T;
+    typedef Axi4s_Transaction T;
 
     T transaction = new();
     `FAIL_IF($size(transaction.tdata) != 8);
@@ -59,7 +59,7 @@ module axi4s_transaction_unit_test;
 
 
   `SVTEST(test_typedef_full)
-    typedef AXI4S_Transaction #(
+    typedef Axi4s_Transaction #(
     .TDATA_WIDTH(10), .TKEEP_WIDTH(11), .TSTRB_WIDTH(12), 
     .TUSER_WIDTH(13), .TDEST_WIDTH(14), .TID_WIDTH(15)
   ) T;
@@ -75,7 +75,7 @@ module axi4s_transaction_unit_test;
 
 
   `SVTEST(test_typedef_calculated_tkeep_tstrb)
-    typedef AXI4S_Transaction #(
+    typedef Axi4s_Transaction #(
     .TDATA_WIDTH (10)
   ) T;
 
@@ -90,7 +90,7 @@ module axi4s_transaction_unit_test;
 
 
   `SVTEST(test_fields)
-    typedef AXI4S_Transaction #(
+    typedef Axi4s_Transaction #(
     .TDATA_WIDTH(8), .TKEEP_WIDTH(8), .TSTRB_WIDTH(8),
     .TUSER_WIDTH(8), .TDEST_WIDTH(8), .TID_WIDTH(8)
   ) T;

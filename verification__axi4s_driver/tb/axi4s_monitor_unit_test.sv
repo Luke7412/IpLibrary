@@ -30,15 +30,15 @@ module axi4s_monitor_unit_test;
   logic aclk;
   logic aresetn;
 
-  typedef AXI4S_Transaction #(
+  typedef Axi4s_Transaction #(
     TDATA_WIDTH, TKEEP_WIDTH, TSTRB_WIDTH, TUSER_WIDTH, TDEST_WIDTH, TID_WIDTH
   ) Transaction;
 
-  AXI4S_Monitor #(
+  Axi4s_Monitor #(
     TDATA_WIDTH, TKEEP_WIDTH, TSTRB_WIDTH, TUSER_WIDTH, TDEST_WIDTH, TID_WIDTH
   ) monitor;
 
-  AXI4S_Intf #(
+  Axi4s_Intf #(
     TDATA_WIDTH, TKEEP_WIDTH, TSTRB_WIDTH, TUSER_WIDTH, TDEST_WIDTH, TID_WIDTH
   ) intf (aclk, aresetn);
 

@@ -6,7 +6,7 @@
 //------------------------------------------------------------------------------
 
 
-virtual class UartBase;
+virtual class Uart_Base;
 
   process p;
 
@@ -24,7 +24,7 @@ virtual class UartBase;
 
   task stop();
     if (p != null)
-        p.kill();
+      p.kill();
     p = null;
   endtask
 

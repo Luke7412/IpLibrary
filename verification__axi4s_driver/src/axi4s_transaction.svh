@@ -1,6 +1,12 @@
+//------------------------------------------------------------------------------
+// Project Name: IpLibrary
+//------------------------------------------------------------------------------
+// Author      : Lukas Vinkx (lvin)
+// Description : 
+//------------------------------------------------------------------------------
 
 
-class AXI4S_Transaction #(
+class Axi4s_Transaction #(
   parameter int TDATA_WIDTH = 8,
   parameter int TKEEP_WIDTH = (TDATA_WIDTH+7)/8,
   parameter int TSTRB_WIDTH = (TDATA_WIDTH+7)/8,

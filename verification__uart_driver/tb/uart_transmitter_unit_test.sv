@@ -23,8 +23,8 @@ module uart_transmitter_unit_test;
 
   typedef bit [7:0] u8;
 
-  UartIntf uart_intf();
-  UartTransmitter #(BAUD_RATE) transmitter;
+  Uart_Intf uart_intf();
+  Uart_Transmitter #(BAUD_RATE) transmitter;
 
   u8 rx_queue [$];
 

@@ -1,21 +1,27 @@
+//------------------------------------------------------------------------------
+// Project Name: IpLibrary
+//------------------------------------------------------------------------------
+// Author      : Lukas Vinkx (lvin)
+// Description : 
+//------------------------------------------------------------------------------
 
 
-class AXI4S_Monitor #(
+class Axi4s_Monitor #(
   parameter int TDATA_WIDTH = 8,
   parameter int TKEEP_WIDTH = (TDATA_WIDTH+7)/8,
   parameter int TSTRB_WIDTH = (TDATA_WIDTH+7)/8,
   parameter int TUSER_WIDTH = 1,
   parameter int TDEST_WIDTH = 1,
   parameter int TID_WIDTH   = 1
-) extends AXI4S_Base;
+) extends Axi4s_Base;
 
 
   //----------------------------------------------------------------------------
-  typedef virtual AXI4S_Intf #(
+  typedef virtual Axi4s_Intf #(
     TDATA_WIDTH, TKEEP_WIDTH, TSTRB_WIDTH, TUSER_WIDTH, TDEST_WIDTH, TID_WIDTH
   ) t_vif;
 
-  typedef AXI4S_Transaction #(
+  typedef Axi4s_Transaction #(
     TDATA_WIDTH, TKEEP_WIDTH, TSTRB_WIDTH, TUSER_WIDTH, TDEST_WIDTH, TID_WIDTH
   ) Transaction;
 

@@ -6,7 +6,7 @@
 //------------------------------------------------------------------------------
 
 
-interface UartIntf();
+interface Uart_Intf();
 
   logic rxd;
   logic txd;

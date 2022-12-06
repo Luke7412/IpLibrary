@@ -23,8 +23,8 @@ module uart_receiver_unit_test;
 
   typedef bit [7:0] u8;
 
-  UartIntf uart_intf();
-  UartReceiver #(BAUD_RATE) receiver;
+  Uart_Intf uart_intf();
+  Uart_Receiver #(BAUD_RATE) receiver;
 
 
   //----------------------------------------------------------------------------
