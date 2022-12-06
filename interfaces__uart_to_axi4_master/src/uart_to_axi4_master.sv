@@ -1,12 +1,12 @@
 
 
-module axi_uart_slave #(
+module uart_to_axi4_master #(
   parameter int ACLK_FREQUENCY    = 200000000,
   parameter int BAUD_RATE         = 9600,
   parameter int BAUD_RATE_SIM     = 50000000,
-  parameter bit[7:0] ESCAPE_BYTE  = 'h7F,
   parameter bit[7:0] START_BYTE   = 'h7D,
-  parameter bit[7:0] STOP_BYTE    = 'h7E
+  parameter bit[7:0] STOP_BYTE    = 'h7E,
+  parameter bit[7:0] ESCAPE_BYTE  = 'h7F
 )(
   // Clock and Reset
   input  logic        aclk,
@@ -93,9 +93,9 @@ module axi_uart_slave #(
 
 
   framing #(
-    .ESCAPE_BYTE (ESCAPE_BYTE),
     .START_BYTE  (START_BYTE),
-    .STOP_BYTE   (STOP_BYTE)
+    .STOP_BYTE   (STOP_BYTE),
+    .ESCAPE_BYTE (ESCAPE_BYTE)
   ) i_framing (
     // Clock and Reset
     .aclk             (aclk),
@@ -150,7 +150,7 @@ module axi_uart_slave #(
     );
 
 
-  axi4s_to_mem_mapped i_axi4s_to_mem_mapped (
+  axi4s_to_axi4_master i_axi4s_to_axi4_master (
     // Clock and Reset
     .aclk             (aclk),
     .aresetn          (aresetn),

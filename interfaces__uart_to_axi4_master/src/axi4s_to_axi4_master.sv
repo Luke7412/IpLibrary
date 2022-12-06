@@ -1,6 +1,12 @@
+//------------------------------------------------------------------------------
+// Project Name: IpLibrary
+//------------------------------------------------------------------------------
+// Author      : Lukas Vinkx (lvin)
+// Description : 
+//------------------------------------------------------------------------------
 
 
-module axi4s_to_mem_mapped (
+module axi4s_to_axi4_master (
   // Clock and Reset
   input  logic       aclk,
   input  logic       aresetn,
