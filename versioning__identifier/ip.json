@@ -1,0 +1,16 @@
+{
+  "vlnv": {
+    "vendor"  : "lvin",
+    "library" : "versioning",
+    "name"    : "identifier",
+    "version" : "v1.0"
+  },
+
+  "incdirs": [
+    "src/"
+  ],
+  
+  "sim_files": [
+    "src/identifier.sv"
+  ]
+}
