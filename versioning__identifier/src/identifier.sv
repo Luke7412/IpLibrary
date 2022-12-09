@@ -24,10 +24,17 @@ module identifier #(
 
 
   //----------------------------------------------------------------------------
-  typedef logic [0:15][7:0] t_name_arr;
-  localparam t_name_arr NAME_ARR = t_name_arr'(NAME);
-  
   localparam logic [31:0] HASH = 'h`include "identifier.hash";
+
+  
+  localparam string PADDED_NAME = {NAME, {16{" "}}};
+  localparam logic [15:0][7:0] CASTED = 128'(PADDED_NAME.substr(0, 15));
+  logic [3:0][31:0] NAME_ARR;
+
+
+  always_comb begin
+    NAME_ARR = {<<8{CASTED}};
+  end
 
 
   //----------------------------------------------------------------------------
@@ -46,10 +53,10 @@ module identifier #(
 
         case (ctrl_araddr)
           'h00    : ctrl_rdata <= HASH;
-          'h04    : ctrl_rdata <= NAME_ARR[0:3];
-          'h08    : ctrl_rdata <= NAME_ARR[4:7];
-          'h0C    : ctrl_rdata <= NAME_ARR[8:11];
-          'h10    : ctrl_rdata <= NAME_ARR[12:15];
+          'h04    : ctrl_rdata <= NAME_ARR[0];
+          'h08    : ctrl_rdata <= NAME_ARR[1];
+          'h0C    : ctrl_rdata <= NAME_ARR[2];
+          'h10    : ctrl_rdata <= NAME_ARR[3];
           'h14    : ctrl_rdata <= {MAJOR_VERSION, MINOR_VERSION};
           default : begin
             ctrl_rdata <= '0;

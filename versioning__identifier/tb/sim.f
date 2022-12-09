@@ -6,3 +6,4 @@
 
 +incdir+../../src/
 ../../src/identifier.sv
+../../bd/identifier_wpr.v

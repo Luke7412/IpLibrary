@@ -20,7 +20,7 @@ module identifier_unit_test;
 
   localparam real ACLK_PERIOD = 10ns;
 
-  localparam string   NAME           = "TEST";
+  localparam string   NAME           = "SerCom Demo";
   localparam bit[15:0] MAJOR_VERSION = 1;
   localparam bit[15:0] MINOR_VERSION = 0;
 
@@ -38,8 +38,8 @@ module identifier_unit_test;
 
 
   //----------------------------------------------------------------------------
-  identifier #(
-  .NAME          ("TEST"),
+  identifier_wpr #(
+  .NAME          (NAME),
   .MAJOR_VERSION (1),
   .MINOR_VERSION (0)
   ) DUT (
@@ -118,20 +118,19 @@ module identifier_unit_test;
    `SVTEST(test_read_name)
     bit [31:0] data;
     bit [1:0] resp;
-    typedef logic [0:3][31:0] t_name_arr;
-    localparam t_name_arr NAME_ARR = t_name_arr'(NAME);
+    logic [3:0][31:0] NAME_ARR = {<<8{128'({>>8{NAME}})}};
 
     for (int i=0; i<4; i++) begin
       master.read(.addr(8'h04 + 4*i), .data(data), .resp(resp));
       `FAIL_IF(resp != 2'h0);
       `FAIL_IF(data != NAME_ARR[i]);
-      $display(data);
-    end
 
-    
-    
+      // for (int j=0; j<4; j++)
+      //   $display("%s", data[8*(j+1)-1 -: 8]);
+    end
   `SVTEST_END
 
+    
   //----------------------------------------------------------------------------
   `SVUNIT_TESTS_END
 
