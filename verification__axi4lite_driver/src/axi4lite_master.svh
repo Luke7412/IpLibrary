@@ -149,7 +149,7 @@ class Axi4lite_Master #(parameter int ADDR_WIDTH = 32) extends Axi4lite_Base;
     output bit [1:0] resp,
     input  bit blocking = '1
   );
-    Transaction t = new(.write(0), .addr(addr), .data(data), .strb(strb));
+    Transaction t = new(.write(1), .addr(addr), .data(data), .strb(strb));
     transact(t, blocking);
     resp = t.resp;
   endtask

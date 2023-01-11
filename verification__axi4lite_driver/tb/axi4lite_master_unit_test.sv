@@ -101,13 +101,15 @@ module axi4lite_master_unit_test;
     master.stop();
 
     #(5*ACLK_PERIOD);
+    aresetn <= '0;
+    #(5*ACLK_PERIOD);
   endtask
 
 
   //----------------------------------------------------------------------------
   task wait_tics(int tics=1);
     repeat(tics)
-      @(posedge aclk);
+      @(posedge intf.aclk);
   endtask
 
 
