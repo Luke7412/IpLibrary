@@ -21,7 +21,7 @@ module frequency_counter_unit_test;
   localparam real ACLK_PERIOD = 10ns;
   real sen_clk_period = 100ns;
 
-  localparam int ACLK_FREQ = 100;
+  localparam int ACLK_FREQUENCY = 100000000;
   localparam int ADDR_WIDTH = 12;
 
   logic aclk;
@@ -40,7 +40,7 @@ module frequency_counter_unit_test;
 
   //----------------------------------------------------------------------------
   frequency_counter #(
-    .ACLK_FREQ (ACLK_FREQ)
+    .ACLK_FREQUENCY (ACLK_FREQUENCY)
   ) DUT (
     .ctrl_arvalid (intf.arvalid),
     .ctrl_arready (intf.arready),
@@ -124,10 +124,10 @@ module frequency_counter_unit_test;
     bit [31:0] data;
     bit [1:0] resp;
 
-    do begin
+    #100us;
+    do
       master.read(.addr('h08), .data(data), .resp(resp));
-      wait_tics(80);
-    end while (data[17] != 1);
+    while (data[17] != 1);
 
     `FAIL_IF(data[17:0] != 'h2000a)
   `SVTEST_END
@@ -139,8 +139,7 @@ module frequency_counter_unit_test;
 
     master.write(.addr('h04), .data(1), .resp(resp));
 
-    #20us;
-
+    #100us;
     do
       master.read(.addr('h08), .data(data), .resp(resp));
     while (data[17] != 1);

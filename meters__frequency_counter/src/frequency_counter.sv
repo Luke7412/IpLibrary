@@ -9,7 +9,7 @@
 
 
 module frequency_counter #(
-  parameter int ACLK_FREQ = 200 // in MHz
+  parameter int ACLK_FREQUENCY = 200000000
 )(
   input  logic aclk,
   input  logic aresetn,
@@ -38,6 +38,7 @@ module frequency_counter #(
   //----------------------------------------------------------------------------
   localparam int FREQ_CNT_WIDTH = 16;
   localparam bit [FREQ_CNT_WIDTH-1:0] FREQ_CNT_MAX = '1;
+  localparam int ACLK_FREQ_MHZ = ACLK_FREQUENCY/1000000;
 
   logic sen_rst_n;
 
@@ -46,7 +47,7 @@ module frequency_counter #(
   logic [FREQ_CNT_WIDTH-1:0] freq_cnt, freq_cnt_sample, reg_freq_cnt;
   logic freq_overflow, freq_overflow_sample, reg_freq_overflow;
  
-  logic [$clog2(ACLK_FREQ)-1:0] us_cnt;
+  logic [$clog2(ACLK_FREQ_MHZ)-1:0] us_cnt;
   logic [12:0] div_toggle;
   logic us_pulse;
 
@@ -57,14 +58,14 @@ module frequency_counter #(
   //----------------------------------------------------------------------------
   always_ff @(posedge aclk or negedge aresetn) begin 
     if (!aresetn) begin
-      us_cnt     <= ACLK_FREQ-1;
+      us_cnt     <= ACLK_FREQ_MHZ-1;
       us_pulse   <= '0;
       div_toggle <= '0;
 
     end else begin
       if (us_cnt == 0) begin
         us_pulse <= '1;
-        us_cnt   <= ACLK_FREQ-1;
+        us_cnt   <= ACLK_FREQ_MHZ-1;
       end else begin
         us_pulse <= '0;
         us_cnt   <= us_cnt - 1;
@@ -82,8 +83,7 @@ module frequency_counter #(
   //----------------------------------------------------------------------------
   // Sen domain
   rst_sync #(
-    .DEPTH   (2),
-    .RST_VAL (0)
+    .DEPTH   (2)
   ) i_rst_sync (
     .src_rst_n (aresetn),
     .dst_clk   (sen_clk),
@@ -131,7 +131,7 @@ module frequency_counter #(
 
   dmux_sync #(
     .DEPTH   (2),
-    .WIDTH   (FREQ_CNT_MAX+1),
+    .WIDTH   (FREQ_CNT_WIDTH+1),
     .RST_VAL ('0)
   ) i_dmux_sync (
     .src_toggle (ack),
