@@ -8,10 +8,10 @@
 `timescale 1ns/1ns
 
 
-module frequency_meter_unit_test;
+module frequency_counter_unit_test;
   import svunit_pkg::svunit_testcase;
 
-  string name = "frequency_meter_ut";
+  string name = "frequency_counter_ut";
   svunit_testcase svunit_ut;
 
 
@@ -39,7 +39,7 @@ module frequency_meter_unit_test;
 
 
   //----------------------------------------------------------------------------
-  frequency_meter #(
+  frequency_counter #(
     .ACLK_FREQ (ACLK_FREQ)
   ) DUT (
     .ctrl_arvalid (intf.arvalid),

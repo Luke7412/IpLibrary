@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-module frequency_meter #(
+module frequency_counter #(
   parameter int ACLK_FREQ = 200 // in MHz
 )(
   input  logic aclk,

@@ -7,7 +7,7 @@
 
 ../../../cdc__dmux_sync/src/dmux_sync.sv
 
-../../src/frequency_meter.sv
+../../src/frequency_counter.sv
 
 +incdir+../../../verification__axi4lite_driver/src/
 ../../../verification__axi4lite_driver/src/axi4lite_intf.sv 
