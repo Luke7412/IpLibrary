@@ -8,8 +8,7 @@
 
 
 module rst_sync #(
-  parameter int DEPTH = 2,
-  parameter bit RST_VAL = '0
+  parameter int DEPTH = 2
 )(
   // src domain
   input  logic src_rst_n,
@@ -20,18 +19,19 @@ module rst_sync #(
 
 
   //----------------------------------------------------------------------------
+  logic [0:DEPTH-1] shift_data;
 
 
   //----------------------------------------------------------------------------
-  dff_sync #(
-    .DEPTH   (DEPTH),
-    .RST_VAL (RST_VAL)
-  ) i_dff_sync (
-    .src_data  (!RST_VAL),
-    .dst_clk   (dst_clk),
-    .dst_rst_n (src_rst_n),
-    .dst_data  (dst_rst_n)
-  );
+  always_ff @(posedge dst_clk or negedge dst_rst_n) begin
+    if (!dst_rst_n) begin
+      shift_data <= '0;
+    end else begin
+      shift_data <= {1'b1, shift_data} >> 1;
+    end
+  end
+
+  assign dst_rst_n = shift_data[DEPTH-1];
 
 
 endmodule
