@@ -7,9 +7,9 @@
 
 
 module identifier #(
-  parameter string   NAME           = "TEST",
-  parameter bit[15:0] MAJOR_VERSION = 1,
-  parameter bit[15:0] MINOR_VERSION = 0
+  parameter  bit [15:0][7:0] NAME          = "TEST",
+  parameter  bit [15:0]      MAJOR_VERSION = 1,
+  parameter  bit [15:0]      MINOR_VERSION = 0
 ) (
   input  logic        aclk,
   input  logic        aresetn,
@@ -23,18 +23,8 @@ module identifier #(
 );
 
 
-  //----------------------------------------------------------------------------
-  localparam logic [31:0] HASH = 'h`include "identifier.hash";
-
-  
-  localparam string PADDED_NAME = {NAME, {16{" "}}};
-  localparam logic [15:0][7:0] CASTED = 128'(PADDED_NAME.substr(0, 15));
-  logic [3:0][31:0] NAME_ARR;
-
-
-  always_comb begin
-    NAME_ARR = {<<8{CASTED}};
-  end
+  //----------------------------------------------------------------------------  
+  localparam bit [0:3][31:0] NAME_ARR = NAME;
 
 
   //----------------------------------------------------------------------------
@@ -52,7 +42,6 @@ module identifier #(
         ctrl_rresp  <= 2'b00;
 
         case (ctrl_araddr)
-          'h00    : ctrl_rdata <= HASH;
           'h04    : ctrl_rdata <= NAME_ARR[0];
           'h08    : ctrl_rdata <= NAME_ARR[1];
           'h0C    : ctrl_rdata <= NAME_ARR[2];

@@ -20,9 +20,9 @@ module identifier_unit_test;
 
   localparam real ACLK_PERIOD = 10ns;
 
-  localparam string   NAME           = "SerCom Demo";
-  localparam bit[15:0] MAJOR_VERSION = 1;
-  localparam bit[15:0] MINOR_VERSION = 0;
+  localparam bit [15:0][7:0] NAME          = "TEST VERSION";
+  localparam bit [15:0]      MAJOR_VERSION = 1;
+  localparam bit [15:0]      MINOR_VERSION = 0;
 
   localparam int ADDR_WIDTH = 8;
 
@@ -118,12 +118,13 @@ module identifier_unit_test;
    `SVTEST(test_read_name)
     bit [31:0] data;
     bit [1:0] resp;
-    logic [3:0][31:0] NAME_ARR = {<<8{128'({>>8{NAME}})}};
+    logic [0:3][31:0] NAME_ARR = NAME;
 
     for (int i=0; i<4; i++) begin
-      master.read(.addr(8'h04 + 4*i), .data(data), .resp(resp));
+      master.read(.addr('h04 + 4*i), .data(data), .resp(resp));
       `FAIL_IF(resp != 2'h0);
       `FAIL_IF(data != NAME_ARR[i]);
+      $display("%08x, %08x", NAME_ARR[i], data);
 
       // for (int j=0; j<4; j++)
       //   $display("%s", data[8*(j+1)-1 -: 8]);
