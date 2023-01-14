@@ -34,6 +34,7 @@ module dmux_sync #(
     .src_toggle (src_toggle),
     .dst_clk    (dst_clk),
     .dst_rst_n  (dst_rst_n),
+    .dst_toggle (),
     .dst_pulse  (dst_pulse)
   );
 
