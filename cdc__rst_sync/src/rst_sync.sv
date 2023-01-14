@@ -23,8 +23,8 @@ module rst_sync #(
 
 
   //----------------------------------------------------------------------------
-  always_ff @(posedge dst_clk or negedge dst_rst_n) begin
-    if (!dst_rst_n) begin
+  always_ff @(posedge dst_clk or negedge src_rst_n) begin
+    if (!src_rst_n) begin
       shift_data <= '0;
     end else begin
       shift_data <= {1'b1, shift_data} >> 1;

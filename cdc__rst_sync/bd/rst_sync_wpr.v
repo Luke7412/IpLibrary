@@ -18,10 +18,10 @@ module rst_sync_wpr #(
 
   //----------------------------------------------------------------------------
   rst_sync #(
-    .DEPTH   (DEPTH)
+    .DEPTH (DEPTH)
   ) i_rst_sync (
-    .src_data  (src_rst_n),
-    .dst_clk   (dst_clk),
+    .src_data (src_rst_n),
+    .dst_clk (dst_clk),
     .dst_rst_n (dst_rst_n)
   );
 
