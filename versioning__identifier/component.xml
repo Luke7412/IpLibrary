@@ -23,7 +23,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -49,15 +49,17 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_BUSIF">Ctrl</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_BUSIF">ctrl</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>Ctrl</spirit:name>
+      <spirit:name>ctrl</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="aximm_rtl" spirit:version="1.0"/>
-      <spirit:slave/>
+      <spirit:slave>
+        <spirit:memoryMapRef spirit:memoryMapRef="ctrl"/>
+      </spirit:slave>
       <spirit:portMaps>
         <spirit:portMap>
           <spirit:logicalPort>
@@ -118,6 +120,20 @@
       </spirit:portMaps>
     </spirit:busInterface>
   </spirit:busInterfaces>
+  <spirit:memoryMaps>
+    <spirit:memoryMap>
+      <spirit:name>ctrl</spirit:name>
+      <spirit:displayName>ctrl</spirit:displayName>
+      <spirit:addressBlock>
+        <spirit:name>reg0</spirit:name>
+        <spirit:displayName>reg0</spirit:displayName>
+        <spirit:baseAddress spirit:format="bitString" spirit:bitStringLength="1">0x0</spirit:baseAddress>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="13" spirit:minimum="4096" spirit:rangeType="long">0x1000</spirit:range>
+        <spirit:width spirit:format="long">32</spirit:width>
+        <spirit:usage>register</spirit:usage>
+      </spirit:addressBlock>
+    </spirit:memoryMap>
+  </spirit:memoryMaps>
   <spirit:model>
     <spirit:views>
       <spirit:view>
@@ -132,7 +148,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0a2807a3</spirit:value>
+            <spirit:value>2d65e0ef</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -148,7 +164,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0a2807a3</spirit:value>
+            <spirit:value>2d65e0ef</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -228,7 +244,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -327,7 +343,7 @@
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choice_list_74b5137e</spirit:name>
+      <spirit:name>choice_list_9d8b0d81</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
       <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
     </spirit:choice>
@@ -336,27 +352,17 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/identifier.hash</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>src/identifier.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>bd/identifier_wpr.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_7c1aaff5</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_a06448e3</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>src/identifier.hash</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-      </spirit:file>
       <spirit:file>
         <spirit:name>src/identifier.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
@@ -406,14 +412,15 @@
       <xilinx:displayName>Identifier v1.0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_1</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2022-12-08T20:04:52Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>5</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-01-13T21:35:49Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="7205d4ad"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e3f5c07e"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="552a84a9"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="c53c34a0"/>
+      <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="f83579ff"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="7a3ddce5"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="af3e4807"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="b201d337"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="97462268"/>
     </xilinx:packagingInfo>

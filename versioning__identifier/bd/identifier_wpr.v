@@ -15,7 +15,7 @@ module identifier_wpr #(
   input         aresetn,
   input         ctrl_arvalid,
   output        ctrl_arready,
-  input  [7:0]  ctrl_araddr,
+  input  [11:0] ctrl_araddr,
   output        ctrl_rvalid,
   input         ctrl_rready,
   output [31:0] ctrl_rdata,

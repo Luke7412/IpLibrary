@@ -48,11 +48,11 @@ module frequency_counter #(
   logic freq_overflow, freq_overflow_sample, reg_freq_overflow;
  
   logic [$clog2(ACLK_FREQ_MHZ)-1:0] us_cnt;
-  logic [12:0] div_toggle;
+  logic [20:0] div_toggle;
   logic us_pulse;
 
   logic reg_updated;
-  logic [1:0] reg_sel;
+  logic [2:0] reg_sel;
 
 
   //----------------------------------------------------------------------------
@@ -88,7 +88,7 @@ module frequency_counter #(
     .src_rst_n (aresetn),
     .dst_clk   (sen_clk),
     .dst_rst_n (sen_rst_n)
-);
+  );
 
   pulse_sync #(
     .DEPTH      (2),
@@ -145,9 +145,7 @@ module frequency_counter #(
 
   //----------------------------------------------------------------------------
   // CTRL INTF
-  always_ff @(posedge aclk or negedge aresetn) begin
-    logic [11:0] v_addr;
-  
+  always_ff @(posedge aclk or negedge aresetn) begin 
     if (!aresetn) begin
       ctrl_rvalid <= '0;
       ctrl_bvalid <= '0;
@@ -165,8 +163,7 @@ module frequency_counter #(
       if (ctrl_arvalid && ctrl_arready) begin
         ctrl_rvalid <= '1;
 
-        v_addr = {ctrl_araddr[11:2], 2'b00};
-        case (v_addr)
+        case ({ctrl_araddr[11:2], 2'b00})
           'h00    : ctrl_rdata <= 'hDEADBEEF;
           'h04    : ctrl_rdata <= reg_sel;
           'h08    : begin
@@ -185,8 +182,7 @@ module frequency_counter #(
       if (ctrl_awvalid && ctrl_awready && ctrl_wvalid && ctrl_wready) begin
         ctrl_bvalid <= '1;
 
-        v_addr = {ctrl_awaddr[11:2], 2'b00};
-        case (v_addr)
+        case ({ctrl_awaddr[11:2], 2'b00})
           'h00     : ; // Read only
           'h04     : reg_sel <= ctrl_wdata;
           'h08     : ; // Read only
@@ -200,6 +196,9 @@ module frequency_counter #(
     end
   end
 
+
+  assign ctrl_rresp = '0;
+  assign ctrl_bresp = '0;
 
   assign ctrl_arready = !ctrl_rvalid;
   assign ctrl_awready = ctrl_wvalid  && !ctrl_bvalid;
