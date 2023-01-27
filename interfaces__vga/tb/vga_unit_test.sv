@@ -16,18 +16,9 @@ module vga_unit_test;
 
 
   //----------------------------------------------------------------------------
-  localparam real ACLK_PERIOD = 20;
+  localparam real ACLK_PERIOD = 25;
 
-  localparam int H_RES          = 20;
-  localparam int V_RES          = 20;
-  localparam int H_FRONT_PORCH  = 4;
-  localparam int H_BACK_PORCH   = 4;
-  localparam int V_FRONT_PORCH  = 3;
-  localparam int V_BACK_PORCH   = 3;
-  localparam int H_BLANKING     = 10;
-  localparam int V_BLANKING     = 10;
-  localparam int H_ACT_BLANKING = H_BLANKING - H_FRONT_PORCH - H_BACK_PORCH;
-  localparam int V_ACT_BLANKING = V_BLANKING - V_FRONT_PORCH - V_BACK_PORCH;
+  localparam int RESOLUTION = 3;
 
   logic aclk;
   logic aresetn;
@@ -50,21 +41,14 @@ module vga_unit_test;
 
   //----------------------------------------------------------------------------
   vga #(
-    .H_RES         (H_RES),
-    .V_RES         (V_RES),
-    .H_FRONT_PORCH (H_FRONT_PORCH),
-    .H_BACK_PORCH  (H_BACK_PORCH),
-    .V_FRONT_PORCH (V_FRONT_PORCH),
-    .V_BACK_PORCH  (V_BACK_PORCH),
-    .H_BLANKING    (H_BLANKING),
-    .V_BLANKING    (V_BLANKING)
+    .RESOLUTION (RESOLUTION)
   ) DUT (.*);
 
 
   //----------------------------------------------------------------------------
   frame_gen #(
-    .H_RES         (H_RES),
-    .V_RES         (V_RES)
+    .H_RES (800),
+    .V_RES (600)
   ) i_frame_gen (.*);
 
   
@@ -104,7 +88,7 @@ module vga_unit_test;
 
   //----------------------------------------------------------------------------
   `SVTEST(test_dummy)
-    #50us;
+    #100ms;
   `SVTEST_END
 
   //----------------------------------------------------------------------------

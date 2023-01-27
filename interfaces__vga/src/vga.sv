@@ -1,14 +1,9 @@
 
 //------------------------------------------------------------------------------
-module vga #(
-  parameter int H_RES           = 640,
-  parameter int V_RES           = 480,
-  parameter int H_FRONT_PORCH   = 48,
-  parameter int H_BACK_PORCH    = 16,
-  parameter int V_FRONT_PORCH   = 29,
-  parameter int V_BACK_PORCH    = 10,
-  parameter int H_BLANKING      = 160,
-  parameter int V_BLANKING      = 41
+module vga 
+  import vga_pkg::*;
+#(
+  parameter int RESOLUTION = 2
 )( 
   input  logic        aclk,
   input  logic        aresetn,
@@ -30,8 +25,14 @@ module vga #(
 
 
   //----------------------------------------------------------------------------
-  localparam int H_ACT_BLANKING = H_BLANKING - H_FRONT_PORCH - H_BACK_PORCH;
-  localparam int V_ACT_BLANKING = V_BLANKING - V_FRONT_PORCH - V_BACK_PORCH;
+  localparam int H_RES           = vga_configs[RESOLUTION].H_RES;
+  localparam int H_FRONT_PORCH   = vga_configs[RESOLUTION].H_FRONT_PORCH;
+  localparam int H_SYNC_PULSE    = vga_configs[RESOLUTION].H_SYNC_PULSE;
+  localparam int H_BACK_PORCH    = vga_configs[RESOLUTION].H_BACK_PORCH;
+  localparam int V_RES           = vga_configs[RESOLUTION].V_RES;
+  localparam int V_FRONT_PORCH   = vga_configs[RESOLUTION].V_FRONT_PORCH;
+  localparam int V_SYNC_PULSE    = vga_configs[RESOLUTION].V_SYNC_PULSE;
+  localparam int V_BACK_PORCH    = vga_configs[RESOLUTION].V_BACK_PORCH;
 
   logic [$clog2(H_RES)-1:0] h_cnt;
   logic [$clog2(V_RES)-1:0] v_cnt;
@@ -45,7 +46,7 @@ module vga #(
   //----------------------------------------------------------------------------
   always_ff @(posedge aclk or negedge aresetn) begin
     if (!aresetn) begin
-      h_cnt   <= H_ACT_BLANKING-1;
+      h_cnt   <= H_SYNC_PULSE-1;
       h_state <= H_BLANK;
 
     end else begin
@@ -77,7 +78,7 @@ module vga #(
         H_BP : begin
           h_cnt <= h_cnt - 1;
           if (h_cnt == 0) begin
-            h_cnt   <= H_ACT_BLANKING-1;
+            h_cnt   <= H_SYNC_PULSE-1;
             h_state <= H_BLANK;
           end
         end
@@ -89,7 +90,7 @@ module vga #(
 
   always_ff @(posedge aclk or negedge aresetn) begin
     if (!aresetn) begin
-      v_cnt   <= V_ACT_BLANKING-1;
+      v_cnt   <= V_SYNC_PULSE-1;
       v_state <= V_BLANK;
 
     end else if (h_state == H_BP && h_cnt == 0) begin
@@ -121,7 +122,7 @@ module vga #(
         V_BP : begin
           v_cnt <= v_cnt - 1;
           if (v_cnt == 0) begin
-            v_cnt   <= V_ACT_BLANKING-1;
+            v_cnt   <= V_SYNC_PULSE-1;
             v_state <= V_BLANK;
           end
         end
@@ -132,7 +133,6 @@ module vga #(
 
 
   assign pix_tready = h_state == H_PIX && v_state == V_PIX;
-
 
   assign {b, g, r} = pix_tdata; 
   assign vsync = v_state != V_BLANK;
