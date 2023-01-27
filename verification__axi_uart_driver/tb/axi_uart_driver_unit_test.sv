@@ -26,7 +26,7 @@ module axi_uart_driver_unit_test;
   typedef bit[7:0] t_pkt [$];
   typedef t_pkt t_pkts [$];
   
-  UartIntf vif();
+  Uart_Intf vif();
   AxiUartDriver #(BAUD_RATE, START_BYTE, STOP_BYTE, ESCAPE_BYTE) driver;
 
 
@@ -180,7 +180,7 @@ module axi_uart_driver_unit_test;
     t_pkt data_out;
 
     data_out = driver.make_addr_pkt(pkt_id, addr, length);
-    $display("%p", data_out);
+    // $display("%p", data_out);
 
     // foreach(data_exp[i])
     //   `FAIL_IF(data_exp[i] != data_out[i]);
@@ -193,7 +193,7 @@ module axi_uart_driver_unit_test;
     t_pkts data_out;
 
     data_out = driver.pack_data(pkt_id, data_in, offset);
-    $display ("%p", data_out);
+    // $display ("%p", data_out);
   `SVTEST_END
 
   `SVTEST(test_pack_data_offset)
@@ -203,7 +203,7 @@ module axi_uart_driver_unit_test;
     t_pkts data_out;
 
     data_out = driver.pack_data(pkt_id, data_in, offset);
-    $display ("%p", data_out);
+    // $display ("%p", data_out);
   `SVTEST_END
 
 
@@ -213,7 +213,7 @@ module axi_uart_driver_unit_test;
     bit [7:0] data [4] = '{1, 2, 3, 4};
 
     driver.write(addr, data);
-    $display("%p", driver.tx.tx_queue);
+    // $display("%p", driver.tx.tx_queue);
 
     #1ms;
   `SVTEST_END

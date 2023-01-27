@@ -19,12 +19,12 @@ class AxiUartDriver #(
   typedef u8 t_pkt [$];
   typedef t_pkt t_pkts [$];
   
-  UartReceiver #(BAUD_RATE) rx;
-  UartTransmitter #(BAUD_RATE) tx;
+  Uart_Receiver #(BAUD_RATE) rx;
+  Uart_Transmitter #(BAUD_RATE) tx;
 
 
   //----------------------------------------------------------------------------
-  function new(virtual UartIntf vif);
+  function new(virtual Uart_Intf vif);
     rx = new(vif);
     tx = new(vif);
   endfunction
