@@ -23,7 +23,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.DST_RST_N.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.DST_RST_N.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -103,7 +103,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ebcdd098</spirit:value>
+            <spirit:value>fc213141</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -122,7 +122,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ebcdd098</spirit:value>
+            <spirit:value>15df1794</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -249,19 +249,23 @@
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choice_list_74b5137e</spirit:name>
-      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
-      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choice_list_b71134be</spirit:name>
+      <spirit:name>choice_list_5ec0cd51</spirit:name>
       <spirit:enumeration>&quot;0&quot;</spirit:enumeration>
       <spirit:enumeration>&quot;1&quot;</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_9d8b0d81</spirit:name>
+      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
+      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
     </spirit:choice>
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>constraints/timing.xdc</spirit:name>
+        <spirit:userFileType>xdc</spirit:userFileType>
+      </spirit:file>
       <spirit:file>
         <spirit:name>src/dmux_sync.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
@@ -328,7 +332,7 @@
     <spirit:parameter>
       <spirit:name>RST_VAL</spirit:name>
       <spirit:displayName>Rst Val</spirit:displayName>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.RST_VAL" spirit:choiceRef="choice_list_b71134be" spirit:bitStringLength="1">&quot;0&quot;</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.RST_VAL" spirit:choiceRef="choice_list_5ec0cd51" spirit:bitStringLength="1">&quot;0&quot;</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
@@ -343,16 +347,16 @@
       <xilinx:displayName>dmux_sync_v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_1</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-01-12T19:20:06Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-01-29T11:53:26Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="c9772b78"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="9a69cf52"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="e5b5d21f"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="580b53cd"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="bd757bec"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="1d5fabc1"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="10c8c802"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="bea477d8"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
