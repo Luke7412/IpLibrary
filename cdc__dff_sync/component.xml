@@ -64,7 +64,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>034debbe</spirit:value>
+            <spirit:value>aa69627e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -80,7 +80,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>034debbe</spirit:value>
+            <spirit:value>9e0de31b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -168,19 +168,23 @@
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
+      <spirit:name>choice_list_5ec0cd51</spirit:name>
+      <spirit:enumeration>&quot;0&quot;</spirit:enumeration>
+      <spirit:enumeration>&quot;1&quot;</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
       <spirit:name>choice_list_9d8b0d81</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
       <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choice_list_b71134be</spirit:name>
-      <spirit:enumeration>&quot;0&quot;</spirit:enumeration>
-      <spirit:enumeration>&quot;1&quot;</spirit:enumeration>
     </spirit:choice>
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>constraints/timing.xdc</spirit:name>
+        <spirit:userFileType>xdc</spirit:userFileType>
+      </spirit:file>
       <spirit:file>
         <spirit:name>src/dff_sync.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
@@ -188,7 +192,7 @@
       <spirit:file>
         <spirit:name>db/dff_sync_wpr.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_10f6855d</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_e0825323</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -222,7 +226,7 @@
     <spirit:parameter>
       <spirit:name>RST_VAL</spirit:name>
       <spirit:displayName>Rst Val</spirit:displayName>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.RST_VAL" spirit:choiceRef="choice_list_b71134be" spirit:bitStringLength="1">&quot;0&quot;</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.RST_VAL" spirit:choiceRef="choice_list_5ec0cd51" spirit:bitStringLength="1">&quot;0&quot;</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
@@ -237,16 +241,16 @@
       <xilinx:displayName>dff_sync_v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_1</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-01-12T19:00:45Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-01-29T11:50:42Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="b0ad9c22"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="9064e672"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e3efbccc"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="b719ab30"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="9461e200"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="c14dac90"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="7c983c78"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
