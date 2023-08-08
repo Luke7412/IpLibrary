@@ -61,6 +61,7 @@ module frequency_counter #(
       us_cnt     <= ACLK_FREQ_MHZ-1;
       us_pulse   <= '0;
       div_toggle <= '0;
+      req        <= '0;
 
     end else begin
       if (us_cnt == 0) begin
@@ -74,10 +75,10 @@ module frequency_counter #(
       if (us_cnt == 0) begin
         div_toggle <= div_toggle + 1;
       end
+
+      req <= div_toggle[4*reg_sel];
     end
   end
-
-  assign req = div_toggle[4*reg_sel];
 
 
   //----------------------------------------------------------------------------

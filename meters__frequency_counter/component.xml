@@ -253,7 +253,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8cab7171</spirit:value>
+            <spirit:value>bb5ea11c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -278,7 +278,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8cab7171</spirit:value>
+            <spirit:value>92797531</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -633,6 +633,10 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
+        <spirit:name>constraints/timing.xdc</spirit:name>
+        <spirit:userFileType>xdc</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>src/frequency_counter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
@@ -743,14 +747,14 @@
       <xilinx:displayName>frequency_counter_v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_1</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>7</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-01-14T16:12:38Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>8</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-01-29T12:03:34Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="3db49ab4"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="f83579ff"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b6157b4d"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e851d39d"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="46c59f63"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="31813051"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="88185ad4"/>
