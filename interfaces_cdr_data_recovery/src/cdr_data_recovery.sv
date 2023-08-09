@@ -13,9 +13,10 @@ module cdr_data_recovery #(
   output logic [7:0] m_tdata
 );
 
+
   //----------------------------------------------------------------------------
-   typedef enum (A, B, C, D, IDLE) t_domain;
-   t_domain domain, prev_domain;
+  typedef enum (A, B, C, D, IDLE) t_domain;
+  t_domain domain, prev_domain;
 
   logic       sample_valid;
   logic [3:0] sample_data, sample_data_q;
@@ -64,20 +65,31 @@ module cdr_data_recovery #(
     );
 
 
-  end else if (mode == "iddr") begin : gen_sampler_Iddr 
-    sampler_iddr i_sampler(
+  // end else if (mode == "iddr") begin : gen_sampler_iddr 
+  //   sampler_iddr i_sampler(
+  //     .clk       (aclk),
+  //     .clk90     (aclk90),
+  //     .rst_n     (aresetn),
+  //     .in_data   (in_data),
+  //     .out_valid (sample_valid),
+  //     .out_data  (sample_data)
+  //   );
+
+
+  // end else if (mode == "iddr2x") begin : gen_sampler_iddr2x 
+  //   sampler_iddr2x i_sampler(
+  //     .clk       (aclk),
+  //     .rst_n     (aresetn),
+  //     .in_data   (in_data),
+  //     .out_valid (sample_valid),
+  //     .out_data  (sample_data)
+  //   );
+
+
+  end else if (mode == "iserdese2") begin : gen_sampler_iserdese2 
+    sampler_iserdese2 i_sampler(
       .clk       (aclk),
       .clk90     (aclk90),
-      .rst_n     (aresetn),
-      .in_data   (in_data),
-      .out_valid (sample_valid),
-      .out_data  (sample_data)
-    );
-
-
-  end else if (mode == "iddr2x") begin : gen_sampler_Iddr2x 
-    sampler_iddr2x i_sampler(
-      .clk       (aclk),
       .rst_n     (aresetn),
       .in_data   (in_data),
       .out_valid (sample_valid),
@@ -94,7 +106,7 @@ module cdr_data_recovery #(
   //----------------------------------------------------------------------------  
   // STAGE 2
   //----------------------------------------------------------------------------
-  always @ (posedge aclk or negedge aresetn) begin : p_selector
+  always @(posedge aclk or negedge aresetn) begin : p_selector
     if (!aresetn) begin 
       pos_edge    <= '0;
       neg_edge    <= '0;
@@ -121,34 +133,33 @@ module cdr_data_recovery #(
           data[0]  <= sample_data_q[0];
           valid[1] <= '1;
           data[1]  <= sample_data_q[3];
-
         end else if (domain == A) begin
-            valid[0] <= '1;
-            data[0]  <= sample_data_q[0];
+          valid[0] <= '1;
+          data[0]  <= sample_data_q[0];
         end else if (domain == B) begin
-            valid[0] <= '1;
-            data[0]  <= sample_data_q[1];
+          valid[0] <= '1;
+          data[0]  <= sample_data_q[1];
         end else if (domain == C) begin   
-            valid[0] <= '1;
-            data[0]  <= sample_data_q[2];
+          valid[0] <= '1;
+          data[0]  <= sample_data_q[2];
         end else if (domain = D) begin
-            valid[0] <= '1;
-            data[0]  <= sample_data_q[3];
+          valid[0] <= '1;
+          data[0]  <= sample_data_q[3];
         end
       end
 
     end 
-   end
+  end
 
 
   always begin : p_state
-    if ((pos_edge == "0001") || (neg_edge == "0001")) begin
+    if ((pos_edge == 'b0001) || (neg_edge == 'b0001)) begin
       domain = D;
-    end else if ((pos_edge == "0011") || (neg_edge == "0011")) begin
+    end else if ((pos_edge == 'b0011) || (neg_edge == 'b0011)) begin
       domain = A;
-    end else if ((pos_edge == "0111") || (neg_edge == "0111")) begin
+    end else if ((pos_edge == 'b0111) || (neg_edge == 'b0111)) begin
       domain = B;
-    end else if ((pos_edge == "1111") || (neg_edge == "1111")) begin
+    end else if ((pos_edge == 'b1111) || (neg_edge == 'b1111)) begin
       domain = C;
     end else begin
       domain = prev_domain;
@@ -159,7 +170,7 @@ module cdr_data_recovery #(
   //----------------------------------------------------------------------------
   // STAGE 3
   //----------------------------------------------------------------------------
-  always_ff @ (posedge aclk or negedge aresetn) begin : p_deserializer
+  always_ff @(posedge aclk or negedge aresetn) begin : p_deserializer
     logic [$bits(shift_reg)-1:0] v_reg;
     logic [$bits(shift_cnt)-1:0] v_cnt;
   
