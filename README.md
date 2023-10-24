@@ -1,2 +1,2 @@
 # IpLibrary
-Library containing various VHDL IPs
+Library containing various Systemverilog IPs
