@@ -16,22 +16,40 @@ module vga_unit_test;
 
 
   //----------------------------------------------------------------------------
-  localparam real ACLK_PERIOD = 25;
+  import vga_pkg::*;
 
-  localparam int RESOLUTION = 3;
+  localparam real ACLK_PERIOD = 25;
 
   logic aclk;
   logic aresetn;
+  logic        ctrl_arvalid;
+  logic        ctrl_arready;
+  logic [11:0] ctrl_araddr;
+  logic        ctrl_rvalid;
+  logic        ctrl_rready;
+  logic [31:0] ctrl_rdata;
+  logic [1:0]  ctrl_rresp;
+  logic        ctrl_awvalid;
+  logic        ctrl_awready;
+  logic [11:0] ctrl_awaddr;
+  logic        ctrl_wvalid;
+  logic        ctrl_wready;
+  logic [31:0] ctrl_wdata;
+  logic [3:0]  ctrl_wstrb;
+  logic        ctrl_bvalid;
+  logic        ctrl_bready;
+  logic [1:0]  ctrl_bresp;
   logic            pix_tvalid;
   logic            pix_tready;
-  logic [3*4-1:0]  pix_tdata;
+  logic [3*8-1:0]  pix_tdata;
   logic            pix_tlast;
   logic            pix_tuser;
-  logic vsync;
-  logic hsync;
-  logic [3:0] r;
-  logic [3:0] g;
-  logic [3:0] b;
+  logic       vga_vsync;
+  logic       vga_hsync;
+  logic [3:0] vga_red;
+  logic [3:0] vga_green;
+  logic [3:0] vga_blue;
+
   logic sof;
 
 
@@ -40,18 +58,24 @@ module vga_unit_test;
 
 
   //----------------------------------------------------------------------------
-  vga #(
-    .RESOLUTION (RESOLUTION)
-  ) DUT (.*);
+  vga DUT (.*);
 
 
   //----------------------------------------------------------------------------
-  frame_gen #(
-    .H_RES (800),
-    .V_RES (600)
-  ) i_frame_gen (.*);
+  frame_gen i_frame_gen( 
+    .aclk       (aclk),
+    .aresetn    (aresetn),
+    .H_RES      (800),
+    .V_RES      (600),
+    .sof        (sof),
+    .pix_tvalid (pix_tvalid),
+    .pix_tready (pix_tready),
+    .pix_tdata  (pix_tdata),
+    .pix_tlast  (pix_tlast),
+    .pix_tuser  (pix_tuser)
+  );
 
-  
+
   //----------------------------------------------------------------------------
   function void build();
     svunit_ut = new(name);
@@ -62,6 +86,9 @@ module vga_unit_test;
     svunit_ut.setup();
 
     aresetn <= '0;
+    pix_tvalid <= '0;
+    sof <= '0;
+
     wait_tics(5);
     aresetn <= '1;
     wait_tics(5);
@@ -87,8 +114,10 @@ module vga_unit_test;
 
 
   //----------------------------------------------------------------------------
-  `SVTEST(test_dummy)
-    #100ms;
+  `SVTEST(test)
+    #1ms;
+    sof <= '1;
+    #100000us;
   `SVTEST_END
 
   //----------------------------------------------------------------------------

@@ -1,152 +1,133 @@
-
 //------------------------------------------------------------------------------
-module vga 
-  import vga_pkg::*;
-#(
-  parameter int RESOLUTION = 2
+// Project Name   : IpLibrary
+//------------------------------------------------------------------------------
+// Author         : Lukas Vinkx (lvin)
+// Description: 
+//------------------------------------------------------------------------------
+
+
+module vga #(
+  parameter int DEFAULT_CONFIG = 3
 )( 
-  input  logic        aclk,
-  input  logic        aresetn,
-
-  input  logic             pix_tvalid,
-  output logic             pix_tready,
-  input  logic [2:0][3:0]  pix_tdata,
-  input  logic             pix_tlast,
-  input  logic             pix_tuser,
+  input  logic            aclk,
+  input  logic            aresetn,
+  // AXI4-Lite Interface
+  input  logic            ctrl_arvalid,
+  output logic            ctrl_arready,
+  input  logic [11:0]     ctrl_araddr,
+  output logic            ctrl_rvalid,
+  input  logic            ctrl_rready,
+  output logic [31:0]     ctrl_rdata,
+  output logic [1:0]      ctrl_rresp,
+  input  logic            ctrl_awvalid,
+  output logic            ctrl_awready,
+  input  logic [11:0]     ctrl_awaddr,
+  input  logic            ctrl_wvalid,
+  output logic            ctrl_wready,
+  input  logic [31:0]     ctrl_wdata,
+  input  logic [3:0]      ctrl_wstrb,
+  output logic            ctrl_bvalid,
+  input  logic            ctrl_bready,
+  output logic [1:0]      ctrl_bresp,
+  // AXI4-Stream Video
+  input  logic            pix_tvalid,
+  output logic            pix_tready,
+  input  logic [2:0][7:0] pix_tdata,
+  input  logic            pix_tlast,
+  input  logic            pix_tuser,
   // VGA Interface
-  output logic vsync,
-  output logic hsync,
-  output logic [3:0] r, 
-  output logic [3:0] g, 
-  output logic [3:0] b,
-
-  output logic sof
+  output logic            vga_vsync,
+  output logic            vga_hsync,
+  output logic [3:0]      vga_red, 
+  output logic [3:0]      vga_green, 
+  output logic [3:0]      vga_blue
 );
 
 
   //----------------------------------------------------------------------------
-  localparam int H_RES           = vga_configs[RESOLUTION].H_RES;
-  localparam int H_FRONT_PORCH   = vga_configs[RESOLUTION].H_FRONT_PORCH;
-  localparam int H_SYNC_PULSE    = vga_configs[RESOLUTION].H_SYNC_PULSE;
-  localparam int H_BACK_PORCH    = vga_configs[RESOLUTION].H_BACK_PORCH;
-  localparam int V_RES           = vga_configs[RESOLUTION].V_RES;
-  localparam int V_FRONT_PORCH   = vga_configs[RESOLUTION].V_FRONT_PORCH;
-  localparam int V_SYNC_PULSE    = vga_configs[RESOLUTION].V_SYNC_PULSE;
-  localparam int V_BACK_PORCH    = vga_configs[RESOLUTION].V_BACK_PORCH;
+  logic [15:0] h_res;
+  logic [15:0] h_front_porch;
+  logic [15:0] h_sync_pulse;
+  logic [15:0] h_back_porch;
+  logic [15:0] v_res;
+  logic [15:0] v_front_porch;
+  logic [15:0] v_sync_pulse;
+  logic [15:0] v_back_porch;
 
-  logic [$clog2(H_RES)-1:0] h_cnt;
-  logic [$clog2(V_RES)-1:0] v_cnt;
+
+  logic [15:0] h_cnt;
+  logic [15:0] v_cnt;
 
   enum {H_BLANK, H_FP, H_PIX, H_BP} h_state;
   enum {V_BLANK, V_FP, V_PIX, V_BP} v_state;
 
-  logic vsync_q;
+  logic vga_vsync_q;
+  logic synced;
+  logic flush;
+  logic load_pix;
 
 
   //----------------------------------------------------------------------------
-  always_ff @(posedge aclk or negedge aresetn) begin
-    if (!aresetn) begin
-      h_cnt   <= H_SYNC_PULSE-1;
-      h_state <= H_BLANK;
-
-    end else begin
-      case (h_state)
-        H_BLANK : begin
-          h_cnt <= h_cnt - 1;
-          if (h_cnt == 0) begin
-            h_cnt   <= H_FRONT_PORCH-1;
-            h_state <= H_FP;
-          end
-        end
-
-        H_FP : begin
-          h_cnt <= h_cnt - 1;
-          if (h_cnt == 0) begin
-            h_cnt   <= H_RES-1;
-            h_state <= H_PIX;
-          end
-        end
-
-        H_PIX : begin
-          h_cnt <= h_cnt - 1;
-          if (h_cnt == 0) begin
-            h_cnt   <= H_BACK_PORCH-1;
-            h_state <= H_BP;
-          end
-        end
-
-        H_BP : begin
-          h_cnt <= h_cnt - 1;
-          if (h_cnt == 0) begin
-            h_cnt   <= H_SYNC_PULSE-1;
-            h_state <= H_BLANK;
-          end
-        end
-
-      endcase
-    end
-  end
+  vga_reg_intf #(
+    .DEFAULT_CONFIG (DEFAULT_CONFIG)
+  ) i_vga_reg_intf (
+    .aclk           (aclk),
+    .aresetn        (aresetn),
+    // AXI4-Lite Interface
+    .ctrl_arvalid   (ctrl_arvalid),
+    .ctrl_arready   (ctrl_arready),
+    .ctrl_araddr    (ctrl_araddr),
+    .ctrl_rvalid    (ctrl_rvalid),
+    .ctrl_rready    (ctrl_rready),
+    .ctrl_rdata     (ctrl_rdata),
+    .ctrl_rresp     (ctrl_rresp),
+    .ctrl_awvalid   (ctrl_awvalid),
+    .ctrl_awready   (ctrl_awready),
+    .ctrl_awaddr    (ctrl_awaddr),
+    .ctrl_wvalid    (ctrl_wvalid),
+    .ctrl_wready    (ctrl_wready),
+    .ctrl_wdata     (ctrl_wdata),
+    .ctrl_wstrb     (ctrl_wstrb),
+    .ctrl_bvalid    (ctrl_bvalid),
+    .ctrl_bready    (ctrl_bready),
+    .ctrl_bresp     (ctrl_bresp),
+    // Regs
+    .h_res          (h_res),
+    .h_front_porch  (h_front_porch),
+    .h_sync_pulse   (h_sync_pulse),
+    .h_back_porch   (h_back_porch),
+    .v_res          (v_res),
+    .v_front_porch  (v_front_porch),
+    .v_sync_pulse   (v_sync_pulse),
+    .v_back_porch   (v_back_porch)
+  );
 
 
-  always_ff @(posedge aclk or negedge aresetn) begin
-    if (!aresetn) begin
-      v_cnt   <= V_SYNC_PULSE-1;
-      v_state <= V_BLANK;
+  vga_core i_vga_core ( 
+    .aclk           (aclk),
+    .aresetn        (aresetn),
+    // Timing Control
+    .h_res          (h_res),
+    .h_front_porch  (h_front_porch),
+    .h_sync_pulse   (h_sync_pulse),
+    .h_back_porch   (h_back_porch),
+    .v_res          (v_res),
+    .v_front_porch  (v_front_porch),
+    .v_sync_pulse   (v_sync_pulse),
+    .v_back_porch   (v_back_porch),
+    // AXI4-Stream Video
+    .pix_tvalid     (pix_tvalid),
+    .pix_tready     (pix_tready),
+    .pix_tdata      (pix_tdata),
+    .pix_tlast      (pix_tlast),
+    .pix_tuser      (pix_tuser),
+    // VGA Interface
+    .vga_vsync      (vga_vsync),
+    .vga_hsync      (vga_hsync),
+    .vga_red        (vga_red), 
+    .vga_green      (vga_green), 
+    .vga_blue       (vga_blue)
+  );
 
-    end else if (h_state == H_BP && h_cnt == 0) begin
-      case (v_state)
-        V_BLANK : begin
-          v_cnt <= v_cnt - 1;
-          if (v_cnt == 0) begin
-            v_cnt   <= V_FRONT_PORCH-1;
-            v_state <= V_FP;
-          end
-        end
-
-        V_FP : begin
-          v_cnt <= v_cnt - 1;
-          if (v_cnt == 0) begin
-            v_cnt   <= V_RES-1;
-            v_state <= V_PIX;
-          end
-        end
-
-        V_PIX : begin
-          v_cnt <= v_cnt - 1;
-          if (v_cnt == 0) begin
-            v_cnt   <= V_BACK_PORCH-1;
-            v_state <= V_BP;
-          end
-        end
-
-        V_BP : begin
-          v_cnt <= v_cnt - 1;
-          if (v_cnt == 0) begin
-            v_cnt   <= V_SYNC_PULSE-1;
-            v_state <= V_BLANK;
-          end
-        end
-
-      endcase
-    end
-  end
-
-
-  assign pix_tready = h_state == H_PIX && v_state == V_PIX;
-
-  assign {b, g, r} = pix_tdata; 
-  assign vsync = v_state != V_BLANK;
-  assign hsync = h_state != H_BLANK;
-
-
-  always @(posedge aclk or negedge aresetn) begin
-    if (!aresetn) begin
-      vsync_q <= '0;
-    end else begin
-      vsync_q <= vsync;
-    end
-  end
-
-  assign sof = vsync && !vsync_q;
 
 endmodule

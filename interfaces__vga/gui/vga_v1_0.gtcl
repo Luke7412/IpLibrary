@@ -1,2 +1,2 @@
 # This file is automatically written.  Do not modify.
-proc gen_USERPARAMETER_InputClock_VALUE {Resolution } {expr $Resolution == 3 ? 40 : ($Resolution == 4 ? 65 : 25.175)}
+proc gen_USERPARAMETER_InputClock_VALUE {Resolution } {expr $Resolution == 3 ? 40.00 : ($Resolution == 4 ? 65.00 : ($Resolution == 5 ? 108.00 : 25.175))}
