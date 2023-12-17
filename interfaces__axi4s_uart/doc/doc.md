@@ -1,14 +1,17 @@
-[IP Library](../../doc.md) > uart2axi
+[IP Library](../../doc.md) > AXI4-Stream UART
 
 
-# UART 2 AXI
+# AXI4-Stream UART
 
-This module translates a UART stream to AXI4 transactions.
+This module consists of 2 sub modules:
+
+- AXI4-Stream UART TX:
+- AXI4-Stream UART RX:
 
 
 ## Block Diagram
 
-![address map](figs/bd.svg)
+![block diagram](figs/bd.svg)
 
 
 ## Paramters
@@ -18,23 +21,21 @@ This module translates a UART stream to AXI4 transactions.
 | ACLK_FREQUENCY  | 200000000 | The frequency for the reference AClk [Hz]
 | BAUD_RATE       | 9600      | UART baud rate used for synthesis [bits/s]
 | BAUD_RATE_SIM   | 50000000  | UART baud rate used for simulation [bits/s](used to reduce simulation time)
-| START_BYTE      | 'h7D      | Byte used to indicate start of packet
-| STOP_BYTE       | 'h7E      | Byte used to indicate end of packet
-| ESCAPE_BYTE     | 'h7F      | byte used to escape data bytes in packet
 
 
 ## Interfaces
 
 | Name  | Type |        | Description |
 |-------|------|--------|-------------|
-| uart  | UART | slave  |
-| m_axi | AXI4 | master |
+| uart    | UART         | target    |
+| tx_byte | AXI4-Stream  | target    |
+| rx_byte | AXI4-Stream  | initator  |
 
 
 ## Ports
 
 | Name  | Direction | Description |
 |-------|-----------|-------------|
-| aclk    | in  | AXI Clock. Used to sample UART signals
+| aclk    | in  | AXI Clock.
 | aresetn | in  | AXI Reset. This signal is active-Low
 

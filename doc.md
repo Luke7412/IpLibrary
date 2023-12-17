@@ -14,6 +14,8 @@ IP Library
 ## Interfaces
 
 
+### [AXI4S UART](interfaces__axi4s_uart/doc/doc.md)
+
 ### [UART 2 AXI](interfaces__uart2axi/doc/doc.md)
 
 This module translates a UART stream to AXI4 transactions.
