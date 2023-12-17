@@ -1,6 +1,8 @@
 -sv -sv09compat
 
-../../src/encoder_8b10b.sv
-../../src/decoder_8b10b.sv
+../../src/enc_8b10b.sv
+../../src/dec_8b10b.sv
+../../src/axi4s_enc_8b10b.sv
+../../src/axi4s_dec_8b10b.sv
 
-../encoding_8b10b_pkg.sv
+../coding_8b10b_pkg.sv
