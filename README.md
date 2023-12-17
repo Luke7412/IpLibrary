@@ -2,6 +2,11 @@
 Library containing various VHDL IPs
 
 
+## IP Library Documentation
+
+see: [here](doc.md)
+
+
 ## Running SVUnit
 ```bash
 # Activate python venv
