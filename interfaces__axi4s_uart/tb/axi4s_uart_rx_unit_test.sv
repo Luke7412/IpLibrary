@@ -1,16 +1,11 @@
-//------------------------------------------------------------------------------
-// Project Name: IpLibrary
-//------------------------------------------------------------------------------
-// Author      : Lukas Vinkx (lvin)
-// Description : 
-//------------------------------------------------------------------------------
+
+
 `include "svunit_defines.svh"
 `timescale 1ns/1ns
 
 
 module axi4s_uart_rx_unit_test;
   import svunit_pkg::svunit_testcase;
-
   string name = "axi4s_uart_rx_ut";
   svunit_testcase svunit_ut;
 

@@ -1,6 +1,5 @@
 
 
-//------------------------------------------------------------------------------
 module axi4s_uart_rx #(
   parameter  real ACLK_FREQUENCY = 200000000,
   parameter  int  BAUD_RATE      = 9600,
