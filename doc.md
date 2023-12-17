@@ -3,6 +3,14 @@ IP Library
 # IP Library
 
 
+## AXI4-Stream
+
+
+### [AXI4S Dest Packetizer](axi4s__dest_packetizer/doc/doc.md)
+
+### [AXI4S Framing](axi4s__framing/doc/doc.md)
+
+
 ## Interfaces
 
 

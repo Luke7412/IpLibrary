@@ -1,3 +1,8 @@
+//------------------------------------------------------------------------------
+// Description:
+//    Extracts the TID from incomming AXI4-Stream packets. TID is located on 
+//    first TDATA beat of packet.
+//------------------------------------------------------------------------------
 
 
 module dest_extract (
