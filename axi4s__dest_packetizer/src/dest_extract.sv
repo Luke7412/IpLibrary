@@ -1,21 +1,15 @@
-//------------------------------------------------------------------------------
-// Project Name: IpLibrary
-//------------------------------------------------------------------------------
-// Author      : Lukas Vinkx (lvin)
-// Description : 
-//------------------------------------------------------------------------------
 
 
 module dest_extract (
-    // Clock and reset
+  // Clock and reset
   input  logic       aclk,
   input  logic       aresetn,
-    // Axi4-Stream Target interface
+  // Axi4-Stream Target interface
   input  logic       target_tvalid,
   output logic       target_tready,
   input  logic       target_tlast,
   input  logic [7:0] target_tdata,
-    // Axi4-Stream Initiator interface
+  // Axi4-Stream Initiator interface
   output logic       initiator_tvalid,
   input  logic       initiator_tready,
   output logic       initiator_tlast,

@@ -1,16 +1,10 @@
-//------------------------------------------------------------------------------
-// Project Name: IpLibrary
-//------------------------------------------------------------------------------
-// Author      : Lukas Vinkx (lvin)
-// Description : 
-//------------------------------------------------------------------------------
+
 `include "svunit_defines.svh"
 `timescale 1ns/1ns
 
 
 module dest_packetizer_unit_test;
   import svunit_pkg::svunit_testcase;
-
   string name = "dest_packetizer_ut";
   svunit_testcase svunit_ut;
 
