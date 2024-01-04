@@ -1,8 +1,10 @@
 
 
-module axi4s_lfsr #(
+module axi4s_lfsr 
+  import lfsr_pkg::*;
+#(
   parameter int                     POLY_DEGREE  = 16,                  
-  parameter logic [POLY_DEGREE-1:0] POLYNOMIAL   = 16'b1010000000010001,
+  parameter logic [POLY_DEGREE-1:0] POLYNOMIAL   = POLY_MAX_16,
   parameter logic [POLY_DEGREE-1:0] SEED         = 1,
   parameter int                     TDATA_WIDTH  = 8,
   parameter string                  IMPLEMENTATION = "galois"  // can be "galois" or "fibonacci"
@@ -76,7 +78,7 @@ module axi4s_lfsr #(
     );
 
   end else begin
-    $fatal("Paramter IMPLEMENTATION must be 'galois' or 'fibonacci'.");
+    $fatal("Parameter IMPLEMENTATION must be 'galois' or 'fibonacci'.");
   end
 
 
