@@ -13,8 +13,18 @@ module lfsr_fibonacci #(
 
 
   //----------------------------------------------------------------------------
+  function logic [POLY_DEGREE:1] reverse (logic [POLY_DEGREE:1] x);
+    logic [POLY_DEGREE:1] y;
+
+    foreach(x[i]) 
+      y[POLY_DEGREE-i] = x[i];
+    return y;
+  endfunction
+
+  //----------------------------------------------------------------------------
   // If true: the lfsr stream will start with the seed value
   localparam bit SEED_FIRST = 1;
+  localparam logic [1:POLY_DEGREE] REVERSED_POLYNOMIAL = reverse(POLYNOMIAL);
 
 
   //----------------------------------------------------------------------------
@@ -28,7 +38,7 @@ module lfsr_fibonacci #(
     for (int i=0; i<OUTPUT_WIDTH; i++) begin
       v_data_late = {v_state[POLY_DEGREE], v_data_late} >> 1;
 
-      v_bit = ^(v_state & {<<{POLYNOMIAL}});
+      v_bit = ^(v_state & REVERSED_POLYNOMIAL);
       v_state = {v_bit, v_state} >> 1;
 
       v_data_early = {v_bit, v_data_early} >> 1;
