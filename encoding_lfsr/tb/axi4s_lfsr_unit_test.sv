@@ -14,9 +14,9 @@ module axi4s_lfsr_unit_test;
 
   localparam real ACLK_PERIOD = 5ns;
 
-  localparam int                     POLY_DEGREE  = 16;
-  localparam logic [POLY_DEGREE-1:0] POLYNOMIAL   = 16'b0110100000000001;
-  localparam logic [POLY_DEGREE-1:0] SEED         = '1;
+  localparam int                     POLY_DEGREE  = 7;
+  localparam logic [POLY_DEGREE-1:0] POLYNOMIAL   = PRBS7;
+  localparam logic [POLY_DEGREE-1:0] SEED         = 1;
   localparam int                     TDATA_WIDTH  = 8;
 
   logic aclk;
@@ -25,10 +25,11 @@ module axi4s_lfsr_unit_test;
   logic                    target_tready;
   logic [TDATA_WIDTH-1:0]  target_tdata;
   logic                    target_tlast;
-  logic                    initiator_tvalid;
-  logic                    initiator_tready;
-  logic [TDATA_WIDTH-1:0]  initiator_tdata;
-  logic                    initiator_tlast;
+
+  logic                    fib_tvalid,  gal_tvalid;
+  logic                    fib_tready,  gal_tready;
+  logic [TDATA_WIDTH-1:0]  fib_tdata ,  gal_tdata;
+  logic                    fib_tlast ,  gal_tlast;
 
 
   //----------------------------------------------------------------------------
@@ -39,21 +40,42 @@ module axi4s_lfsr_unit_test;
   // axi4s_lfsr DUT(.*);
 
   axi4s_lfsr #(
-    .POLY_DEGREE  (POLY_DEGREE),
-    .POLYNOMIAL   (POLYNOMIAL),
-    .SEED         (SEED),
-    .TDATA_WIDTH  (TDATA_WIDTH)
-  ) DUT (
+    .POLY_DEGREE    (POLY_DEGREE),
+    .POLYNOMIAL     (POLYNOMIAL),
+    .SEED           (SEED),
+    .TDATA_WIDTH    (TDATA_WIDTH),
+    .IMPLEMENTATION ("fibonacci")
+  ) lfsr_fib (
     .aclk             (aclk),
     .aresetn          (aresetn),
     .target_tvalid    (target_tvalid),
-    .target_tready    (target_tready),
+    .target_tready    (),
     .target_tdata     (target_tdata),
     .target_tlast     (target_tlast),
-    .initiator_tvalid (initiator_tvalid),
-    .initiator_tready (initiator_tready),
-    .initiator_tdata  (initiator_tdata),
-    .initiator_tlast  (initiator_tlast)
+    .initiator_tvalid (fib_tvalid),
+    .initiator_tready (fib_tready),
+    .initiator_tdata  (fib_tdata),
+    .initiator_tlast  (fib_tlast)
+  );
+
+
+  axi4s_lfsr #(
+    .POLY_DEGREE    (POLY_DEGREE),
+    .POLYNOMIAL     (POLYNOMIAL),
+    .SEED           (SEED),
+    .TDATA_WIDTH    (TDATA_WIDTH),
+    .IMPLEMENTATION ("galois")
+  ) lfsr_gal (
+    .aclk             (aclk),
+    .aresetn          (aresetn),
+    .target_tvalid    (target_tvalid),
+    .target_tready    (),
+    .target_tdata     (target_tdata),
+    .target_tlast     (target_tlast),
+    .initiator_tvalid (gal_tvalid),
+    .initiator_tready (gal_tready),
+    .initiator_tdata  (gal_tdata),
+    .initiator_tlast  (gal_tlast)
   );
 
 
@@ -68,7 +90,8 @@ module axi4s_lfsr_unit_test;
 
     aresetn <= '0;
     target_tvalid <= '0;
-    initiator_tready <= '0;
+    fib_tready <= '0;
+    gal_tready <= '0;
 
     wait_tics(5);
     aresetn <= '1;
@@ -87,7 +110,7 @@ module axi4s_lfsr_unit_test;
   //----------------------------------------------------------------------------
   task wait_tics(int tics=1);
     repeat(tics)
-      @(posedge aclk);
+      @(posedge lfsr_fib.aclk);
   endtask
 
 
@@ -95,7 +118,8 @@ module axi4s_lfsr_unit_test;
   `SVUNIT_TESTS_BEGIN
 
   `SVTEST(test_1)
-    initiator_tready <= '1;
+    fib_tready <= '1;
+    gal_tready <= '1;
 
     target_tvalid <= '1;
     target_tlast <= '0;
