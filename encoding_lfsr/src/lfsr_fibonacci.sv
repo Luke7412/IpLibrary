@@ -1,51 +1,54 @@
 
 
-
-module lfsr_fibonacci #(
+module lfsr_fibonacci 
+  import lfsr_pkg::*;
+#(
   parameter int                   POLY_DEGREE  = 7,
-  parameter logic [POLY_DEGREE:1] POLYNOMIAL   = 7'b110_0000,
-  parameter int                   OUTPUT_WIDTH = 1
+  parameter logic [POLY_DEGREE:1] POLYNOMIAL   = PRBS7,
+  parameter int                   OUTPUT_WIDTH = 1,
+  parameter bit                   CHK_NOT_GEN  = 0
 )(
   input  logic [1:POLY_DEGREE]    state,
   output logic [1:POLY_DEGREE]    next_state,
-  output logic [OUTPUT_WIDTH-1:0] data
+  input  logic [OUTPUT_WIDTH-1:0] data_in,
+  output logic [OUTPUT_WIDTH-1:0] data_out
 );
 
 
   //----------------------------------------------------------------------------
-  function logic [POLY_DEGREE:1] reverse (logic [POLY_DEGREE:1] x);
-    logic [POLY_DEGREE:1] y;
+  function logic [1:POLY_DEGREE] reverse (logic [POLY_DEGREE:1] x);
+    logic [1:POLY_DEGREE] y;
 
     foreach(x[i]) 
-      y[POLY_DEGREE-i] = x[i];
+      y[i] = x[i];
     return y;
   endfunction
-
-  //----------------------------------------------------------------------------
-  // If true: the lfsr stream will start with the seed value
-  localparam bit SEED_FIRST = 1;
-  localparam logic [1:POLY_DEGREE] REVERSED_POLYNOMIAL = reverse(POLYNOMIAL);
 
 
   //----------------------------------------------------------------------------
   always_comb begin
-    logic                 v_bit;
-    logic [1:POLY_DEGREE] v_state;
-    logic [OUTPUT_WIDTH-1:0] v_data_late, v_data_early;
+    logic                    v_bit;
+    logic [1:POLY_DEGREE]    v_state;
+    logic [OUTPUT_WIDTH-1:0] v_err;
+    logic [OUTPUT_WIDTH-1:0] v_data;
 
     v_state = state;
 
     for (int i=0; i<OUTPUT_WIDTH; i++) begin
-      v_data_late = {v_state[POLY_DEGREE], v_data_late} >> 1;
+      v_data = {v_state[POLY_DEGREE], v_data} >> 1;
 
-      v_bit = ^(v_state & REVERSED_POLYNOMIAL);
-      v_state = {v_bit, v_state} >> 1;
-
-      v_data_early = {v_bit, v_data_early} >> 1;
+      v_bit = ^(v_state & reverse(POLYNOMIAL));
+      
+      if (CHK_NOT_GEN) begin
+        v_state = {data_in[i], v_state} >> 1;
+        v_err[i] = v_bit != data_in[i];
+      end else begin
+        v_state = {v_bit, v_state} >> 1;
+      end
     end
 
     next_state = v_state;
-    data = SEED_FIRST ? v_data_late : v_data_early;
+    data_out = CHK_NOT_GEN ? v_err : v_data;
   end
 
 endmodule

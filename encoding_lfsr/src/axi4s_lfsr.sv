@@ -3,11 +3,12 @@
 module axi4s_lfsr 
   import lfsr_pkg::*;
 #(
-  parameter int                     POLY_DEGREE  = 16,                  
-  parameter logic [POLY_DEGREE-1:0] POLYNOMIAL   = POLY_MAX_16,
-  parameter logic [POLY_DEGREE-1:0] SEED         = 1,
-  parameter int                     TDATA_WIDTH  = 8,
-  parameter string                  IMPLEMENTATION = "galois"  // can be "galois" or "fibonacci"
+  parameter int                   POLY_DEGREE  = 16,                  
+  parameter bit [POLY_DEGREE-1:0] POLYNOMIAL   = POLY_MAX_16,
+  parameter bit [POLY_DEGREE-1:0] SEED         = 1,
+  parameter int                   TDATA_WIDTH  = 8,
+  parameter string                IMPLEMENTATION = "galois",  // can be "galois" or "fibonacci"
+  parameter bit                   CHK_NOT_GEN  = 0            // 0: generator, 1: checker
 )(
   input  logic aclk,
   input  logic aresetn,
@@ -63,7 +64,8 @@ module axi4s_lfsr
     ) i_lfsr_core (
       .state      (state),
       .next_state (next_state),
-      .data       (lfsr_data)
+      .data_in    (target_tdata),
+      .data_out   (lfsr_data)
     );
 
   end else if (IMPLEMENTATION == "fibonacci") begin
@@ -74,7 +76,8 @@ module axi4s_lfsr
     ) i_lfsr_core (
       .state      (state),
       .next_state (next_state),
-      .data       (lfsr_data)
+      .data_in    (target_tdata),
+      .data_out   (lfsr_data)
     );
 
   end else begin
@@ -180,7 +183,7 @@ module axi4s_lfsr_chk #(
         initiator_tdata <= lfsr_data;
         initiator_tlast <= target_tlast;
 
-        state <= next_state;
+        state <= {target_tdata, state} >> TDATA_WIDTH;
         if (target_tlast) begin
           state <= SEED;
         end

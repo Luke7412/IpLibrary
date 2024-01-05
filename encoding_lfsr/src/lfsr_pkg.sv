@@ -1,6 +1,9 @@
 
 package lfsr_pkg;
 
+  // Source: 
+  //  * https://en.wikipedia.org/wiki/Linear-feedback_shift_register
+  //  * https://docs.xilinx.com/v/u/en-US/xapp052
   // Note: Polynomials are Notated with X^0 omitted.
   // ie x5+x3+x0 is a 5 bit vector with bits 5 and 3 set
 
@@ -11,7 +14,7 @@ package lfsr_pkg;
   localparam bit [ 5:1] POLY_MAX_5   =  5'b10100;                             // x5 + x3 + 1
   localparam bit [ 6:1] POLY_MAX_6   =  6'b110000;                            // x6 + x5 + 1
   localparam bit [ 7:1] POLY_MAX_7   =  7'b1100000;                           // x7 + x6 + 1
-  localparam bit [ 8:1] POLY_MAX_8   =  8'b10110100;                          // x8 + x6 + x5 + x3 + 1
+  localparam bit [ 8:1] POLY_MAX_8   =  8'b10111000;                          // x8 + x6 + x5 + x4 + 1
   localparam bit [ 9:1] POLY_MAX_9   =  9'b100010000;                         // x9 + x5 + 1
   localparam bit [10:1] POLY_MAX_10  = 10'b1001000000;                        // x10 + x7 + 1
   localparam bit [11:1] POLY_MAX_11  = 11'b10100000000;                       // x11 + x9 + 1
