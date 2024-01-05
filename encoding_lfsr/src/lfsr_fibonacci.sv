@@ -38,7 +38,7 @@ module lfsr_fibonacci
       v_data = {v_state[POLY_DEGREE], v_data} >> 1;
 
       v_bit = ^(v_state & reverse(POLYNOMIAL));
-      
+
       if (CHK_NOT_GEN) begin
         v_state = {data_in[i], v_state} >> 1;
         v_err[i] = v_bit != data_in[i];
