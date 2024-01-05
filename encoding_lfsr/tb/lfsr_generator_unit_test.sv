@@ -25,7 +25,10 @@ module lfsr_generator_unit_test;
   logic [POLY_DEGREE-1:0]  gal_next_state;
   logic [OUTPUT_WIDTH-1:0] gal_data;
 
-  logic [0:126] prbs7_series = 'b1000000100000110000101000111100100010110011101010011111010000111000100100110110101101111011000110100101110111001100101010111111;
+  logic [OUTPUT_WIDTH-1:0] err;
+
+  logic [0:126] PRBS7_SERIES = 'b1000000100000110000101000111100100010110011101010011111010000111000100100110110101101111011000110100101110111001100101010111111;
+  logic [0:126] prbs7_shift;
 
 
   //----------------------------------------------------------------------------
@@ -58,7 +61,7 @@ module lfsr_generator_unit_test;
   ) lfsr_fib (
     .state      (fib_state),
     .next_state (fib_next_state),
-    .data_in    ('0),
+    .data_in    (err),
     .data_out   (fib_data)
   );
 
@@ -71,7 +74,7 @@ module lfsr_generator_unit_test;
   ) lfsr_gal (
     .state      (gal_state),
     .next_state (gal_next_state),
-    .data_in    ('0),
+    .data_in    (err),
     .data_out   (gal_data)
   );
 
@@ -85,8 +88,11 @@ module lfsr_generator_unit_test;
   task setup();
     svunit_ut.setup();
 
+    prbs7_shift <= PRBS7_SERIES;
     fib_state <= '0;
     gal_state <= '0;
+    err <= '0;
+
   endtask
 
 
@@ -98,22 +104,49 @@ module lfsr_generator_unit_test;
   //----------------------------------------------------------------------------
   `SVUNIT_TESTS_BEGIN
 
-  `SVTEST(test_1)
+  `SVTEST(test_basic)
+    logic [OUTPUT_WIDTH-1:0] exp_data;
+    int ITTERATIONS = 600;
+
     fib_state <= 7'b01;
     gal_state <= prev_galois(7'b01, POLY_DEGREE);
 
-    repeat(5*$size(prbs7_series)) begin
+    for(int i=0; i<ITTERATIONS; i++) begin
       #5;
-      `FAIL_IF(fib_data != {<<{prbs7_series[0+:OUTPUT_WIDTH]}});
-      `FAIL_IF(fib_data != gal_data);
+      exp_data = {<<{prbs7_shift[0+:OUTPUT_WIDTH]}};
+      `FAIL_IF(fib_data != exp_data);
+      `FAIL_IF(fib_data != exp_data);
 
       fib_state <= fib_next_state;
       gal_state <= gal_next_state;
-      prbs7_series <= {prbs7_series, prbs7_series[0+:OUTPUT_WIDTH]};
+      prbs7_shift <= {prbs7_shift, prbs7_shift[0+:OUTPUT_WIDTH]};
     end
 
   `SVTEST_END
 
+
+  `SVTEST(test_insert_error)
+    logic [OUTPUT_WIDTH-1:0] exp_data;
+    int ITTERATIONS = 600;
+    int ERROR_FREQ = 30;
+
+    fib_state <= 7'b01;
+    gal_state <= prev_galois(7'b01, POLY_DEGREE);
+
+    for(int i=0; i<ITTERATIONS; i++) begin
+      err[0] <= i % ERROR_FREQ;
+
+      #5;
+      exp_data = {<<{prbs7_shift[0+:OUTPUT_WIDTH]}} ^ err;
+      `FAIL_IF(fib_data != exp_data);
+      `FAIL_IF(fib_data != exp_data);
+
+      fib_state <= fib_next_state;
+      gal_state <= gal_next_state;
+      prbs7_shift <= {prbs7_shift, prbs7_shift[0+:OUTPUT_WIDTH]};
+    end
+
+  `SVTEST_END
  
   //----------------------------------------------------------------------------
   `SVUNIT_TESTS_END

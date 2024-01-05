@@ -48,7 +48,7 @@ module lfsr_fibonacci
     end
 
     next_state = v_state;
-    data_out = CHK_NOT_GEN ? v_err : v_data;
+    data_out = CHK_NOT_GEN ? v_err : v_data ^ data_in;
   end
 
 endmodule

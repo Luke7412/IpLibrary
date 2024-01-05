@@ -35,7 +35,7 @@ module lfsr_galois
     end
 
     next_state = v_state;
-    data_out = CHK_NOT_GEN ? v_data ^ data_in : v_data;
+    data_out = v_data ^ data_in;
   end
 
 

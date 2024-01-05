@@ -19,14 +19,13 @@ module lfsr_checker_unit_test;
 
   logic [POLY_DEGREE-1:0]  fib_state;
   logic [POLY_DEGREE-1:0]  fib_next_state;
-  logic [OUTPUT_WIDTH-1:0] fib_data_in;
   logic [OUTPUT_WIDTH-1:0] fib_data;
+  logic [OUTPUT_WIDTH-1:0] fib_err;
 
   logic [POLY_DEGREE-1:0]  gal_state;
   logic [POLY_DEGREE-1:0]  gal_next_state;
-  logic [OUTPUT_WIDTH-1:0] gal_data_in;
-
   logic [OUTPUT_WIDTH-1:0] gal_data;
+  logic [OUTPUT_WIDTH-1:0] gal_err;
 
   localparam logic [0:126] PRBS7_SERIES = 'b1000000100000110000101000111100100010110011101010011111010000111000100100110110101101111011000110100101110111001100101010111111;
   logic [0:126] prbs7_shift;
@@ -63,8 +62,8 @@ module lfsr_checker_unit_test;
   ) lfsr_fib (
     .state      (fib_state),
     .next_state (fib_next_state),
-    .data_in    (fib_data_in),
-    .data_out   (fib_data)
+    .data_in    (fib_data),
+    .data_out   (fib_err)
   );
 
 
@@ -76,13 +75,13 @@ module lfsr_checker_unit_test;
   ) lfsr_gal (
     .state      (gal_state),
     .next_state (gal_next_state),
-    .data_in    (gal_data_in),
-    .data_out   (gal_data)
+    .data_in    (gal_data),
+    .data_out   (gal_err)
   );
 
 
-  assign fib_data_in = {<<{prbs7_shift[0+:OUTPUT_WIDTH]}} ^ err;
-  assign gal_data_in = {<<{prbs7_shift[0+:OUTPUT_WIDTH]}} ^ err;
+  assign fib_data = {<<{prbs7_shift[0+:OUTPUT_WIDTH]}} ^ err;
+  assign gal_data = {<<{prbs7_shift[0+:OUTPUT_WIDTH]}} ^ err;
 
 
   //----------------------------------------------------------------------------
@@ -116,8 +115,8 @@ module lfsr_checker_unit_test;
     for(int i=0; i<5*$size(prbs7_shift); i++) begin
       #5;
       if (i>POLY_DEGREE) begin
-        `FAIL_IF(fib_data != '0);
-        `FAIL_IF(fib_data != '0);
+        `FAIL_IF(fib_err != '0);
+        `FAIL_IF(fib_err != '0);
       end
 
       fib_state <= fib_next_state;
@@ -128,7 +127,7 @@ module lfsr_checker_unit_test;
   `SVTEST_END
 
 
-  `SVTEST(test_errors)
+  `SVTEST(test_with_errors)
     fib_state <= 7'b01;
     gal_state <= prev_galois(7'b01, POLY_DEGREE);
 
@@ -136,8 +135,8 @@ module lfsr_checker_unit_test;
       #5;
 
       if (i%100 > POLY_DEGREE) begin
-        `FAIL_IF(fib_data != '0);
-        `FAIL_IF(fib_data != '0);
+        `FAIL_IF(fib_err != '0);
+        `FAIL_IF(fib_err != '0);
       end
 
       fib_state <= fib_next_state;
